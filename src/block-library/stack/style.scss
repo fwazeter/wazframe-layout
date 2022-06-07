@@ -1,0 +1,63 @@
+/*
+ Making a stack a flex gives ability to add auto
+ margin on chosen element. that way we can group
+ elements to top and bottom of vertical space.
+ */
+.stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* The space property here should match default line-height */
+.stack > * + * {
+  margin-block-start: var(--space, 1.5rem);
+}
+
+/* recursion makes it so padding is nested, this
+ applies the same margin no matter the nesting depth.
+ can have weird effect on elements like <li> */
+.stack * + * {
+  margin-block-start: var(--space, 1.5rem);
+}
+
+[class^='stack'] > * {
+  /* top and bottom margins in horizontal-tb writing mode,
+   unnecessary if global reset maybe. only affects vertical.
+   */
+  margin-block: 0;
+}
+
+/*
+  Default value for a large stack. Maybe we use CSS custom
+  props in styles as presaved default options / values for this.
+
+ */
+.stack-large > * + * {
+  --space: 3rem;
+}
+
+.stack-small > * + * {
+  --space: 0.5rem;
+}
+
+/**
+ A more deliberate approach to recursion would
+ be to change the space var to be large, small etc.
+ */
+
+/**
+ Making an exception class, affects top & bottom.
+ for example, an element within a stack that wants to
+ have a different value.
+ */
+.stack-exception,
+.stack-exception + * {
+  --space: 3rem; // example large
+}
+
+.stack > :nth-child(2) {
+  margin-block-end: auto;
+}
+
+
