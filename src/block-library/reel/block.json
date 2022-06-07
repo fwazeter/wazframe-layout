@@ -6,7 +6,7 @@
 	"title": "Reel Block",
 	"category": "design",
 	"description": "Reel block that enables side scrolling of content",
-	"textdomain": "wf-reel",
+	"textdomain": "wf-layout",
 	"attributes": {
 		"tagName": {
 			"type": "string",

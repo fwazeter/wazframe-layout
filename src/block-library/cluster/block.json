@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "wazframe/cluster",
+  "version": "0.1.0",
+  "title": "Cluster Block",
+  "category": "design",
+  "description": "Reel block that enables side scrolling of content",
+  "textdomain": "wf-layout",
+  "attributes": {
+    "tagName": {
+      "type": "string",
+      "default": "section"
+    },
+    "templateLock": {
+      "type": ["string", "boolean"],
+      "enum": ["all", "insert", false]
+    },
+    "noBar": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "supports": {
+    "dimensions": {
+      "margin": ["block", "inline"],
+      "__dimensionLayoutControls": {
+        "margin": true
+      }
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

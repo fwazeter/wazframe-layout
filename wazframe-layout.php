@@ -20,7 +20,13 @@
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
 function wf_layout_block_init() {
-	register_block_type( __DIR__ . '/build' );
+	
+	$blocks = array(
+		'cluster',
+		'reel'
+	);
+	foreach ( $blocks as $block ) {
+		register_block_type( __DIR__ . "/build/block-library/{$block}" );
+	}
 }
 add_action( 'init', 'wf_layout_block_init' );
-
