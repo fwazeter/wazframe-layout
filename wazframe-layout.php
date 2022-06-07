@@ -12,6 +12,26 @@
  *
  */
 
+function wf_enqueue_scripts( $scripts ) {
+	// When in production, use the plugin's version as the default asset version;
+	// else (for development or test) default to use the current time.
+	
+	$default_version = defined( 'WF_LAYOUT_VERSION' ) && ! ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? WF_LAYOUT_VERSION : time();
+	
+	$enqueue_scripts= array(
+		'block-editor',
+		'style-engine'
+	);
+	
+/*	foreach ( $enqueue_scripts as $script ) {
+		wp_register_script(
+		
+		);
+	}*/
+}
+
+
+
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
  * Behind the scenes, it registers also all assets so they can be enqueued
