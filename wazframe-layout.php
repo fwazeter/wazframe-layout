@@ -12,22 +12,32 @@
  *
  */
 
-function wf_enqueue_scripts( $scripts ) {
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+add_action( 'enqueue_block_editor_assets', 'wf_enqueue_scripts' );
+
+function wf_enqueue_scripts() {
 	// When in production, use the plugin's version as the default asset version;
 	// else (for development or test) default to use the current time.
 	
 	$default_version = defined( 'WF_LAYOUT_VERSION' ) && ! ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? WF_LAYOUT_VERSION : time();
 	
 	$enqueue_scripts= array(
-		'block-editor',
-		'style-engine'
+		'block-editor'
 	);
 	
-/*	foreach ( $enqueue_scripts as $script ) {
-		wp_register_script(
-		
+	foreach ( $enqueue_scripts as $script ) {
+		wp_enqueue_script(
+			$script,
+			esc_url( plugins_url("/packages/{$script}/build/index.js", __FILE__ ) ),
+			esc_url( plugins_url("/packages/{$script}/build/index.asset.php", __FILE__ ) ),
+			$default_version,
+			true
 		);
-	}*/
+	}
 }
 
 
@@ -42,7 +52,6 @@ function wf_enqueue_scripts( $scripts ) {
 function wf_layout_block_init() {
 	
 	$blocks = array(
-		'cluster',
 		'reel'
 	);
 	foreach ( $blocks as $block ) {

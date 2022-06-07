@@ -14,6 +14,8 @@ import { cleanEmptyObject } from './utils';
 
 import { useSetting } from '@wordpress/block-editor';
 
+import { getBlockSupport } from "@wordpress/blocks";
+
 /**
  * Internal dependencies
  */
@@ -43,7 +45,7 @@ export function hasSupport(blockType) {
  * @return {boolean}	Whether or not the block has a value set.
  */
 export function hasValue(props) {
-	return props.attributes.layoutStyle?.dimensions.margin !== undefined;
+	return props.attributes.wazframe?.dimensions.margin !== undefined;
 }
 
 /**
@@ -54,13 +56,13 @@ export function hasValue(props) {
  * @param {Object} props.setAttributes Function to set block's attribute.
  */
 export function reset({ attributes = {}, setAttributes }) {
-	const { layoutStyle } = attributes;
+	const { wazframe } = attributes;
 
 	setAttributes({
-		layoutStyle: cleanEmptyObject({
-			...layoutStyle,
+		wazframe: cleanEmptyObject({
+			...wazframe,
 			dimensions: {
-				...layoutStyle?.dimensions,
+				...wazframe?.dimensions,
 				margin: undefined,
 			},
 		}),
@@ -91,7 +93,7 @@ export function disabled({ name: blockName } = {}) {
 export function Edit(props) {
 	const {
 		name: blockName,
-		attributes: { layoutStyle },
+		attributes: { wazframe },
 		setAttributes,
 	} = props;
 
@@ -105,22 +107,22 @@ export function Edit(props) {
 
 	const onChange = (modify) => {
 		const newStyle = {
-			...layoutStyle,
+			...wazframe,
 			dimensions: {
-				...layoutStyle?.dimensions,
+				...wazframe?.dimensions,
 				margin: modify,
 			},
 		};
 
 		setAttributes({
-			layoutStyle: cleanEmptyObject(newStyle),
+			wazframe: cleanEmptyObject(newStyle),
 		});
 	};
 
 	return (
 		<>
 			<BoxControl
-				values={layoutStyle?.dimensions?.margin}
+				values={wazframe?.dimensions?.margin}
 				onChange={onChange}
 				label={__('Margin')}
 				sides={sides}

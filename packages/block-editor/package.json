@@ -11,13 +11,6 @@
   ],
   "main": "build/index.js",
   "module": "src/index.js",
-  "sideEffects": [
-    "build-style/**",
-    "src/**/*.scss",
-    "src/navigation-link/index.js",
-    "src/template-part/index.js",
-    "src/query/index.js"
-  ],
   "scripts": {
     "build": "wp-scripts build",
     "format:js": "wp-scripts format-js",

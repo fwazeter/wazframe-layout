@@ -12,10 +12,10 @@ module.exports = [
     {
         ...defaultConfig,
         entry: {
-            'style-engine': path.resolve( process.cwd(), 'src/', 'index' )
+            'style-engine': path.resolve( process.cwd(), 'src', 'index' )
         },
         output: {
-            filename: '[name].js',
+            filename: 'index.js',
             path: path.resolve( process.cwd(), 'build' )
         }
     }

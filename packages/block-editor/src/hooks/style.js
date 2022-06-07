@@ -19,10 +19,10 @@ import useDisplayBlockControls from '../components/use-display-block-controls';
 
 import { DIMENSION_SUPPORT_KEY, DimensionsPanel } from './dimensions';
 
-const layoutStyleSupportKeys = [DIMENSION_SUPPORT_KEY];
+const styleSupportKeys = [DIMENSION_SUPPORT_KEY];
 
-const hasLayoutStyleSupport = (blockType) =>
-	layoutStyleSupportKeys.some((key) =>
+const hasWazFrameSupport = (blockType) =>
+	styleSupportKeys.some((key) =>
 		hasBlockSupport(blockType, key, false)
 	);
 
@@ -30,16 +30,16 @@ const hasLayoutStyleSupport = (blockType) =>
  * Returns the inline CSS styles to override
  * depending on the style object.
  *
- * @param {Object} layoutStyles Style configuration.
+ * @param {Object} wazframe Style configuration.
  *
  * @return {Object} Flattened CSS variables declaration.
  */
-export function getInlineStyles(layoutStyles = {}) {
+export function getInlineStyles(wazframe = {}) {
 	const output = {};
 
 	// eventually WordPress intends to move this to server side generated styles.
 	// likely won't affect here, but might be good to follow suit.
-	const rules = getCSSRules(layoutStyles);
+	const rules = getCSSRules( wazframe );
 	rules.forEach((rule) => {
 		output[rule.key] = rule.value;
 	});
@@ -56,14 +56,14 @@ export function getInlineStyles(layoutStyles = {}) {
  * @return {Object} Filtered block settings.
  */
 function addAttribute(settings) {
-	if (!hasLayoutStyleSupport(settings)) {
+	if (!hasWazFrameSupport(settings)) {
 		return settings;
 	}
 
 	// Allow blocks to specify their own attribute definition with default values if needed.
-	if (!settings.attributes.layoutStyle) {
+	if (!settings.attributes.wazframe) {
 		Object.assign(settings.attributes, {
-			layoutStyle: {
+			wazframe: {
 				type: 'object',
 			},
 		});
@@ -114,28 +114,28 @@ export function addSaveProps(
 	attributes,
 	skipPaths = skipSerializationPathsSave
 ) {
-	if (!hasLayoutStyleSupport(blockType)) {
+	if (!hasWazFrameSupport(blockType)) {
 		return props;
 	}
 
-	let { layoutStyle } = attributes;
+	let { wazframe } = attributes;
 	Object.entries(skipPaths).forEach(([indicator, path]) => {
 		const skipSerialization = getBlockSupport(blockType, indicator);
 
 		if (skipSerialization === true) {
-			layoutStyle = omit(layoutStyle, path);
+			wazframe = omit(wazframe, path);
 		}
 
 		if (Array.isArray(skipSerialization)) {
 			skipSerialization.forEach((featureName) => {
-				layoutStyle = omit(layoutStyle, [[...path, featureName]]);
+				wazframe = omit(wazframe, [[...path, featureName]]);
 			});
 		}
 	});
 
-	props.layoutStyle = {
-		...getInlineStyles(layoutStyle),
-		...props.layoutStyle,
+	props.wazframe = {
+		...getInlineStyles(wazframe),
+		...props.wazframe,
 	};
 
 	return props;
@@ -150,7 +150,7 @@ export function addSaveProps(
  * @return {Object}             Filtered block settings.
  */
 export function addEditProps(settings) {
-	if (!hasLayoutStyleSupport(settings)) {
+	if (!hasWazFrameSupport(settings)) {
 		return settings;
 	}
 

@@ -23,7 +23,7 @@
 	},
 	"supports": {
 		"dimensions": {
-			"margin": ["block", "inline"],
+			"margin": true,
 			"__dimensionLayoutControls": {
 				"margin": true
 			}

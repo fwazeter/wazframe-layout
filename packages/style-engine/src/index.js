@@ -14,7 +14,7 @@ import { layoutStyleDefinitions } from './styles';
  * @return generated stylesheet.
  */
 export function generate(style, options) {
-	const rules = getCSSRules(style, options);
+	const rules = [ style, options ];
 
 	// if no selector provided, treat as an inline style returned as string.
 	if (!options?.selector) {
@@ -57,7 +57,7 @@ export function generate(style, options) {
  *
  * @return generated styles.
  */
-export function getCSSRules(style, options = {}) {
+export function getCSSRules( style, options = {}) {
 	const rules = [];
 
 	layoutStyleDefinitions.forEach((definition) => {

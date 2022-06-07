@@ -8,10 +8,10 @@
  */
 import { createSlotFill } from '@wordpress/components';
 
-const LayoutControlsDimensions = createSlotFill('LayoutControlsDimensions');
+const DimensionControl = createSlotFill('DimensionControl');
 
 const groups = {
-	dimensions: LayoutControlsDimensions,
+	dimensions: DimensionControl,
 };
 
 export default groups;

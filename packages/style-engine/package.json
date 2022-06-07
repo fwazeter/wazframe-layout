@@ -1,6 +1,6 @@
 {
   "name": "@wazframe/style-engine",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CSS style engine to generate classes, inline styles and custom props",
   "author": "Frank Wazeter",
   "license": "GPL-2.0-or-later",
@@ -12,13 +12,6 @@
   ],
   "main": "build/index.js",
   "module": "src/index.js",
-  "sideEffects": [
-    "build-style/**",
-    "src/**/*.scss",
-    "src/navigation-link/index.js",
-    "src/template-part/index.js",
-    "src/query/index.js"
-  ],
   "scripts": {
     "build": "wp-scripts build",
     "format:js": "wp-scripts format-js",

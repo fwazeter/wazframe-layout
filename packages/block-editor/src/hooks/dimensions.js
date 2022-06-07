@@ -145,10 +145,10 @@ export function DimensionsPanel(props) {
 
 	const createResetAllFilter = (attribute) => (newAttributes) => ({
 		...newAttributes,
-		layoutStyle: {
-			...newAttributes.layoutStyle,
+		wazframe: {
+			...newAttributes.wazframe,
 			dimensions: {
-				...newAttributes.layoutStyle?.dimensions,
+				...newAttributes.wazframe?.dimensions,
 				[attribute]: undefined,
 			},
 		},

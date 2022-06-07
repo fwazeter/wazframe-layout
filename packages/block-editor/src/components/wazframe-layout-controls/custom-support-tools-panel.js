@@ -36,8 +36,8 @@ export default function CustomSupportToolsPanel( { children, group, label } ) {
                 : [panelId];
 
             clientIds.forEach((clientId) => {
-                const {layoutStyle} = getBlockAttributes(clientId);
-                let newBlockAttributes = {layoutStyle};
+                const { wazframe } = getBlockAttributes(clientId);
+                let newBlockAttributes = { wazframe };
 
                 resetFilters.forEach((resetFilter) => {
                     newBlockAttributes = {
@@ -49,7 +49,7 @@ export default function CustomSupportToolsPanel( { children, group, label } ) {
                 // Enforce a cleaned style object.
                 newBlockAttributes = {
                     ...newBlockAttributes,
-                    layoutStyle: cleanEmptyObject(newBlockAttributes.layoutStyle),
+                    wazframe: cleanEmptyObject(newBlockAttributes.wazframe),
                 };
 
                 newAttributes[clientId] = newBlockAttributes;
