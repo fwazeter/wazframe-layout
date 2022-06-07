@@ -2,6 +2,7 @@
  * External dependencies
  */
 import { omit } from 'lodash';
+import { getCSSRules } from '@wazframe/style-engine';
 
 /**
  * WordPress dependencies
@@ -14,7 +15,6 @@ import { createHigherOrderComponent } from '@wordpress/compose';
 /**
  * Internal dependencies
  */
-import { getCSSRules } from '../../style-engine';
 import useDisplayBlockControls from '../components/use-display-block-controls';
 
 import { DIMENSION_SUPPORT_KEY, DimensionsPanel } from './dimensions';

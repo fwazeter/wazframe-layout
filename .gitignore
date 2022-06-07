@@ -13,6 +13,9 @@ build/Release
 
 # Dependency directories
 node_modules/
+packages/block-editor/node_modules/
+packages/block-library/node_modules/
+packages/style-engine/node_modules/
 
 # Optional npm cache directory
 .npm

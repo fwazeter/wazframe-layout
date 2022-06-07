@@ -1,0 +1,48 @@
+{
+  "name": "@wazframe/block-editor",
+  "version": "0.1.0",
+  "description": "Shared components and hooks to use layout primitives for the WordPress Block Editor",
+  "author": "Frank Wazeter",
+  "license": "GPL-2.0-or-later",
+  "keywords": [
+    "wordpress",
+    "gutenberg",
+    "blocks"
+  ],
+  "main": "build/index.js",
+  "module": "src/index.js",
+  "sideEffects": [
+    "build-style/**",
+    "src/**/*.scss",
+    "src/navigation-link/index.js",
+    "src/template-part/index.js",
+    "src/query/index.js"
+  ],
+  "scripts": {
+    "build": "wp-scripts build",
+    "format:js": "wp-scripts format-js",
+    "lint:css": "wp-scripts lint-style",
+    "lint:js": "wp-scripts lint-js",
+    "start": "wp-scripts start",
+    "packages-update": "wp-scripts packages-update"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "@wordpress/i18n": "^4.10.0",
+    "@wordpress/blocks": "^11.9.0",
+    "@wordpress/components": "^19.12.0",
+    "@wordpress/block-editor": "^9.2.0",
+    "@wordpress/hooks": "^3.10.0",
+    "@wordpress/compose": "^5.8.0",
+    "@wordpress/data": "^6.10.0",
+    "@wordpress/element": "^4.8.0",
+    "@wordpress/warning": "^2.10.0",
+    "@wazframe/style-engine": "file:../style-engine"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^23.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

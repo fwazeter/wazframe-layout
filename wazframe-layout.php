@@ -46,7 +46,8 @@ function wf_layout_block_init() {
 		'reel'
 	);
 	foreach ( $blocks as $block ) {
-		register_block_type( __DIR__ . "/build/block-library/{$block}" );
+		register_block_type( __DIR__ . "/packages/block-library/build/{$block}" );
 	}
+	register_block_type( __DIR__ . "/packages/block-library/build" );
 }
 add_action( 'init', 'wf_layout_block_init' );
