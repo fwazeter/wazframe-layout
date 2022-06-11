@@ -16,7 +16,7 @@ import { useSelect } from "@wordpress/data";
  */
 import SpacingPanel from "./editor/spacing";
 import HTMLElementsInspector from "../utils/html-element-messages";
-import namespace from './namespace';
+import namespace from './../utils/namespace';
 import {PanelBody, ToggleControl} from "@wordpress/components";
 
 export default function Edit(props) {

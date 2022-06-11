@@ -19,7 +19,7 @@ import {
 import {
     cleanEmptyObject
 } from "../../utils";
-import namespace from "../namespace";
+import namespace from "../../utils/namespace";
 
 /**
  * Checks if there is a current value in the margin block support attributes.

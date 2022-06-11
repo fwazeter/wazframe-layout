@@ -17,7 +17,7 @@ import {
     cleanEmptyObject,
     spaceUnits
 } from "../../utils";
-import namespace from "../namespace";
+import namespace from "../../utils/namespace";
 
 /**
  * Checks if there is a current value in the padding block support attributes.
@@ -85,7 +85,6 @@ export function PaddingEdit( props ) {
                 values={ style?.spacing?.padding }
                 onChange={ onChange }
                 label={ __( 'Custom Padding', namespace ) }
-                // sides={ [ 'top' ] }
                 units={ spaceUnits }
             />
         </>

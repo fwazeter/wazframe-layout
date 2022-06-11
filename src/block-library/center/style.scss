@@ -1,0 +1,19 @@
+.wp-block-wazframe-center {
+  --measure: 65ch;
+  --space: 0;
+  box-sizing: content-box;
+  margin-inline: auto;
+  max-inline-size: var(--measure);
+  padding-inline-start: var(--space);
+  padding-inline-end: var(--space);
+
+  &.and-text-center {
+    text-align: center;
+  }
+
+  &.intrinsic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

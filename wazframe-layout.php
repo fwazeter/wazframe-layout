@@ -29,7 +29,8 @@ function wf_layout_block_init() {
 	$blocks = array(
 		'reel',
 		'stack',
-		'box'
+		'box',
+		'center'
 	);
 	foreach ( $blocks as $block ) {
 		register_block_type( __DIR__ . "/build/block-library/{$block}" );

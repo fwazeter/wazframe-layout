@@ -20,18 +20,18 @@ import {
 import namespace from "../../utils/namespace";
 
 /**
- * Checks if there is a current value in the margin block support attributes.
+ * Checks if there is a current value in the padding block support attributes.
  * ToolsPanelItem requires a bool check for an existing value.
  *
  * @param {Object} props Block props.
  * @return {boolean}	Whether or not the block has a value set.
  */
 export function hasValue( props ) {
-    return props.attributes.style?.spacing?.margin !== undefined;
+    return props.attributes.style?.spacing?.padding !== undefined;
 }
 
 /**
- * Resets the margin attribute.
+ * Resets the padding attribute.
  *
  * @param {Object} props		Block props.
  * @param {Object} props.attributes	Block's attributes.
@@ -45,20 +45,20 @@ export function reset( { attributes = {}, setAttributes } ) {
             ...style,
             spacing: {
                 ...style?.spacing,
-                margin: undefined,
+                padding: undefined,
             },
         } ),
     } );
 }
 
 /**
- * Inspector control panel containing the margin related configuration.
+ * Inspector control panel containing the padding related configuration.
  *
  * @param {Object} props
- * @returns {WPElement} Margin edit element.
+ * @returns {WPElement} padding edit element.
  */
 
-export function MarginEdit( props ) {
+export function PaddingEdit( props ) {
     const {
         attributes: { style },
         setAttributes,
@@ -70,7 +70,7 @@ export function MarginEdit( props ) {
             ...style,
             spacing: {
                 ...style?.spacing,
-                margin: modify,
+                padding: modify,
             },
         };
 
@@ -82,10 +82,10 @@ export function MarginEdit( props ) {
     return (
         <>
             <BoxControl
-                values={ style?.spacing?.margin }
+                values={ style?.spacing?.padding }
                 onChange={ onChange }
-                label={ __( 'Custom Margin', namespace ) }
-                sides={ [ 'top' ] }
+                label={ __( 'Custom Padding', namespace ) }
+                sides={ [ 'horizontal' ] }
                 units={ spaceUnits }
             />
         </>

@@ -5,8 +5,8 @@
 	"version": "0.1.0",
 	"title": "Box Block",
 	"category": "design",
-	"description": "Ensures consistent spacing between vertical elements in a stack.",
-	"textdomain": "wf-stack",
+	"description": "The incredibly versatile box model. Creates a box with even padding on all sides.",
+	"textdomain": "wf-layout",
 	"attributes": {
 		"templateLock": {
 			"type": ["string", "boolean"],

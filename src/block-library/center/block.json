@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "wazframe/center",
+  "version": "0.1.0",
+  "title": "Center Elements",
+  "category": "design",
+  "description": "Centers elements horizontally.",
+  "textdomain": "wf-layout",
+  "attributes": {
+    "templateLock": {
+      "type": ["string", "boolean"],
+      "enum": ["all", "insert", false]
+    },
+    "style": {
+      "type": "object"
+    },
+    "intrinsic": {
+      "type": "boolean",
+      "default": false
+    },
+    "textAlignCenter": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

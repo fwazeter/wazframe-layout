@@ -1,5 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { stack as icon } from '@wordpress/icons';
+import { group as icon } from '@wordpress/icons';
 
 import './style.scss';
 

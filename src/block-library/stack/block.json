@@ -6,7 +6,7 @@
 	"title": "Stack Block",
 	"category": "design",
 	"description": "Ensures consistent spacing between vertical elements in a stack.",
-	"textdomain": "wf-stack",
+	"textdomain": "wf-layout",
 	"attributes": {
 		"recursive": {
 			"type": "boolean",
