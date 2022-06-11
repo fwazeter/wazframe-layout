@@ -7,10 +7,7 @@ import classnames from 'classnames';
  * WordPress dependencies
  */
 import { useInnerBlocksProps,
-    useBlockProps,
-    __experimentalGetBorderClassesAndStyles as getBorderClassesAndStyles,
-    __experimentalGetColorClassesAndStyles as getColorClassesAndStyles,
-
+    useBlockProps
 } from '@wordpress/block-editor';
 
 /**

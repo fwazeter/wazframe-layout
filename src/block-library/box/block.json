@@ -14,7 +14,7 @@
 		},
 		"tagName": {
 			"type": "string",
-			"default": "section"
+			"default": "div"
 		},
 		"style": {
 			"type": "object"

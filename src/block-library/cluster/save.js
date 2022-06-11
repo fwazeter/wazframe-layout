@@ -13,9 +13,32 @@ import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
  *
  * @return {WPElement} Element to render.
  */
-export default function save() {
+export default function save( { attributes } ) {
+    const {
+        tagName: Tag,
+        style,
+    } = attributes
 
-    return (
-        <div>Hello World</div>
-    );
+    const styleProps = {
+        '--space': style?.spacing?.blockGap
+    }
+
+    const justifyContentStyle = style?.flex?.justifyContent;
+
+    if ( justifyContentStyle !== 'flex-start' ) {
+        Object.assign( styleProps, { '--justify-content': justifyContentStyle } );
+    }
+
+    const alignItemsStyle = style?.flex?.alignItems;
+
+    if ( alignItemsStyle !== 'flex-start' ) {
+        Object.assign( styleProps, { '--align-items': alignItemsStyle } );
+    }
+
+    return <Tag
+            { ...useInnerBlocksProps.save(
+                useBlockProps.save()
+            )}
+            style={ { ...styleProps } }
+        />;
 }

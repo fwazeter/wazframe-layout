@@ -1,9 +1,10 @@
-.cluster {
+.wp-block-wazframe-cluster {
+  --space: var(--wp--style--block-gap, 1.5rem);
   --justify-content: flex-start;
   --align-items: flex-start;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space, 1rem);
+  gap: var(--space);
   justify-content: var(--justify-content);
   align-items: var(--align-items);
 }

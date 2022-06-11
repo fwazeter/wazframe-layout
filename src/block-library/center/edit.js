@@ -42,8 +42,6 @@ export default function Edit(props) {
         textAlignCenter,
     } = attributes;
 
-
-
     const spaceValue = style?.spacing?.preset;
     const customValue = style?.spacing?.padding?.left;
 

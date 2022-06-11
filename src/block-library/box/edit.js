@@ -29,7 +29,7 @@ export default function Edit(props) {
 	const {
 		style, // CSS margin value for margin-block-start.
 		templateLock,
-		tagName: TagName = 'section',
+		tagName: TagName = 'div',
 	} = attributes;
 
 	const blockProps = useBlockProps();
