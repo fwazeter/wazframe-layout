@@ -17,31 +17,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-add_action( 'enqueue_block_editor_assets', 'wf_enqueue_scripts' );
-
-function wf_enqueue_scripts() {
-	// When in production, use the plugin's version as the default asset version;
-	// else (for development or test) default to use the current time.
-	
-	$default_version = defined( 'WF_LAYOUT_VERSION' ) && ! ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? WF_LAYOUT_VERSION : time();
-	
-	$enqueue_scripts= array(
-		'block-editor'
-	);
-	
-	foreach ( $enqueue_scripts as $script ) {
-		wp_enqueue_script(
-			$script,
-			esc_url( plugins_url("/packages/{$script}/build/index.js", __FILE__ ) ),
-			esc_url( plugins_url("/packages/{$script}/build/index.asset.php", __FILE__ ) ),
-			$default_version,
-			true
-		);
-	}
-}
-
-
-
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
  * Behind the scenes, it registers also all assets so they can be enqueued
@@ -52,11 +27,13 @@ function wf_enqueue_scripts() {
 function wf_layout_block_init() {
 	
 	$blocks = array(
-		'reel'
+		'reel',
+		'stack',
+		'box'
 	);
 	foreach ( $blocks as $block ) {
-		register_block_type( __DIR__ . "/packages/block-library/build/{$block}" );
+		register_block_type( __DIR__ . "/build/block-library/{$block}" );
 	}
-	register_block_type( __DIR__ . "/packages/block-library/build" );
+	register_block_type( __DIR__ . "/build/block-library" );
 }
 add_action( 'init', 'wf_layout_block_init' );

@@ -1,0 +1,20 @@
+.wp-block-wazframe-box {
+  --space: 0;
+  --color: '';
+  --background: '';
+  --border-width: 0;
+  --border-color: 0;
+  --border-style: solid;
+  --border-radius: 0;
+  box-sizing: border-box;
+  padding: var(--space);
+  color: var(--color);
+  background: var(--background);
+  border-width: var(--border-width);
+  border-style: var(--border-style);
+  border-color: var(--border-color);
+  border-radius: var(--border-radius);
+  outline: 0.125rem solid transparent;
+  outline-offset: -0.125rem;
+}
+

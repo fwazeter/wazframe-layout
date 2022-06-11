@@ -1,0 +1,50 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "wazframe/box",
+	"version": "0.1.0",
+	"title": "Box Block",
+	"category": "design",
+	"description": "Ensures consistent spacing between vertical elements in a stack.",
+	"textdomain": "wf-stack",
+	"attributes": {
+		"templateLock": {
+			"type": ["string", "boolean"],
+			"enum": ["all", "insert", false]
+		},
+		"tagName": {
+			"type": "string",
+			"default": "section"
+		},
+		"style": {
+			"type": "object"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"color": {
+			"__experimentalSkipSerialization": true,
+			"gradients": true,
+			"__experimentalDefaultControls": {
+				"background": true,
+				"text": true
+			}
+		},
+		"__experimentalBorder": {
+			"radius": true,
+			"color": true,
+			"style": true,
+			"width": true,
+			"__experimentalSkipSerialization": true,
+			"__experimentalDefaultControls": {
+				"radius": true,
+				"color": true,
+				"style": true,
+				"width": true
+			}
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

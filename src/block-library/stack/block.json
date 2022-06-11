@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "wazframe/stack",
+	"version": "0.1.0",
+	"title": "Stack Block",
+	"category": "design",
+	"description": "Ensures consistent spacing between vertical elements in a stack.",
+	"textdomain": "wf-stack",
+	"attributes": {
+		"recursive": {
+			"type": "boolean",
+			"default": false
+		},
+		"templateLock": {
+			"type": ["string", "boolean"],
+			"enum": ["all", "insert", false]
+		},
+		"tagName": {
+			"type": "string",
+			"default": "section"
+		},
+		"style": {
+			"type": "object"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}
