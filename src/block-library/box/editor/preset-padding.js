@@ -107,22 +107,18 @@ export function PresetPaddingEdit( props ) {
                 <ToggleGroupControlOption
                     label={ __('Small', namespace ) }
                     value='1rem'
-                    isActive={ '1rem' === paddingValue }
                 />
                 <ToggleGroupControlOption
                     label={ __('Medium', namespace ) }
                     value='2rem'
-                    isActive={ '2rem' === paddingValue }
                 />
                 <ToggleGroupControlOption
                     label={ __('Large', namespace ) }
                     value='3rem'
-                    isActive={ '3rem' === paddingValue }
                 />
                 <ToggleGroupControlOption
                     label={ __('Custom', namespace ) }
                     value='custom'
-                    isActive={ 'custom' === paddingValue }
                 />
             </ToggleGroupControl>
         </>
