@@ -55,6 +55,7 @@ function wf_layout_block_init() {
 		'sidebar',
 		'switcher',
 		'cover',
+		'grid',
 	);
 	foreach ( $blocks as $block ) {
 		register_block_type( __DIR__ . "/build/block-library/{$block}" );

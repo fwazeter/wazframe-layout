@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "wazframe/grid",
+  "version": "0.1.0",
+  "title": "Grid Section",
+  "category": "layout-primitives",
+  "description": "Classic grid where elements grow, shrink and wrap together without breaking column boundaries",
+  "textdomain": "wf-layout",
+  "icon": "grid-view",
+  "attributes": {
+    "tagName": {
+      "type": "string",
+      "default": "section"
+    },
+    "templateLock": {
+      "type": ["string", "boolean"],
+      "enum": ["all", "insert", false]
+    },
+    "style": {
+      "type": "object"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

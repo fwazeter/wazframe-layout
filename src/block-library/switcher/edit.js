@@ -34,7 +34,7 @@ import namespace from '../utils/namespace';
 export default function Edit(props) {
     const { attributes, setAttributes, clientId } = props;
     const {
-        style, // CSS margin value for margin-block-start.
+        style,
         limit,
         customChild,
         templateLock,
