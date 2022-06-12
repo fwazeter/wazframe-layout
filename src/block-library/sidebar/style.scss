@@ -1,7 +1,7 @@
 .wp-block-wazframe-sidebar {
   --space: var(--wp--style--block-gap, 1.5rem);
   --flex-basis: 'notacceptablevalue';
-  --min-width: 50%;
+  --measure: 50%;
   --align-items: stretch;
   display: flex;
   flex-wrap: wrap;
@@ -16,7 +16,7 @@
   &.sidebar-left > :last-child {
     flex-basis: 0;
     flex-grow: 999;
-    min-inline-size: var(--min-width);
+    min-inline-size: var(--measure);
   }
 
   &.sidebar-right > :last-child {
@@ -27,7 +27,7 @@
   &.sidebar-right > :first-child {
     flex-basis: 0;
     flex-grow: 999;
-    min-inline-size: var(--min-width);
+    min-inline-size: var(--measure);
   }
 }
 

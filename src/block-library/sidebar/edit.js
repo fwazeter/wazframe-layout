@@ -27,7 +27,7 @@ import { useSelect } from '@wordpress/data';
  */
 import SizePanel from './editor/size';
 import AlignmentPanel from "./editor/alignment";
-import SpacingPanel from './editor/spacing';
+import SpacingPanel from '../editor-components/spacing';
 import HTMLElementsInspector from '../utils/html-element-messages';
 import namespace from '../utils/namespace';
 
@@ -49,7 +49,7 @@ export default function Edit(props) {
 	const styleProps = {
 		'--space': style?.spacing?.blockGap,
 		'--flex-basis': style?.size?.flexBasis,
-		'--min-width': style?.size?.minWidth
+		'--measure': style?.size?.minWidth
 	}
 
 	const alignItemsStyle = style?.flex?.alignItems;

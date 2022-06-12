@@ -24,7 +24,7 @@ export default function save( { attributes } ) {
     const styleProps = {
         '--space': style?.spacing?.blockGap,
         '--flex-basis': style?.size?.flexBasis,
-        '--min-width': style?.size?.minWidth
+        '--measure': style?.size?.minWidth
     }
 
     const alignItemsStyle = style?.flex?.alignItems;

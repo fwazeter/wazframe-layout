@@ -11,23 +11,23 @@ import {
  */
 import {
     cleanEmptyObject,
-    spaceUnits
-} from "../../utils";
-import namespace from "../../utils/namespace";
+    widthUnits
+} from "../utils";
+import namespace from "../utils/namespace";
 
 /**
- * Checks if there is a current value in the block gap block support attributes.
+ * Checks if there is a current value for width attributes.
  * ToolsPanelItem requires a bool check for an existing value.
  *
  * @param {Object} props Block props.
  * @return {boolean}	Whether or not the block has a value set.
  */
 export function hasValue( props ) {
-    return props.attributes.style?.spacing?.blockGap !== undefined;
+    return props.attributes.style?.size?.width !== undefined;
 }
 
 /**
- * Resets the block gap attribute.
+ * Resets the width attribute.
  *
  * @param {Object} props		Block props.
  * @param {Object} props.attributes	Block's attributes.
@@ -39,22 +39,22 @@ export function reset( { attributes = {}, setAttributes } ) {
     setAttributes( {
         style: cleanEmptyObject( {
             ...style,
-            spacing: {
-                ...style?.spacing,
-                blockGap: undefined,
+            size: {
+                ...style?.size,
+                width: undefined,
             },
         } ),
     } );
 }
 
 /**
- * Inspector control panel containing the block gap related configuration.
+ * Inspector control panel containing the width related configuration.
  *
  * @param {Object} props
- * @returns {WPElement} block gap edit element.
+ * @returns {WPElement} width edit element.
  */
 
-export function BlockGapEdit( props ) {
+export function WidthEdit( props ) {
     const {
         attributes: { style },
         setAttributes,
@@ -64,9 +64,9 @@ export function BlockGapEdit( props ) {
 
         const newStyle = {
             ...style,
-            spacing: {
-                ...style?.spacing,
-                blockGap: modify,
+            size: {
+                ...style?.size,
+                width: modify,
             },
         };
 
@@ -78,10 +78,10 @@ export function BlockGapEdit( props ) {
     return (
         <>
             <UnitControl
-                value={ style?.spacing?.blockGap }
+                value={ style?.size?.width }
                 onChange={ onChange }
-                label={ __( 'Block spacing', namespace ) }
-                units={ spaceUnits }
+                label={ __( 'Content Width', namespace ) }
+                units={ widthUnits }
                 __unstableInputWidth="80px"
             />
         </>

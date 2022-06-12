@@ -3,17 +3,16 @@
  */
 import { __ } from '@wordpress/i18n';
 import {
-    __experimentalUnitControl as UnitControl
+    __experimentalNumberControl as NumberControl
 } from '@wordpress/components';
 
 /**
  * Internal dependencies
  */
 import {
-    cleanEmptyObject,
-    spaceUnits
-} from "../../utils";
-import namespace from "../../utils/namespace";
+    cleanEmptyObject
+} from "../utils";
+import namespace from "../utils/namespace";
 
 /**
  * Checks if there is a current value in the block gap block support attributes.
@@ -23,7 +22,7 @@ import namespace from "../../utils/namespace";
  * @return {boolean}	Whether or not the block has a value set.
  */
 export function hasValue( props ) {
-    return props.attributes.style?.spacing?.blockGap !== undefined;
+    return props.attributes.style?.flex?.flexGrow !== undefined;
 }
 
 /**
@@ -39,9 +38,9 @@ export function reset( { attributes = {}, setAttributes } ) {
     setAttributes( {
         style: cleanEmptyObject( {
             ...style,
-            spacing: {
-                ...style?.spacing,
-                blockGap: undefined,
+            flex: {
+                ...style?.flex,
+                flexGrow: undefined,
             },
         } ),
     } );
@@ -54,7 +53,7 @@ export function reset( { attributes = {}, setAttributes } ) {
  * @returns {WPElement} block gap edit element.
  */
 
-export function BlockGapEdit( props ) {
+export function FlexGrowEdit( props ) {
     const {
         attributes: { style },
         setAttributes,
@@ -64,9 +63,9 @@ export function BlockGapEdit( props ) {
 
         const newStyle = {
             ...style,
-            spacing: {
-                ...style?.spacing,
-                blockGap: modify,
+            flex: {
+                ...style?.flex,
+                flexGrow: modify,
             },
         };
 
@@ -77,12 +76,14 @@ export function BlockGapEdit( props ) {
 
     return (
         <>
-            <UnitControl
-                value={ style?.spacing?.blockGap }
+            <NumberControl
+                value={ style?.flex?.flexGrow }
                 onChange={ onChange }
-                label={ __( 'Block spacing', namespace ) }
-                units={ spaceUnits }
-                __unstableInputWidth="80px"
+                label={ __( 'Flex Grow', namespace ) }
+                isDragEnabled
+                isShiftStepEnabled
+                shiftStep={10}
+                step={1}
             />
         </>
     );

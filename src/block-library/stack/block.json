@@ -4,7 +4,7 @@
 	"name": "wazframe/stack",
 	"version": "0.1.0",
 	"title": "Stack Block",
-	"category": "design",
+	"category": "layout-primitives",
 	"description": "Ensures consistent spacing between vertical elements in a stack.",
 	"textdomain": "wf-layout",
 	"attributes": {

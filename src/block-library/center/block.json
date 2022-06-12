@@ -4,7 +4,7 @@
   "name": "wazframe/center",
   "version": "0.1.0",
   "title": "Center Elements",
-  "category": "design",
+  "category": "layout-primitives",
   "description": "Centers elements horizontally.",
   "textdomain": "wf-layout",
   "attributes": {

@@ -4,7 +4,7 @@
   "name": "wazframe/cluster",
   "version": "0.1.0",
   "title": "Cluster",
-  "category": "design",
+  "category": "layout-primitives",
   "description": "Groups items in a cluster that wrap, such as navigation menu and tags",
   "textdomain": "wf-layout",
   "icon": "tagcloud",

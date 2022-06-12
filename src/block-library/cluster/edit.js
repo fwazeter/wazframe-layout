@@ -16,7 +16,7 @@ import { useSelect } from '@wordpress/data';
  */
 
 import ClusterPanel from './editor/alignment';
-import SpacingPanel from './editor/spacing';
+import SpacingPanel from '../editor-components/spacing';
 
 import HTMLElementsInspector from '../utils/html-element-messages';
 

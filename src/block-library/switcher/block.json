@@ -1,13 +1,13 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
-  "name": "wazframe/sidebar",
+  "name": "wazframe/switcher",
   "version": "0.1.0",
-  "title": "Sidebar",
+  "title": "Switcher",
   "category": "layout-primitives",
-  "description": "Sidebar allows for a main section and sidebar section to layout content",
+  "description": "Switches between a horizontal and vertical layout at a given container based breakpoint.",
   "textdomain": "wf-layout",
-  "icon": "align-right",
+  "icon": "image-rotate-left",
   "attributes": {
     "tagName": {
       "type": "string",
@@ -17,19 +17,15 @@
       "type": ["string", "boolean"],
       "enum": ["all", "insert", false]
     },
-    "sidebarRight": {
-      "type": "boolean",
-      "default": false
+    "limit": {
+      "type": "integer",
+      "default": 3
+    },
+    "customChild": {
+      "type": "integer"
     },
     "style": {
-      "type": "object",
-      "flex": {
-        "type": "object",
-        "alignItems": {
-          "type": "string",
-          "default": "stretch"
-        }
-      }
+      "type": "object"
     }
   },
   "editorScript": "file:./index.js",

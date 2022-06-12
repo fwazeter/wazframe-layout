@@ -28,8 +28,8 @@ import {
 
 import {
     cleanEmptyObject
-} from "../../utils";
-import namespace from '../../utils/namespace';
+} from "../utils";
+import namespace from '../utils/namespace';
 
 
 function SpacingPanel( props ) {

@@ -16,6 +16,26 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+/**
+ * Adds custom categories for blocks.
+ *
+ * @param $categories
+ *
+ * @return array
+ */
+function wazframe_block_categories( $categories ): array {
+	return array_merge(
+		$categories,
+		[
+			[
+				'slug'  => 'layout-primitives',
+				'title' => __( 'Layout Primitives', 'wf-layout' ),
+			],
+		]
+	);
+}
+add_action( 'block_categories_all', 'wazframe_block_categories', 10, 2 );
+
 
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
@@ -33,6 +53,7 @@ function wf_layout_block_init() {
 		'center',
 		'cluster',
 		'sidebar',
+		'switcher',
 	);
 	foreach ( $blocks as $block ) {
 		register_block_type( __DIR__ . "/build/block-library/{$block}" );

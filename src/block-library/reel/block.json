@@ -4,7 +4,7 @@
 	"name": "wazframe/reel",
 	"version": "0.2.1",
 	"title": "Reel Block",
-	"category": "design",
+	"category": "layout-primitives",
 	"description": "Reel block that enables side scrolling of content",
 	"textdomain": "wf-layout",
 	"attributes": {

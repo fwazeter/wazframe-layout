@@ -4,7 +4,7 @@
 	"name": "wazframe/box",
 	"version": "0.1.0",
 	"title": "Box Block",
-	"category": "design",
+	"category": "layout-primitives",
 	"description": "The incredibly versatile box model. Creates a box with even padding on all sides.",
 	"textdomain": "wf-layout",
 	"attributes": {

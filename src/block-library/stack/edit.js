@@ -9,6 +9,8 @@ import {
 	store as blockEditorStore, InspectorControls
 } from "@wordpress/block-editor";
 
+import {PanelBody, ToggleControl} from "@wordpress/components";
+
 import { useSelect } from "@wordpress/data";
 
 /**
@@ -17,7 +19,7 @@ import { useSelect } from "@wordpress/data";
 import SpacingPanel from "./editor/spacing";
 import HTMLElementsInspector from "../utils/html-element-messages";
 import namespace from './../utils/namespace';
-import {PanelBody, ToggleControl} from "@wordpress/components";
+
 
 export default function Edit(props) {
 	const { attributes, setAttributes, clientId } = props;
