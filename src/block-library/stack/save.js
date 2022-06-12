@@ -2,12 +2,14 @@
  * WordPress dependencies
  */
 import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
+import {setClassName} from "./setClassName";
 
 
 export default function save(
 	{ attributes: {
 		tagName: Tag,
 		recursive,
+		splitAfter,
 		style
 	} }
 ) {
@@ -22,9 +24,21 @@ export default function save(
 		"--space": marginValue
 	}
 
-	return <Tag
-			{...useInnerBlocksProps.save(
-				useBlockProps.save({ className: isRecursive })
-			)} style={ { ...styleProps } }
-		/>;
+	const splitAfterValue = splitAfter;
+	const newClassNames = splitAfterValue ? `split-${splitAfterValue} ${isRecursive}` : isRecursive;
+
+	const splitClassStyle = setClassName( splitAfterValue );
+
+	return (
+		<>
+			{ splitAfterValue &&
+				<style>{ splitClassStyle }</style>
+			}
+			<Tag
+				{...useInnerBlocksProps.save(
+					useBlockProps.save({ className: newClassNames })
+				)} style={ { ...styleProps } }
+			/>
+		</>
+	);
 }

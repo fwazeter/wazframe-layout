@@ -9,7 +9,12 @@ import {
 	store as blockEditorStore, InspectorControls
 } from "@wordpress/block-editor";
 
-import {PanelBody, ToggleControl} from "@wordpress/components";
+import {
+	PanelBody,
+	ToggleControl,
+	Flex,
+	__experimentalNumberControl as NumberControl
+} from "@wordpress/components";
 
 import { useSelect } from "@wordpress/data";
 
@@ -19,6 +24,7 @@ import { useSelect } from "@wordpress/data";
 import SpacingPanel from "./editor/spacing";
 import HTMLElementsInspector from "../utils/html-element-messages";
 import namespace from './../utils/namespace';
+import {setClassName} from "./setClassName";
 
 
 export default function Edit(props) {
@@ -26,6 +32,7 @@ export default function Edit(props) {
 	const {
 		style, // CSS margin value for margin-block-start.
 		recursive, // bool whether spaces apply recursively.
+		splitAfter,
 		templateLock,
 		tagName: TagName = 'section',
 	} = attributes;
@@ -41,7 +48,13 @@ export default function Edit(props) {
 
 	const isRecursive = recursive ? 'recursive' : '';
 
-	const blockProps = useBlockProps({ className: isRecursive });
+	const splitAfterValue = splitAfter;
+
+	const splitClassStyle = setClassName( splitAfterValue );
+
+	const newClassNames = splitAfterValue ? `split-${splitAfterValue} ${isRecursive}` : isRecursive;
+
+	const blockProps = useBlockProps({ className: newClassNames });
 
 	const { hasInnerBlocks } = useSelect(
 		(select) => {
@@ -65,16 +78,30 @@ export default function Edit(props) {
 		<>
 			<InspectorControls>
 				<SpacingPanel { ...props } />
-				<PanelBody title={ __('Even Spacing', namespace ) } initialOpen={false}>
-					<ToggleControl
-						label={__('Make recursive?', namespace)}
-						help={ recursive ? "Makes spacing even regardless of nesting depth" : "Is not recursive"}
-						checked={ recursive }
-						onChange={() => setAttributes({ recursive: !recursive})}
-					/>
+				<PanelBody title={ __('Spacing', namespace ) } initialOpen={false}>
+					<Flex justify='space-between' align='flex-start'>
+						<ToggleControl
+							label={__('Make recursive?', namespace)}
+							help={ recursive ? "Makes spacing even regardless of nesting depth" : "Is not recursive"}
+							checked={ recursive }
+							onChange={() => setAttributes({ recursive: !recursive})}
+						/>
+						<NumberControl
+							value={ splitAfter }
+							label={ __( 'Split Stack', namespace )}
+							isDragEnabled
+							isShiftStepEnabled
+							shiftStep={10}
+							step={1}
+							onChange={ (value) => setAttributes({splitAfter: value}) }
+						/>
+					</Flex>
 				</PanelBody>
 			</InspectorControls>
 			<HTMLElementsInspector { ...props } />
+			{ splitAfterValue &&
+				<style>{ splitClassStyle }</style>
+			}
 			<TagName { ...innerBlocksProps } style={ { ...styleProps } } />
 		</>
 	);

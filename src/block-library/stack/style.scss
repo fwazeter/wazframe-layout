@@ -13,6 +13,10 @@
     margin-block-start: var(--space);
   }
 
+  :only-child {
+    block-size: 100%;
+  }
+
   &.recursive * {
     margin-block: 0;
   }
