@@ -16,28 +16,27 @@ export default function save( { attributes } ) {
     const {
         tagName: Tag,
         style,
+        sidebarRight,
     } = attributes
 
+    const hasSidebarRight = sidebarRight ? 'sidebar-right' : 'sidebar-left';
+
     const styleProps = {
-        '--space': style?.spacing?.blockGap
-    }
-
-    const justifyContentStyle = style?.flex?.justifyContent;
-
-    if ( justifyContentStyle !== 'flex-start' ) {
-        Object.assign( styleProps, { '--justify-content': justifyContentStyle } );
+        '--space': style?.spacing?.blockGap,
+        '--flex-basis': style?.size?.flexBasis,
+        '--min-width': style?.size?.minWidth
     }
 
     const alignItemsStyle = style?.flex?.alignItems;
 
-    if ( alignItemsStyle !== 'flex-start' ) {
+    if ( alignItemsStyle !== 'stretch' ) {
         Object.assign( styleProps, { '--align-items': alignItemsStyle } );
     }
 
     return <Tag
-            { ...useInnerBlocksProps.save(
-                useBlockProps.save()
-            )}
-            style={ { ...styleProps } }
-        />;
+        { ...useInnerBlocksProps.save(
+            useBlockProps.save( { className: hasSidebarRight } )
+        )}
+        style={ { ...styleProps } }
+    />;
 }

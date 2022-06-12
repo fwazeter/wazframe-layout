@@ -105,7 +105,7 @@ function ClusterPanel( props ) {
     return (
         <>
             <ToolsPanel
-                label={ __( 'Alignment' ) }
+                label={ __( 'Alignment', namespace ) }
                 resetAll={ resetAll }
                 className={ 'wp-block-wazframe-space-panel' }
                 panelId={ props.clientId }

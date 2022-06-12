@@ -31,7 +31,8 @@ function wf_layout_block_init() {
 		'stack',
 		'box',
 		'center',
-		'cluster'
+		'cluster',
+		'sidebar',
 	);
 	foreach ( $blocks as $block ) {
 		register_block_type( __DIR__ . "/build/block-library/{$block}" );

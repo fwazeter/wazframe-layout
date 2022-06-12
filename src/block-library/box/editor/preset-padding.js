@@ -1,8 +1,4 @@
 /**
- * Handles the width component for wazframe dimensions panel.
- */
-
-/**
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';

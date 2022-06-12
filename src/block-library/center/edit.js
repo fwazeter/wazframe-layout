@@ -13,8 +13,6 @@ import {
     useBlockProps,
     useInnerBlocksProps,
     store as blockEditorStore, InspectorControls,
-    __experimentalUseBorderProps as useBorderProps,
-    __experimentalUseColorProps as useColorProps,
 } from "@wordpress/block-editor";
 
 import {

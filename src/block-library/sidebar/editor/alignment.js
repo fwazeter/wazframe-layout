@@ -17,14 +17,12 @@ import { useDispatch, useSelect } from '@wordpress/data';
 /**
  * Internal Dependencies
  */
-/**
- * Internal Dependencies
- */
+
 import {
-    hasValue as hasGap,
-    reset as resetGap,
-    BlockGapEdit
-} from './gap';
+    hasValue as hasAlignItems,
+    reset as resetAlignItems,
+    AlignItemsEdit
+} from './align-items';
 
 import {
     cleanEmptyObject
@@ -32,7 +30,7 @@ import {
 import namespace from '../../utils/namespace';
 
 
-function SpacingPanel( props ) {
+function AlignmentPanel( props ) {
 
     const { updateBlockAttributes } = useDispatch( blockEditorStore );
     const {
@@ -92,9 +90,9 @@ function SpacingPanel( props ) {
         ...newAttributes,
         style: {
             ...newAttributes.style,
-            spacing: {
-                ...newAttributes.style?.blockGap,
-                [ attribute ]: undefined,
+            flex: {
+                ...newAttributes.style?.flex,
+                [ attribute ]: 'stretch',
             }
         }
     } );
@@ -102,24 +100,24 @@ function SpacingPanel( props ) {
     return (
         <>
             <ToolsPanel
-                label={ __( 'Spacing', namespace ) }
+                label={ __( 'Height Alignment', namespace ) }
                 resetAll={ resetAll }
                 className={ 'wp-block-wazframe-space-panel' }
                 panelId={ props.clientId }
             >
                 <ToolsPanelItem
-                    hasValue={ () => hasGap( props ) }
-                    label={ __( 'Block Gap Property', namespace ) }
-                    onDeselect={ () => resetGap( props ) }
-                    resetAllFilter={ createResetAllFilter( 'blockGap' ) }
+                    hasValue={ () => hasAlignItems( props ) }
+                    label={ __( 'Height Alignment', namespace ) }
+                    onDeselect={ () => resetAlignItems( props ) }
+                    resetAllFilter={ createResetAllFilter( 'alignItems' ) }
                     isShownByDefault={ true }
                     panelId={ props.clientId }
                 >
-                    <BlockGapEdit { ...props } />
+                    <AlignItemsEdit { ...props } />
                 </ToolsPanelItem>
             </ToolsPanel>
         </>
     )
 }
 
-export default SpacingPanel;
+export default AlignmentPanel;

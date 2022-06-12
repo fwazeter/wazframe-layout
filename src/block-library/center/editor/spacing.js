@@ -108,7 +108,7 @@ function SpacingPanel( props ) {
     return (
         <>
             <ToolsPanel
-                label={ __( 'Spacing' ) }
+                label={ __( 'Spacing', namespace ) }
                 resetAll={ resetAll }
                 className={ 'wp-block-wazframe-space-panel' }
                 panelId={ props.clientId }

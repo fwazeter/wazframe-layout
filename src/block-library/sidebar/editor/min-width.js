@@ -3,31 +3,30 @@
  */
 import { __ } from '@wordpress/i18n';
 import {
-    __experimentalBoxControl as BoxControl,
+    __experimentalUnitControl as UnitControl
 } from '@wordpress/components';
 
 /**
  * Internal dependencies
  */
 import {
-    cleanEmptyObject,
-    spaceUnits
+    cleanEmptyObject
 } from "../../utils";
 import namespace from "../../utils/namespace";
 
 /**
- * Checks if there is a current value in the padding block support attributes.
+ * Checks if there is a current value for main content min width attributes.
  * ToolsPanelItem requires a bool check for an existing value.
  *
  * @param {Object} props Block props.
  * @return {boolean}	Whether or not the block has a value set.
  */
 export function hasValue( props ) {
-    return props.attributes.style?.spacing?.padding !== undefined;
+    return props.attributes.style?.size?.minWidth !== undefined;
 }
 
 /**
- * Resets the padding attribute.
+ * Resets the min width attribute.
  *
  * @param {Object} props		Block props.
  * @param {Object} props.attributes	Block's attributes.
@@ -39,22 +38,22 @@ export function reset( { attributes = {}, setAttributes } ) {
     setAttributes( {
         style: cleanEmptyObject( {
             ...style,
-            spacing: {
-                ...style?.spacing,
-                padding: undefined,
-            },
+            size: {
+                ...style?.size,
+                minWidth: undefined
+            }
         } ),
     } );
 }
 
 /**
- * Inspector control panel containing the padding related configuration.
+ * Inspector control panel containing the min width related configuration.
  *
  * @param {Object} props
- * @returns {WPElement} padding edit element.
+ * @returns {WPElement} min width edit element.
  */
 
-export function PaddingEdit( props ) {
+export function MinWidthEdit( props ) {
     const {
         attributes: { style },
         setAttributes,
@@ -64,9 +63,9 @@ export function PaddingEdit( props ) {
 
         const newStyle = {
             ...style,
-            spacing: {
-                ...style?.spacing,
-                padding: modify,
+            size: {
+                ...style?.size,
+                minWidth: modify,
             },
         };
 
@@ -75,14 +74,18 @@ export function PaddingEdit( props ) {
         } );
     };
 
+    const units = [
+        { value: '%', label: '%', step: 0.1, a11yLabel: __( 'Percent (%)' ), },
+    ];
+
     return (
         <>
-            <BoxControl
-                values={ style?.spacing?.padding }
+            <UnitControl
+                value={ style?.size?.minWidth }
                 onChange={ onChange }
-                label={ __( 'Custom Padding', namespace ) }
-                sides={ [ 'horizontal' ] }
-                units={ spaceUnits }
+                label={ __( 'Main Section Min Width', namespace ) }
+                __unstableInputWidth="80px"
+                units={ units }
             />
         </>
     );

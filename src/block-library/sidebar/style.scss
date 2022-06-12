@@ -1,0 +1,33 @@
+.wp-block-wazframe-sidebar {
+  --space: var(--wp--style--block-gap, 1.5rem);
+  --flex-basis: 'notacceptablevalue';
+  --min-width: 50%;
+  --align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space);
+  align-items: var(--align-items);
+
+  &.sidebar-left > :first-child {
+    flex-basis: var(--flex-basis);
+    flex-grow: 1;
+  }
+
+  &.sidebar-left > :last-child {
+    flex-basis: 0;
+    flex-grow: 999;
+    min-inline-size: var(--min-width);
+  }
+
+  &.sidebar-right > :last-child {
+    flex-basis: var(--flex-basis);
+    flex-grow: 1;
+  }
+
+  &.sidebar-right > :first-child {
+    flex-basis: 0;
+    flex-grow: 999;
+    min-inline-size: var(--min-width);
+  }
+}
+

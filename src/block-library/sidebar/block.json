@@ -1,0 +1,38 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "wazframe/sidebar",
+  "version": "0.1.0",
+  "title": "Sidebar",
+  "category": "design",
+  "description": "Sidebar allows for a main section and sidebar section to layout content",
+  "textdomain": "wf-layout",
+  "icon": "align-right",
+  "attributes": {
+    "tagName": {
+      "type": "string",
+      "default": "div"
+    },
+    "templateLock": {
+      "type": ["string", "boolean"],
+      "enum": ["all", "insert", false]
+    },
+    "sidebarRight": {
+      "type": "boolean",
+      "default": false
+    },
+    "style": {
+      "type": "object",
+      "flex": {
+        "type": "object",
+        "alignItems": {
+          "type": "string",
+          "default": "stretch"
+        }
+      }
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

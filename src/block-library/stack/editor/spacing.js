@@ -10,7 +10,7 @@ import {
 import {
     store as blockEditorStore,
 } from '@wordpress/block-editor';
-import {useCallback, useState} from "@wordpress/element";
+import {useCallback } from "@wordpress/element";
 import { useDispatch, useSelect } from '@wordpress/data';
 
 
@@ -105,12 +105,10 @@ function SpacingPanel( props ) {
         }
     } );
 
-    const [ recursive, setRecursive ] = useState();
-
     return (
         <>
             <ToolsPanel
-                label={ __( 'Spacing' ) }
+                label={ __( 'Spacing', namespace ) }
                 resetAll={ resetAll }
                 className={ 'wp-block-wazframe-space-panel' }
                 panelId={ props.clientId }

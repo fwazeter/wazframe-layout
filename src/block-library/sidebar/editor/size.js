@@ -17,14 +17,17 @@ import { useDispatch, useSelect } from '@wordpress/data';
 /**
  * Internal Dependencies
  */
-/**
- * Internal Dependencies
- */
 import {
-    hasValue as hasGap,
-    reset as resetGap,
-    BlockGapEdit
-} from './gap';
+    hasValue as hasFlexBasis,
+    reset as resetFlexBasis,
+    FlexBasisEdit
+} from './flex-basis';
+
+import {
+    hasValue as hasMinWidth,
+    reset as resetMinWidth,
+    MinWidthEdit
+} from './min-width';
 
 import {
     cleanEmptyObject
@@ -32,7 +35,7 @@ import {
 import namespace from '../../utils/namespace';
 
 
-function SpacingPanel( props ) {
+function SizePanel( props ) {
 
     const { updateBlockAttributes } = useDispatch( blockEditorStore );
     const {
@@ -92,8 +95,8 @@ function SpacingPanel( props ) {
         ...newAttributes,
         style: {
             ...newAttributes.style,
-            spacing: {
-                ...newAttributes.style?.blockGap,
+            size: {
+                ...newAttributes.style?.size,
                 [ attribute ]: undefined,
             }
         }
@@ -102,24 +105,34 @@ function SpacingPanel( props ) {
     return (
         <>
             <ToolsPanel
-                label={ __( 'Spacing', namespace ) }
+                label={ __( 'Height & Width Sizes', namespace ) }
                 resetAll={ resetAll }
                 className={ 'wp-block-wazframe-space-panel' }
                 panelId={ props.clientId }
             >
                 <ToolsPanelItem
-                    hasValue={ () => hasGap( props ) }
-                    label={ __( 'Block Gap Property', namespace ) }
-                    onDeselect={ () => resetGap( props ) }
-                    resetAllFilter={ createResetAllFilter( 'blockGap' ) }
+                    hasValue={ () => hasFlexBasis( props ) }
+                    label={ __( 'Sidebar Width', namespace ) }
+                    onDeselect={ () => resetFlexBasis( props ) }
+                    resetAllFilter={ createResetAllFilter( 'flexBasis' ) }
                     isShownByDefault={ true }
                     panelId={ props.clientId }
                 >
-                    <BlockGapEdit { ...props } />
+                    <FlexBasisEdit { ...props } />
+                </ToolsPanelItem>
+                <ToolsPanelItem
+                    hasValue={ () => hasMinWidth( props ) }
+                    label={ __( 'Main Content Min Width', namespace ) }
+                    onDeselect={ () => resetMinWidth( props ) }
+                    resetAllFilter={ createResetAllFilter( 'minWidth' ) }
+                    isShownByDefault={ true }
+                    panelId={ props.clientId }
+                >
+                    <MinWidthEdit { ...props } />
                 </ToolsPanelItem>
             </ToolsPanel>
         </>
     )
 }
 
-export default SpacingPanel;
+export default SizePanel;
