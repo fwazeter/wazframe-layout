@@ -38,7 +38,7 @@ export default function Edit(props) {
         limit,
         customChild,
         templateLock,
-        tagName: TagName = 'section',
+        tagName: TagName = 'div',
     } = attributes;
 
     const styleProps = {

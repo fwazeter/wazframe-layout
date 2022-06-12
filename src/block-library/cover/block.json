@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "wazframe/cover",
+  "version": "0.1.0",
+  "title": "Cover Section",
+  "category": "layout-primitives",
+  "description": "Vertically Centers content in a cover context such as for hero",
+  "textdomain": "wf-layout",
+  "icon": "align-full-width",
+  "attributes": {
+    "tagName": {
+      "type": "string",
+      "default": "section"
+    },
+    "templateLock": {
+      "type": ["string", "boolean"],
+      "enum": ["all", "insert", false]
+    },
+    "style": {
+      "type": "object"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
