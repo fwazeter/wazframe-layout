@@ -1,11 +1,11 @@
 .wp-block-wazframe-sidebar {
-  --space: var(--wp--style--block-gap, 1.5rem);
+  --sidebar-space: var(--wp--style--block-gap, 1.5rem);
   --flex-basis: 'notacceptablevalue';
   --measure: 50%;
   --align-items: stretch;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space);
+  gap: var(--sidebar-space);
   align-items: var(--align-items);
 
   &.sidebar-left > :first-child {

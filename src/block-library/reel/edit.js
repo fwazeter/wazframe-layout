@@ -9,49 +9,35 @@ import {
 	useBlockProps,
 	useInnerBlocksProps,
 	store as blockEditorStore,
+	BlockControls,
 } from '@wordpress/block-editor';
 
 import {
-	__experimentalToolsPanel as ToolsPanel,
-	__experimentalToolsPanelItem as ToolsPanelItem,
-	__experimentalUnitControl as UnitControl,
-	ToggleControl,
-	SelectControl,
-	__experimentalUseCustomUnits as useCustomUnits,
+	ToolbarGroup,
+	ToolbarButton,
 } from '@wordpress/components';
 
-import { useState } from '@wordpress/element';
+import { lineSolid } from '@wordpress/icons';
 
 import { useSelect } from '@wordpress/data';
 
-import SizePanel from './dimensions';
+/**
+ * Internal dependencies
+ */
+import HTMLElementsInspector from "../utils/html-element-messages";
+import SizePanel from './editor/size';
+import SpacingPanel from '../editor-components/spacing';
+import namespace from "../utils/namespace";
 
-const htmlElementMessages = {
-	header: __(
-		'The <header> element represents introductory content, typically a group of introductory or navigational aids. '
-	),
-	section: __(
-		"The <section> element represents a standalone portion of the document that can't be better represented by another element"
-	),
-	aside: __(
-		"The <aside> element represents a portion of a document whose content is only indirectly related to the document's main content"
-	),
-	div: __(
-		'The <div> element is the default non-semantic HTML element wrapper tag'
-	),
-	footer: __(
-		'The <footer> element represents a footer for its nearest sectioning element (e.g.: <section>, <article>, <main> etc.).'
-	),
-};
 
 function Edit(props) {
 	const { attributes, setAttributes, clientId } = props;
 	const { tagName: TagName = 'section', templateLock, noBar, style } = attributes;
 
 	const styleProps = {
-		"--space": style?.spacing?.margin?.left,
-		"--item-width": style?.width,
-		"--height": style?.height
+		"--reel-space": style?.spacing?.blockGap,
+		"--measure": style?.size?.width,
+		"--height": style?.size?.height
 	}
 
 	const toggleScrollbar = noBar ? 'no-scrollbar' : '';
@@ -77,63 +63,23 @@ function Edit(props) {
 			: InnerBlocks.ButtonBlockAppender,
 	});
 
-	const [tag, setTag] = useState();
-	const [scrollbar, setScrollbar] = useState();
-
-	const resetAllHTML = () => {
-		setTag('section');
-		setScrollbar(!noBar);
-	};
-
 	return (
 		<>
+			<BlockControls>
+				<ToolbarGroup>
+					<ToolbarButton
+						icon={ lineSolid }
+						title={ __( 'Toggle Scrollbar Display', namespace )}
+						onClick={ () => setAttributes( { noBar: !noBar })}
+						isActive={ !! noBar }
+					/>
+				</ToolbarGroup>
+			</BlockControls>
 			<InspectorControls>
 				<SizePanel { ...props } />
-				<ToolsPanel label={__('HTML Options')} resetAll={resetAllHTML}>
-					<ToolsPanelItem
-						hasValue={() => !!tag}
-						label={__('HTML Element')}
-						onDeselect={() => setTag}
-						isShownByDefault={true}
-					>
-						<SelectControl
-							label={__('HTML Element')}
-							options={[
-								{
-									label: __('Default (<section>)'),
-									value: 'section',
-								},
-								{ label: __('<header>'), value: 'header' },
-								{ label: __('<aside>'), value: 'aside' },
-								{ label: __('<footer>'), value: 'footer' },
-								{ label: __('<div>'), value: 'div' },
-							]}
-							help={htmlElementMessages[TagName]}
-							value={TagName}
-							onChange={(value) =>
-								setAttributes({ tagName: value })
-							}
-						/>
-					</ToolsPanelItem>
-					<ToolsPanelItem
-						hasValue={() => !!scrollbar}
-						label="Show Scrollbar"
-						onDeselect={() => setScrollbar}
-						isShownByDefault={true}
-					>
-						<ToggleControl
-							label="Hide Scrollbar"
-							help={
-								noBar
-									? 'Scrollbar is hidden'
-									: 'Scrollbar is showing'
-							}
-							checked={noBar}
-							onChange={() => setAttributes({ noBar: !noBar })}
-						/>
-					</ToolsPanelItem>
-				</ToolsPanel>
+				<SpacingPanel { ...props } />
 			</InspectorControls>
+			<HTMLElementsInspector { ...props } />
 			<TagName {...innerBlocksProps} style={ { ...styleProps } }/>
 		</>
 	);

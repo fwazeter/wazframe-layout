@@ -47,7 +47,7 @@ export default function Edit(props) {
 	);
 
 	const styleProps = {
-		'--space': style?.spacing?.blockGap,
+		'--sidebar-space': style?.spacing?.blockGap,
 		'--flex-basis': style?.size?.flexBasis,
 		'--measure': style?.size?.minWidth
 	}

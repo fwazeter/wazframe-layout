@@ -1,7 +1,6 @@
 /**
  * WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
 import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
 
 /**
@@ -16,16 +15,16 @@ import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
 export default function save({ attributes: { tagName: Tag, noBar, style } }) {
 	const toggleScrollbar = noBar ? 'no-scrollbar' : '';
 
-	const reelStyle = {
-		"--space": style?.spacing?.margin.left,
-		"--item-width": style?.width,
-		"--height": style?.height
+	const styleProps = {
+		"--reel-space": style?.spacing?.blockGap,
+		"--measure": style?.size?.width,
+		"--height": style?.size?.height
 	}
 
 	return (
 		<Tag
 			{...useInnerBlocksProps.save(
-				useBlockProps.save({ className: toggleScrollbar, style: reelStyle })
+				useBlockProps.save({ className: toggleScrollbar, style: styleProps })
 			)}
 		/>
 	);

@@ -22,7 +22,7 @@ export default function save( { attributes } ) {
     const hasSidebarRight = sidebarRight ? 'sidebar-right' : 'sidebar-left';
 
     const styleProps = {
-        '--space': style?.spacing?.blockGap,
+        '--sidebar-space': style?.spacing?.blockGap,
         '--flex-basis': style?.size?.flexBasis,
         '--measure': style?.size?.minWidth
     }

@@ -21,7 +21,7 @@ export default function save(
 	const marginValue = spaceValue === 'custom' ? customValue : spaceValue;
 
 	const styleProps = {
-		"--space": marginValue
+		"--stack-space": marginValue
 	}
 
 	const splitAfterValue = splitAfter;

@@ -1,5 +1,5 @@
 .wp-block-wazframe-cover {
-  --space: 1rem;
+  --cover-space: 1rem;
   --height: 100vh;
   --space-parent: 1rem;
   display: flex;
@@ -13,7 +13,7 @@
   }
 
   > * {
-    margin-block: var(--space);
+    margin-block: var(--cover-space);
   }
 
   > :first-child:not(h1, h2, h3) {

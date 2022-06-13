@@ -35,7 +35,7 @@ export default function save( { attributes, className }
 
 
     const styleProps = {
-        "--space": paddingValue,
+        "--center-space": paddingValue,
     }
 
     const isIntrinsic = intrinsic ? 'intrinsic' : '';

@@ -1,5 +1,5 @@
 .wp-block-wazframe-stack {
-  --space: 1.5rem;
+  --stack-space: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -10,7 +10,7 @@
 
   /* The space property here should match default line-height */
   > * + * {
-    margin-block-start: var(--space);
+    margin-block-start: var(--stack-space);
   }
 
   :only-child {
@@ -22,7 +22,7 @@
   }
 
   &.recursive * + * {
-    margin-block-start: var(--space);
+    margin-block-start: var(--stack-space);
   }
 }
 

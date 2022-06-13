@@ -43,7 +43,7 @@ export default function Edit(props) {
 	const marginValue = spaceValue === 'custom' ? customValue : spaceValue;
 
 	const styleProps = {
-		"--space": marginValue
+		"--stack-space": marginValue
 	}
 
 	const isRecursive = recursive ? 'recursive' : '';

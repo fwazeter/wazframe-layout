@@ -52,7 +52,7 @@ export default function save( { attributes, className }
 	const borderStyleProps = borderStyle === 'solid' ? borderCustomProps : borderWithCustomStyleProps;
 
 	const styleProps = {
-		"--space": paddingValue,
+		"--box-space": paddingValue,
 		"--color": style?.color?.text,
 		"--background": style?.color?.background || style?.color?.gradient,
 		...borderStyleProps,

@@ -6,9 +6,9 @@
  */
 
 .wp-block-wazframe-reel {
-  --space: var(--wp--style--block-gap, 1rem);
+  --reel-space: var(--wp--style--block-gap, 1rem);
   --height: auto;
-  --item-width: auto;
+  --measure: auto;
   display: flex;
   /* only allow horizontal scrolling */
   overflow-x: auto;
@@ -19,7 +19,7 @@
 }
 
 .wp-block-wazframe-reel > * {
-  flex: 0 0 var(--item-width);
+  flex: 0 0 var(--measure);
 }
 
 .wp-block-wazframe-reel > img {
@@ -30,11 +30,11 @@
 
 /* reel works in both writing directions */
 .wp-block-wazframe-reel > * + * {
-  margin-inline-start: var(--space);
+  margin-inline-start: var(--reel-space);
 }
 
 .wp-block-wazframe-reel.overflowing {
-  padding-block-end: var(--space);
+  padding-block-end: var(--reel-space);
 }
 
 /* makes scrollbar show on safari */

@@ -28,7 +28,7 @@ export default function save( { attributes } ) {
     const parentSpacePaddingValue = parentSpaceValue === 'custom' ? parentSpaceCustomValue : parentSpaceValue;
 
     const styleProps = {
-        "--space": spacePaddingValue,
+        "--cover-space": spacePaddingValue,
         "--space-parent": parentSpacePaddingValue,
         "--height": style?.size?.height,
     }

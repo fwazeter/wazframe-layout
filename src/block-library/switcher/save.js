@@ -22,7 +22,7 @@ export default function save( { attributes } ) {
     } = attributes
 
     const styleProps = {
-        '--space': style?.spacing?.blockGap,
+        '--switcher-space': style?.spacing?.blockGap,
         '--measure': style?.size?.width
     }
 

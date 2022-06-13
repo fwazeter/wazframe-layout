@@ -1,11 +1,11 @@
 .wp-block-wazframe-center {
   --measure: 65ch;
-  --space: 0;
+  --center-space: 0;
   box-sizing: content-box;
   margin-inline: auto;
   max-inline-size: var(--measure);
-  padding-inline-start: var(--space);
-  padding-inline-end: var(--space);
+  padding-inline-start: var(--center-space);
+  padding-inline-end: var(--center-space);
 
   &.and-text-center {
     text-align: center;

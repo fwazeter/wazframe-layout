@@ -1,13 +1,12 @@
 .wp-block-wazframe-box {
-  --space: 0;
+  --box-space: 0;
   --color: '';
   --background: '';
   --border-width: 0;
   --border-color: 0;
   --border-style: solid;
   --border-radius: 0;
-  box-sizing: border-box;
-  padding: var(--space);
+  padding: var(--box-space);
   color: var(--color);
   background: var(--background);
   border-width: var(--border-width);

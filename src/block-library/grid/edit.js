@@ -35,7 +35,7 @@ export default function Edit(props) {
     } = attributes;
 
     const styleProps = {
-        "--space": style?.spacing?.blockGap,
+        "--grid-space": style?.spacing?.blockGap,
         "--measure": style?.size?.width,
     }
 

@@ -31,7 +31,7 @@ export default function Edit(props) {
 	const blockProps = useBlockProps();
 
 	const styleProps = {
-		'--space': style?.spacing?.blockGap
+		'--cluster-space': style?.spacing?.blockGap
 	}
 
 	const justifyContentStyle = style?.flex?.justifyContent;

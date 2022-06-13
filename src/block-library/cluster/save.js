@@ -19,7 +19,7 @@ export default function save( { attributes } ) {
     } = attributes
 
     const styleProps = {
-        '--space': style?.spacing?.blockGap
+        '--cluster-space': style?.spacing?.blockGap
     }
 
     const justifyContentStyle = style?.flex?.justifyContent;

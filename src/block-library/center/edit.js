@@ -55,7 +55,7 @@ export default function Edit(props) {
     )
 
     const styleProps = {
-        "--space": paddingValue,
+        "--center-space": paddingValue,
     }
 
     const { hasInnerBlocks } = useSelect(
