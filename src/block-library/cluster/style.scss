@@ -1,10 +1,10 @@
 .wp-block-wazframe-cluster {
-  --cluster-space: var(--wp--style--block-gap, 1.5rem);
-  --justify-content: flex-start;
-  --align-items: flex-start;
+  --wf-cluster--space: var(--wp--style--block-gap, 1.5rem);
+  --wf--justify-content: flex-start;
+  --wf--align-items: flex-start;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--cluster-space);
-  justify-content: var(--justify-content);
-  align-items: var(--align-items);
+  gap: var(--wf-cluster--space);
+  justify-content: var(--wf--justify-content);
+  align-items: var(--wf--align-items);
 }

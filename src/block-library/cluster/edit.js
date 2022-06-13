@@ -31,19 +31,19 @@ export default function Edit(props) {
 	const blockProps = useBlockProps();
 
 	const styleProps = {
-		'--cluster-space': style?.spacing?.blockGap
+		'--wf-cluster--space': style?.spacing?.blockGap
 	}
 
 	const justifyContentStyle = style?.flex?.justifyContent;
 
 	if ( justifyContentStyle !== 'flex-start' ) {
-		Object.assign( styleProps, { '--justify-content': justifyContentStyle } );
+		Object.assign( styleProps, { '--wf--justify-content': justifyContentStyle } );
 	}
 
 	const alignItemsStyle = style?.flex?.alignItems;
 
 	if ( alignItemsStyle !== 'flex-start' ) {
-		Object.assign( styleProps, { '--align-items': alignItemsStyle } );
+		Object.assign( styleProps, { '--wf--align-items': alignItemsStyle } );
 	}
 
 	const { hasInnerBlocks } = useSelect(
