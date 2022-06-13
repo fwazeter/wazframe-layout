@@ -36,27 +36,36 @@ export default function save( { attributes, className }
 	const customValue = style?.spacing?.padding?.top;
 	const borderStyle = style?.border?.style;
 
+	const borderRadius = style?.border?.radius;
+
+	const topLeft = borderRadius?.topLeft;
+	const topRight = borderRadius?.topRight;
+	const bottomRight = borderRadius?.bottomRight;
+	const bottomLeft = borderRadius?.bottomLeft;
+
+	// without a value it's null. If the value is edited it becomes undefined.
+	const topLeftValue = typeof topLeft === 'string' ? topLeft : 0;
+	const topRightValue = typeof topRight === 'string' ? topRight : 0;
+	const bottomRightValue = typeof bottomRight === 'string' ? bottomRight : 0;
+	const bottomLeftValue = typeof bottomLeft === 'string' ? bottomLeft : 0;
+
+	const borderRadiusStyle =
+		typeof borderRadius === 'object'
+			? `${topLeftValue} ${topRightValue} ${bottomRightValue} ${bottomLeftValue}`
+			: borderRadius
+
 	const paddingValue = spaceValue === 'custom' ? customValue : spaceValue;
 
-	const borderCustomProps = {
-		"--border-width": style?.border?.width,
-		"--border-color": style?.border?.color,
-	}
-
-	const borderWithCustomStyleProps = {
-		"--border-width": style?.border?.width,
-		"--border-color": style?.border?.color,
-		"--border-style": borderStyle
-	}
-
-	const borderStyleProps = borderStyle === 'solid' ? borderCustomProps : borderWithCustomStyleProps;
-
 	const styleProps = {
-		"--box-space": paddingValue,
-		"--color": style?.color?.text,
-		"--background": style?.color?.background || style?.color?.gradient,
-		...borderStyleProps,
-		"--border-radius": style?.border?.radius
+		"--wf-box--space": paddingValue,
+		"--wf--color": style?.color?.text,
+		"--wf--background": style?.color?.background || style?.color?.gradient,
+		"--wf--border-width": style?.border?.width,
+		"--wf--border-color": style?.border?.color,
+		"--wf--border-radius": borderRadiusStyle
+	}
+	if ( borderStyle !== 'solid' ) {
+		Object.assign( styleProps, { '--wf--border-style': borderStyle } );
 	}
 
 	const boxClasses = classnames(
@@ -68,8 +77,8 @@ export default function save( { attributes, className }
 	return <Tag
 			{...useInnerBlocksProps.save(
 				useBlockProps.save(
-					{ className: boxClasses }
+					{ className: boxClasses, style: styleProps }
 				)
-			)} style={ { ...styleProps } }
+			) }
 		/>;
 }

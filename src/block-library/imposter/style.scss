@@ -1,0 +1,14 @@
+.wp-block-wazframe-imposter {
+  --positioning: absolute;
+  position: var(--positioning);
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  transform: translate(-50%, -50%);
+
+  &.contain {
+    --imposter-space: 0px;
+    overflow: auto;
+    max-inline-size: calc(100% - (var(--imposter-space) * 2));
+    max-block-size: calc(100% - (var(--imposter-space) * 2));;
+  }
+}

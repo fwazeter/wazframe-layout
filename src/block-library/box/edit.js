@@ -39,29 +39,43 @@ export default function Edit(props) {
 
 	const spaceValue = style?.spacing?.preset;
 	const customValue = style?.spacing?.padding?.top;
-	const borderStyle = style?.border?.style;
 
 	const paddingValue = spaceValue === 'custom' ? customValue : spaceValue;
 
-	const borderCustomProps = {
-		"--border-width": style?.border?.width,
-		"--border-color": style?.border?.color,
-	}
+	const borderStyle = style?.border?.style;
 
-	const borderWithCustomStyleProps = {
-		"--border-width": style?.border?.width,
-		"--border-color": style?.border?.color,
-		"--border-style": borderStyle
-	}
+	const borderRadius = style?.border?.radius;
 
-	const borderStyleProps = borderStyle === 'solid' ? borderCustomProps : borderWithCustomStyleProps;
+	// This is a great candidate for a function.
 
+	const topLeft = borderRadius?.topLeft;
+	const topRight = borderRadius?.topRight;
+	const bottomRight = borderRadius?.bottomRight;
+	const bottomLeft = borderRadius?.bottomLeft;
+
+	// without a value it's null. If the value is edited it becomes undefined.
+	const topLeftValue = typeof topLeft === 'string' ? topLeft : 0;
+	const topRightValue = typeof topRight === 'string' ? topRight : 0;
+	const bottomRightValue = typeof bottomRight === 'string' ? bottomRight : 0;
+	const bottomLeftValue = typeof bottomLeft === 'string' ? bottomLeft : 0;
+
+	const borderRadiusStyle =
+		typeof borderRadius === 'object'
+			? `${topLeftValue} ${topRightValue} ${bottomRightValue} ${bottomLeftValue}`
+			: borderRadius
+
+	// We have to split up the border-width / color properties rather than shorthand
+	// because of the way WordPress generates border properties using the border supports API.
 	const styleProps = {
-		"--box-space": paddingValue,
-		"--color": style?.color?.text,
-		"--background": style?.color?.background || style?.color?.gradient,
-		...borderStyleProps,
-		"--border-radius": style?.border?.radius
+		"--wf-box--space": paddingValue,
+		"--wf--color": style?.color?.text,
+		"--wf--background": style?.color?.background || style?.color?.gradient,
+		"--wf--border-width": style?.border?.width,
+		"--wf--border-color": style?.border?.color,
+		"--wf--border-radius": borderRadiusStyle
+	}
+	if ( borderStyle !== 'solid' ) {
+		Object.assign( styleProps, { '--wf--border-style': borderStyle } );
 	}
 
 	const { hasInnerBlocks } = useSelect(
@@ -97,7 +111,8 @@ export default function Edit(props) {
 						borderProps.className,
 					)
 				}
-				style={ { ...styleProps } } />
+				style={ { ...styleProps } }
+			/>
 		</>
 	);
 }

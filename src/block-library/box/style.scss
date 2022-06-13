@@ -1,18 +1,17 @@
 .wp-block-wazframe-box {
-  --box-space: 0;
-  --color: '';
-  --background: '';
-  --border-width: 0;
-  --border-color: 0;
-  --border-style: solid;
-  --border-radius: 0;
-  padding: var(--box-space);
-  color: var(--color);
-  background: var(--background);
-  border-width: var(--border-width);
-  border-style: var(--border-style);
-  border-color: var(--border-color);
-  border-radius: var(--border-radius);
+  --wf-box--space: 0;
+  --wf--border-width: 0;
+  --wf--border-style: solid;
+  --wf--border-color: '';
+  --wf--border-radius: 0;
+  padding: var(--wf-box--space);
+  color: var(--wf--color);
+  background: var(--wf--background);
+  border-width: var(--wf--border-width);
+  border-style: var(--wf--border-style);
+  border-color: var(--wf--border-color);
+  // allow child blocks to inherit border radius would be nice, but gets overridden.
+  border-radius: var(--wf--border-radius);
   outline: 0.125rem solid transparent;
   outline-offset: -0.125rem;
 }
