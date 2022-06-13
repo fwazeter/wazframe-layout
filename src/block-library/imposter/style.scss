@@ -1,14 +1,18 @@
 .wp-block-wazframe-imposter {
-  --positioning: absolute;
-  position: var(--positioning);
-  inset-block-start: 50%;
-  inset-inline-start: 50%;
-  transform: translate(-50%, -50%);
+  --wf--positioning: absolute;
+  --wf--translate-x: -50%;
+  --wf--translate-y: -50%;
+  --wf--block-start: 50%;
+  --wf--inline-start: 50%;
+  position: var(--wf--positioning);
+  inset-block-start: var(--wf--block-start);
+  inset-inline-start: var(--wf--inline-start);
+  transform: translate(var(--wf--translate-x), var(--wf--translate-y));
 
   &.contain {
-    --imposter-space: 0px;
+    --wf-imposter--space: 0px;
     overflow: auto;
-    max-inline-size: calc(100% - (var(--imposter-space) * 2));
-    max-block-size: calc(100% - (var(--imposter-space) * 2));;
+    max-inline-size: calc(100% - (var(--wf-imposter--space) * 2));
+    max-block-size: calc(100% - (var(--wf-imposter--space) * 2));;
   }
 }
