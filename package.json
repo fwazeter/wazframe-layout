@@ -28,7 +28,10 @@
     "@wordpress/components": "^19.12.0",
     "@wordpress/element": "^4.8.0",
     "@wordpress/data": "^6.10.0",
-    "@wordpress/icons": "^9.1.0"
+    "@wordpress/icons": "^9.1.0",
+    "@wordpress/keycodes": "^3.10.0",
+    "@wordpress/compose": "^5.8.0",
+    "@wordpress/blob": "^3.10.0"
   },
   "devDependencies": {
     "@wordpress/scripts": "^23.2.0"
