@@ -1,7 +1,5 @@
 .wp-block-wazframe-frame {
-  --ratio: 16 / 9;
-  --portrait-ratio: 16 / 9;
-  aspect-ratio: var(--ratio);
+  aspect-ratio: var(--wf--ratio, 16 / 9);
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -14,6 +12,6 @@
   }
 
   @media ( orientation: portrait ) {
-    aspect-ratio: var(--portrait-ratio);
+    aspect-ratio: var(--wf--portrait-ratio, 16 / 9);
   }
 }

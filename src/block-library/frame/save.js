@@ -36,11 +36,11 @@ export default function save( { attributes } ) {
     const styleProps = {}
 
     if ( ratioValue !== '16 / 9' ) {
-        Object.assign( styleProps, { '--ratio': ratioValue } );
+        Object.assign( styleProps, { '--wf--ratio': ratioValue } );
     }
 
     if ( portraitValue !== '16 / 9' ) {
-        Object.assign( styleProps, { '--portrait-ratio': portraitValue } );
+        Object.assign( styleProps, { '--wf--portrait-ratio': portraitValue } );
     }
 
     const newRel = isEmpty( rel ) ? undefined : rel;
