@@ -4,5 +4,5 @@ export const setLimitClassName = ( limit ) => {
 }
 
 export const setCustomFlexGrow = ( child, grow ) => {
-    return `.wp-block-wazframe-switcher.grow-${child} > :nth-child(${child}) { --flex-grow: ${grow}}`
+    return `.wp-block-wazframe-switcher.grow-${child} > :nth-child(${child}) { --wf--flex-grow: ${grow}}`
 }

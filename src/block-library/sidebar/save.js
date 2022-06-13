@@ -22,21 +22,20 @@ export default function save( { attributes } ) {
     const hasSidebarRight = sidebarRight ? 'sidebar-right' : 'sidebar-left';
 
     const styleProps = {
-        '--sidebar-space': style?.spacing?.blockGap,
-        '--flex-basis': style?.size?.flexBasis,
-        '--measure': style?.size?.minWidth
+        '--wf-sidebar--space': style?.spacing?.blockGap,
+        '--wf--flex-basis': style?.size?.flexBasis,
+        '--wf--content-width': style?.size?.minWidth
     }
 
     const alignItemsStyle = style?.flex?.alignItems;
 
     if ( alignItemsStyle !== 'stretch' ) {
-        Object.assign( styleProps, { '--align-items': alignItemsStyle } );
+        Object.assign( styleProps, { '--wf--align-items': alignItemsStyle } );
     }
 
     return <Tag
         { ...useInnerBlocksProps.save(
-            useBlockProps.save( { className: hasSidebarRight } )
+            useBlockProps.save( { className: hasSidebarRight, style: styleProps } )
         )}
-        style={ { ...styleProps } }
     />;
 }

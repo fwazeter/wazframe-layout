@@ -22,8 +22,8 @@ export default function save( { attributes } ) {
     } = attributes
 
     const styleProps = {
-        '--switcher-space': style?.spacing?.blockGap,
-        '--measure': style?.size?.width
+        '--wf-switcher--space': style?.spacing?.blockGap,
+        '--wf--content-width': style?.size?.width
     }
 
     const newFlexGrow = style?.flex?.flexGrow;
@@ -47,9 +47,8 @@ export default function save( { attributes } ) {
             <style>{ appendStyles }</style>
             <Tag
                 { ...useInnerBlocksProps.save(
-                    useBlockProps.save( { className: newClassNames } )
+                    useBlockProps.save( { className: newClassNames, style: styleProps } )
                 )}
-                style={ { ...styleProps } }
             />
         </>
     );

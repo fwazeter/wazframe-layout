@@ -1,33 +1,33 @@
 .wp-block-wazframe-sidebar {
-  --sidebar-space: var(--wp--style--block-gap, 1.5rem);
-  --flex-basis: 'notacceptablevalue';
-  --measure: 50%;
-  --align-items: stretch;
+  --wf-sidebar--space: var(--wp--style--block-gap, 1.5rem);
+  --wf--flex-basis: 'notacceptablevalue';
+  --wf--content-width: 50%;
+  --wf--align-items: stretch;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--sidebar-space);
-  align-items: var(--align-items);
+  gap: var(--wf-sidebar--space);
+  align-items: var(--wf--align-items);
 
   &.sidebar-left > :first-child {
-    flex-basis: var(--flex-basis);
+    flex-basis: var(--wf--flex-basis);
     flex-grow: 1;
   }
 
   &.sidebar-left > :last-child {
     flex-basis: 0;
     flex-grow: 999;
-    min-inline-size: var(--measure);
+    min-inline-size: var(--wf--content-width);
   }
 
   &.sidebar-right > :last-child {
-    flex-basis: var(--flex-basis);
+    flex-basis: var(--wf--flex-basis);
     flex-grow: 1;
   }
 
   &.sidebar-right > :first-child {
     flex-basis: 0;
     flex-grow: 999;
-    min-inline-size: var(--measure);
+    min-inline-size: var(--wf--content-width);
   }
 }
 

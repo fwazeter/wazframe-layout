@@ -21,7 +21,7 @@ export default function save(
 	const marginValue = spaceValue === 'custom' ? customValue : spaceValue;
 
 	const styleProps = {
-		"--stack-space": marginValue
+		"--wf-stack--space": marginValue
 	}
 
 	const splitAfterValue = splitAfter;
@@ -36,8 +36,8 @@ export default function save(
 			}
 			<Tag
 				{...useInnerBlocksProps.save(
-					useBlockProps.save({ className: newClassNames })
-				)} style={ { ...styleProps } }
+					useBlockProps.save({ className: newClassNames, style: styleProps })
+				)}
 			/>
 		</>
 	);

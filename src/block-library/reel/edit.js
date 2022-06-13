@@ -35,9 +35,9 @@ function Edit(props) {
 	const { tagName: TagName = 'section', templateLock, noBar, style } = attributes;
 
 	const styleProps = {
-		"--reel-space": style?.spacing?.blockGap,
-		"--measure": style?.size?.width,
-		"--height": style?.size?.height
+		"--wf-reel--space": style?.spacing?.blockGap,
+		"--wf--height": style?.size?.height,
+		"--wf--content-width": style?.size?.width,
 	}
 
 	const toggleScrollbar = noBar ? 'no-scrollbar' : '';

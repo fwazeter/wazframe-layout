@@ -42,8 +42,8 @@ export default function Edit(props) {
     } = attributes;
 
     const styleProps = {
-        "--switcher-space": style?.spacing?.blockGap,
-        "--measure": style?.size?.width
+        "--wf-switcher--space": style?.spacing?.blockGap,
+        "--wf--content-width": style?.size?.width
     }
 
     const newFlexGrow = style?.flex?.flexGrow;

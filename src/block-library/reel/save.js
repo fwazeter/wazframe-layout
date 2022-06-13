@@ -16,9 +16,9 @@ export default function save({ attributes: { tagName: Tag, noBar, style } }) {
 	const toggleScrollbar = noBar ? 'no-scrollbar' : '';
 
 	const styleProps = {
-		"--reel-space": style?.spacing?.blockGap,
-		"--measure": style?.size?.width,
-		"--height": style?.size?.height
+		"--wf-reel--space": style?.spacing?.blockGap,
+		"--wf--height": style?.size?.height,
+		"--wf--content-width": style?.size?.width,
 	}
 
 	return (
