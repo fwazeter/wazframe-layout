@@ -19,18 +19,16 @@ export default function save( { attributes } ) {
     } = attributes
 
     const styleProps = {
-        "--grid-space": style?.spacing?.blockGap,
-        "--measure": style?.size?.width,
+        "--wf-grid--space": style?.spacing?.blockGap,
+        "--wf--content-width": style?.size?.width,
     }
-
 
     return (
         <>
             <Tag
                 { ...useInnerBlocksProps.save(
-                    useBlockProps.save()
+                    useBlockProps.save( { style: styleProps } )
                 )}
-                style={ { ...styleProps } }
             />
         </>
     );

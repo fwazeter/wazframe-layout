@@ -74,7 +74,7 @@ export default function save( { attributes } ) {
     );
 
     return (
-        <figure { ...useBlockProps.save() } style={ { ...styleProps } }>
+        <figure { ...useBlockProps.save( { style: styleProps } ) }>
             { figure }
         </figure>
     );
