@@ -44,9 +44,9 @@ export default function Edit(props) {
     const parentSpacePaddingValue = parentSpaceValue === 'custom' ? parentSpaceCustomValue : parentSpaceValue;
 
     const styleProps = {
-        "--cover-space": spacePaddingValue,
-        "--space-parent": parentSpacePaddingValue,
-        "--height": style?.size?.height,
+        "--wf-cover--space": spacePaddingValue,
+        "--wf-cover--parent-space": parentSpacePaddingValue,
+        "--wf--height": style?.size?.height,
     }
 
     const blockProps = useBlockProps();

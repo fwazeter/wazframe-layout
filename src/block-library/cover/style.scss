@@ -1,19 +1,19 @@
 .wp-block-wazframe-cover {
-  --cover-space: 1rem;
-  --height: 100vh;
-  --space-parent: 1rem;
+  --wf-cover--space: 1rem;
+  --wf--height: 100vh;
+  --wf-cover--parent-space: 1rem;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding: var(--space-parent);
-  min-block-size: var(--height);
+  padding: var(--wf-cover--parent-space);
+  min-block-size: var(--wf--height);
 
   > :is(h1, h2, h3) {
     margin-block: auto;
   }
 
   > * {
-    margin-block: var(--cover-space);
+    margin-block: var(--wf-cover--space);
   }
 
   > :first-child:not(h1, h2, h3) {

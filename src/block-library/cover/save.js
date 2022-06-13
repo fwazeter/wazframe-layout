@@ -28,20 +28,14 @@ export default function save( { attributes } ) {
     const parentSpacePaddingValue = parentSpaceValue === 'custom' ? parentSpaceCustomValue : parentSpaceValue;
 
     const styleProps = {
-        "--cover-space": spacePaddingValue,
-        "--space-parent": parentSpacePaddingValue,
-        "--height": style?.size?.height,
+        "--wf-cover--space": spacePaddingValue,
+        "--wf-cover--parent-space": parentSpacePaddingValue,
+        "--wf--height": style?.size?.height,
     }
 
-
-    return (
-        <>
-            <Tag
-                { ...useInnerBlocksProps.save(
-                    useBlockProps.save()
-                )}
-                style={ { ...styleProps } }
-            />
-        </>
-    );
+    return <Tag
+        { ...useInnerBlocksProps.save(
+            useBlockProps.save( { style: styleProps } )
+        )}
+    />;
 }
