@@ -83,7 +83,7 @@ export function MinWidthEdit( props ) {
             <UnitControl
                 value={ style?.size?.minWidth }
                 onChange={ onChange }
-                label={ __( 'Main Section Min Width', namespace ) }
+                label={ __( 'Main Section Min Width (%)', namespace ) }
                 __unstableInputWidth="80px"
                 units={ units }
             />

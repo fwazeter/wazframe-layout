@@ -28,6 +28,7 @@ import { useSelect } from "@wordpress/data";
  * Internal Dependencies
  */
 import SpacingPanel from "./editor/spacing";
+import MeasurePanel from "../editor-components/measure-panel";
 import namespace from "../utils/namespace";
 
 
@@ -43,7 +44,17 @@ export default function Edit(props) {
     const spaceValue = style?.spacing?.preset;
     const customValue = style?.spacing?.padding?.left;
 
+    const contentWidth = style?.size?.contentWidth;
+    const customWidth = style?.size?.width;
+
+    const widthValue = contentWidth === 'custom' ? customWidth : contentWidth;
+
     const paddingValue = spaceValue === 'custom' ? customValue : spaceValue;
+
+    const styleProps = {
+        "--wf-center--space": paddingValue,
+        "--wf--content-width": widthValue,
+    }
 
     const isIntrinsic = intrinsic ? 'intrinsic' : '';
     const isTextAlignCenter = textAlignCenter ? 'and-text-center': '';
@@ -53,10 +64,6 @@ export default function Edit(props) {
         isIntrinsic,
         isTextAlignCenter
     )
-
-    const styleProps = {
-        "--center-space": paddingValue,
-    }
 
     const { hasInnerBlocks } = useSelect(
         (select) => {
@@ -95,6 +102,7 @@ export default function Edit(props) {
                 </ToolbarGroup>
             </BlockControls>
             <InspectorControls>
+                <MeasurePanel { ...props } />
                 <SpacingPanel { ...props } />
             </InspectorControls>
             <div

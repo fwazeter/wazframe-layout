@@ -29,13 +29,18 @@ export default function save( { attributes, className }
 
 
     const spaceValue = style?.spacing?.preset;
-    const customValue = style?.spacing?.padding?.top;
+    const customValue = style?.spacing?.padding?.left;
+
+    const contentWidth = style?.size?.contentWidth;
+    const customWidth = style?.size?.width;
+
+    const widthValue = contentWidth === 'custom' ? customWidth : contentWidth;
 
     const paddingValue = spaceValue === 'custom' ? customValue : spaceValue;
 
-
     const styleProps = {
-        "--center-space": paddingValue,
+        "--wf-center--space": paddingValue,
+        "--wf--content-width": widthValue,
     }
 
     const isIntrinsic = intrinsic ? 'intrinsic' : '';
@@ -50,8 +55,8 @@ export default function save( { attributes, className }
     return <div
         {...useInnerBlocksProps.save(
             useBlockProps.save(
-                { className: optionalClassNames }
+                { className: optionalClassNames, style: styleProps }
             )
-        )} style={ { ...styleProps } }
+        ) }
     />;
 }
