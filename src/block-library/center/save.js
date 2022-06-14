@@ -55,8 +55,8 @@ export default function save( { attributes, className }
     return <div
         {...useInnerBlocksProps.save(
             useBlockProps.save(
-                { className: optionalClassNames, style: styleProps }
+                { className: optionalClassNames }
             )
-        ) }
+        ) } style={ { ...styleProps } }
     />;
 }

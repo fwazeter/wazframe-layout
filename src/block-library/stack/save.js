@@ -36,8 +36,8 @@ export default function save(
 			}
 			<Tag
 				{...useInnerBlocksProps.save(
-					useBlockProps.save({ className: newClassNames, style: styleProps })
-				)}
+					useBlockProps.save({ className: newClassNames })
+				)} style={ { ...styleProps } }
 			/>
 		</>
 	);
