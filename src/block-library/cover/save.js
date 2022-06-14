@@ -35,7 +35,7 @@ export default function save( { attributes } ) {
 
     return <Tag
         { ...useInnerBlocksProps.save(
-            useBlockProps.save( { style: styleProps } )
-        )}
+            useBlockProps.save()
+        ) } style={ { ...styleProps } }
     />;
 }

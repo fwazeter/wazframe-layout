@@ -77,8 +77,8 @@ export default function save( { attributes, className }
 	return <Tag
 			{...useInnerBlocksProps.save(
 				useBlockProps.save(
-					{ className: boxClasses, style: styleProps }
+					{ className: boxClasses }
 				)
-			) }
+			) } style={ { ...styleProps  } }
 		/>;
 }
