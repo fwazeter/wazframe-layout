@@ -25,16 +25,22 @@
     margin-block-start: var(--wf-stack--space, 1.5rem);
   }
 
-  /* Can't use same technique as box block because we're using a child selector to target.
-   * Targeting child stack blocks also doesn't seem to work and hooking into 'is-style-default'
-   * that auto generates on selection also does not work to 'reset' the style.
-   */
   &.is-style-space-none {
     --wf-stack--space: 0;
   }
 
   &.is-style-space-small {
     --wf-stack--space: 0.75rem;
+  }
+
+  /*
+   * Medium duplicates the 'default' value for the Stack, but if a stack
+   * is nested inside another stack, and we want to go back to 'default'
+   * for one of the children, it doesn't work without overriding the CSS
+   * Instead, we'll just make a 'medium' style to override the parent.
+   */
+  &.is-style-space-medium {
+    --wf-stack--space: 1.5rem;
   }
 
   &.is-style-space-large {

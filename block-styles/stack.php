@@ -11,6 +11,14 @@ register_block_style(
 register_block_style(
 	'wazframe/stack',
 	array(
+		'name'  => 'space-medium',
+		'label' => __( 'Medium', 'wf-layout')
+	)
+);
+
+register_block_style(
+	'wazframe/stack',
+	array(
 		'name'  => 'space-large',
 		'label' => __( 'Large', 'wf-layout')
 	)
