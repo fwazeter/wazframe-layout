@@ -1,17 +1,13 @@
 .wp-block-wazframe-box {
-  --wf-box--space: 0;
-  --wf--border-width: 0;
-  --wf--border-style: solid;
-  --wf--border-color: '';
-  --wf--border-radius: 0;
-  padding: var(--wf-box--space);
+  padding: var(--wf-box--space, 0);
   color: var(--wf--color);
   background: var(--wf--background);
-  border-width: var(--wf--border-width);
-  border-style: var(--wf--border-style);
-  border-color: var(--wf--border-color);
-  // allow child blocks to inherit border radius would be nice, but gets overridden.
-  border-radius: var(--wf--border-radius);
+  // We have to declare border-box otherwise default content-box gets set in WP.
+  box-sizing: border-box;
+  border-width: var(--wf--border-width, 0);
+  border-style: var(--wf--border-style, solid);
+  border-color: var(--wf--border-color, '');
+  border-radius: var(--wf--border-radius, 0);
   outline: 0.125rem solid transparent;
   outline-offset: -0.125rem;
 }
