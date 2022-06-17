@@ -1,5 +1,4 @@
 .wp-block-wazframe-stack {
-  --wf-stack--space: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -10,19 +9,36 @@
 
   /* The space property here should match default line-height */
   > * + * {
-    margin-block-start: var(--wf-stack--space);
+    margin-block-start: var(--wf-stack--space, 1.5rem);
   }
 
   :only-child {
     block-size: 100%;
   }
 
+  // recursive is a toggle-able option, which we'd like regardless of size of margin-top, so not a block style.
   &.recursive * {
     margin-block: 0;
   }
 
   &.recursive * + * {
-    margin-block-start: var(--wf-stack--space);
+    margin-block-start: var(--wf-stack--space, 1.5rem);
+  }
+
+  /* Can't use same technique as box block because we're using a child selector to target.
+   * Targeting child stack blocks also doesn't seem to work and hooking into 'is-style-default'
+   * that auto generates on selection also does not work to 'reset' the style.
+   */
+  &.is-style-space-none {
+    --wf-stack--space: 0;
+  }
+
+  &.is-style-space-small {
+    --wf-stack--space: 0.75rem;
+  }
+
+  &.is-style-space-large {
+    --wf-stack--space: 3rem;
   }
 }
 

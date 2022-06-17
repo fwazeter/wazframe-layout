@@ -1,14 +1,42 @@
 .wp-block-wazframe-box {
-  padding: var(--wf-box--space, 0);
+  padding: var(--wf-box--space, 1rem);
   color: var(--wf--color);
   background: var(--wf--background);
-  // We have to declare border-box otherwise default content-box gets set in WP.
+  /* We have to declare border-box otherwise default content-box gets set in WP.
+   * An alternative approach could be to attach a common reset CSS to the plugin file.
+   */
   box-sizing: border-box;
+  // We can't use short hand properties for border because of WP utility functions for border color.
   border-width: var(--wf--border-width, 0);
   border-style: var(--wf--border-style, solid);
+  // need to pass an invalid fallback here so that no border is rendered w/o setting. Defaults black without setting.
   border-color: var(--wf--border-color, '');
   border-radius: var(--wf--border-radius, 0);
   outline: 0.125rem solid transparent;
   outline-offset: -0.125rem;
+
+  * {
+    color: inherit;
+  }
+
+  /* When we have a zero value, setting padding: 0; directly means
+   * that setting a default or custom value inherits to children,
+   * while the 0 does not.
+   */
+  &.is-style-space-none {
+    padding: 0;
+  }
+
+  /* We will see if we want to change these values to be hard
+   * padding values as well, for now experiment with med / lg
+   * inheriting down the tree.
+   */
+  &.is-style-space-medium {
+    --wf-box--space: 2rem;
+  }
+
+  &.is-style-space-large {
+    --wf-box--space: 3rem;
+  }
 }
 
