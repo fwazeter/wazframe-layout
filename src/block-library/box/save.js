@@ -13,6 +13,8 @@ import { useInnerBlocksProps,
 
 } from '@wordpress/block-editor';
 
+import { Flex, FlexItem } from "@wordpress/components";
+
 /**
  * The save function defines the way in which the different attributes should
  * be combined into the final markup, which is then serialized by the block

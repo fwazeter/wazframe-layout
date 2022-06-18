@@ -9,10 +9,17 @@
     text-align: center;
   }
 
-  // Intrinsic center makes the most sense as a block style.
-  &.is-style-intrinsic {
+  &.intrinsic {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  &.is-style-size-wide {
+    --wf--content-width: 85rem;
+  }
+
+  &.is-style-size-full {
+    --wf--content-width: none;
   }
 }

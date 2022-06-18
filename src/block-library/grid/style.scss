@@ -1,10 +1,8 @@
 .wp-block-wazframe-grid {
-  --wf-grid--space: var(--wp--style--block-gap, 1.5rem);
-  --wf--content-width: 250px;
   display: grid;
-  grid-gap: var(--wf-grid--space);
+  grid-gap: var(--wf-grid--space, var(--wp--style--block-gap, 1rem));
 
   @supports( width: min(var(--measure), 100%)) {
-    grid-template-columns: repeat(auto-fit, minmax(min(var(--wf--content-width), 100%), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(var(--wf--content-width, 250px), 100%), 1fr));
   }
 }

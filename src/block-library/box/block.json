@@ -8,6 +8,9 @@
 	"description": "The incredibly versatile box model. Creates a box with even padding on all sides.",
 	"textdomain": "wf-layout",
 	"attributes": {
+        "padding": {
+          "type": "string"
+        },
 		"templateLock": {
 			"type": ["string", "boolean"],
 			"enum": ["all", "insert", false]

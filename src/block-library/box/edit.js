@@ -15,6 +15,10 @@ import {
 	__experimentalUseColorProps as useColorProps,
 } from "@wordpress/block-editor";
 
+import {
+	PanelBody
+} from "@wordpress/components";
+
 import { useSelect } from "@wordpress/data";
 
 /**
@@ -22,6 +26,8 @@ import { useSelect } from "@wordpress/data";
  */
 import SpacingPanel from "./editor/spacing";
 import HTMLElementsInspector from "../utils/html-element-messages";
+import BlockOptions from "../editor-components/options";
+import { options } from './constants';
 
 
 export default function Edit(props) {
@@ -99,6 +105,9 @@ export default function Edit(props) {
 	return (
 		<>
 			<InspectorControls>
+				<PanelBody title='Spacing'>
+					<BlockOptions props={ props } options={ options } attributeName='padding' />
+				</PanelBody>
 				<SpacingPanel { ...props } />
 			</InspectorControls>
 			<HTMLElementsInspector { ...props } />

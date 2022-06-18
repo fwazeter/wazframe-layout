@@ -1,12 +1,10 @@
 .wp-block-wazframe-switcher {
-  --wf-switcher--space: var(--wp--style--block-gap, 1.5rem);
-  --wf--flex-grow: 1;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--wf-switcher--space);
+  gap: var(--wf-switcher--space, var(--wp--style--block-gap, 1.5rem));
 
   > * {
-    flex-grow: var(--wf--flex-grow);
+    flex-grow: var(--wf--flex-grow, 1);
     flex-basis: calc((var(--wf--content-width, 65ch) - 100%) * 999);
   }
 }

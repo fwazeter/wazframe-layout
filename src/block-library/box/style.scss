@@ -1,5 +1,5 @@
 .wp-block-wazframe-box {
-  padding: var(--wf-box--space, 1rem);
+  padding: var(--wf-box--space, var(--wf--size-scale--1, 1rem));
   color: var(--wf--color);
   background: var(--wf--background);
   /* We have to declare border-box otherwise default content-box gets set in WP.
@@ -23,7 +23,7 @@
    * that setting a default or custom value inherits to children,
    * while the 0 does not.
    */
-  &.is-style-space-none {
+  &.wf-space-none {
     padding: 0;
   }
 
@@ -31,12 +31,16 @@
    * padding values as well, for now experiment with med / lg
    * inheriting down the tree.
    */
-  &.is-style-space-medium {
-    --wf-box--space: 2rem;
+  &.wf-space-small {
+    --wf-box--space: var(--wf--size-scale--m1, 0.8rem);
   }
 
-  &.is-style-space-large {
-    --wf-box--space: 3rem;
+  &.wf-space-medium {
+    --wf-box--space: var(--wf--size-scale--2, 1.5rem);
+  }
+
+  &.wf-space-large {
+    --wf-box--space: var(--wf--size-scale--3, 2rem);
   }
 }
 
