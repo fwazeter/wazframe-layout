@@ -13,23 +13,23 @@
       "type": "string",
       "default": "div"
     },
+    "flex": {
+      "type": "object",
+      "justifyContent": {
+        "type": "string",
+        "default": "flex-start"
+      },
+      "alignItems": {
+        "type": "string",
+        "default": "flex-start"
+      }
+    },
+    "blockGap": {
+      "type": "string"
+    },
     "templateLock": {
       "type": ["string", "boolean"],
       "enum": ["all", "insert", false]
-    },
-    "style": {
-      "type": "object",
-      "flex": {
-        "type": "object",
-        "justifyContent": {
-          "type": "string",
-          "default": "flex-start"
-        },
-        "alignItems": {
-          "type": "string",
-          "default": "flex-start"
-        }
-      }
     }
   },
   "editorScript": "file:./index.js",

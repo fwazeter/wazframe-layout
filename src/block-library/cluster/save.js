@@ -1,7 +1,18 @@
 /**
+ * External dependencies
+ */
+import classnames from 'classnames';
+
+/**
  * WordPress dependencies
  */
 import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
+
+/**
+ * Internal dependencies
+ */
+import {getInlineStyle, getPresetClass} from "../editor-components/style-engine";
+import {options} from "./constants";
 
 /**
  * The save function defines the way in which the different attributes should
@@ -12,23 +23,33 @@ import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
  *
  * @return {WPElement} Element to render.
  */
-export default function save( { attributes } ) {
+export default function save( { attributes, className } ) {
     const {
         tagName: Tag,
-        style,
+        flex,
+        blockGap,
     } = attributes
 
+    const newClassNames = getPresetClass( options, blockGap );
+    const inlineStyle = getInlineStyle( options, blockGap );
+
+    const addClassNames = classnames(
+        className,
+        newClassNames
+    );
+
     const styleProps = {
-        '--wf-cluster--space': style?.spacing?.blockGap
+        '--wf-cluster--space': inlineStyle
     }
 
-    const justifyContentStyle = style?.flex?.justifyContent;
+
+    const justifyContentStyle = flex?.justifyContent;
 
     if ( justifyContentStyle !== 'flex-start' ) {
         Object.assign( styleProps, { '--wf--justify-content': justifyContentStyle } );
     }
 
-    const alignItemsStyle = style?.flex?.alignItems;
+    const alignItemsStyle = flex?.alignItems;
 
     if ( alignItemsStyle !== 'flex-start' ) {
         Object.assign( styleProps, { '--wf--align-items': alignItemsStyle } );
@@ -36,7 +57,7 @@ export default function save( { attributes } ) {
 
     return <Tag
             { ...useInnerBlocksProps.save(
-                useBlockProps.save( { style: styleProps } )
+                useBlockProps.save( { className: addClassNames, style: styleProps } )
             )}
         />;
 }

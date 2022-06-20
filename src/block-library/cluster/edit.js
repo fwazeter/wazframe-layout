@@ -1,4 +1,9 @@
 /**
+ * External dependencies
+ */
+import classnames from 'classnames';
+
+/**
  * WordPress dependencies
  */
 import {
@@ -9,6 +14,11 @@ import {
 	store as blockEditorStore
 } from '@wordpress/block-editor';
 
+import {
+	PanelBody,
+	PanelRow
+} from '@wordpress/components';
+
 import { useSelect } from '@wordpress/data';
 
 /**
@@ -16,31 +26,40 @@ import { useSelect } from '@wordpress/data';
  */
 
 import ClusterPanel from './editor/alignment';
-import SpacingPanel from '../editor-components/spacing';
+import BlockOptions from "../editor-components/options";
+import {CustomBlockGap} from "../editor-components/options/gap";
+import { options } from "./constants";
 
 import HTMLElementsInspector from '../utils/html-element-messages';
+import {getInlineStyle, getPresetClass} from "../editor-components/style-engine";
 
 export default function Edit(props) {
 	const { attributes, clientId } = props;
 	const {
-		style,
+		flex,
+		blockGap,
 		tagName: TagName = 'div',
 		templateLock,
 	} = attributes;
 
-	const blockProps = useBlockProps();
+	const newClassNames = getPresetClass( options, blockGap );
+	const inlineStyle = getInlineStyle( options, blockGap );
+
+	const blockProps = useBlockProps(
+		{ className: newClassNames }
+	);
 
 	const styleProps = {
-		'--wf-cluster--space': style?.spacing?.blockGap
+		'--wf-cluster--space': inlineStyle
 	}
 
-	const justifyContentStyle = style?.flex?.justifyContent;
+	const justifyContentStyle = flex?.justifyContent;
 
 	if ( justifyContentStyle !== 'flex-start' ) {
 		Object.assign( styleProps, { '--wf--justify-content': justifyContentStyle } );
 	}
 
-	const alignItemsStyle = style?.flex?.alignItems;
+	const alignItemsStyle = flex?.alignItems;
 
 	if ( alignItemsStyle !== 'flex-start' ) {
 		Object.assign( styleProps, { '--wf--align-items': alignItemsStyle } );
@@ -68,11 +87,19 @@ export default function Edit(props) {
 		<>
 			<InspectorControls>
 				<ClusterPanel { ...props } />
-				<SpacingPanel { ...props } />
+				<PanelBody title="Spacing">
+					<BlockOptions props={ props } options={ options } attributeName='blockGap' />
+					<PanelRow>
+						<CustomBlockGap { ...props } />
+					</PanelRow>
+				</PanelBody>
 			</InspectorControls>
 			<HTMLElementsInspector { ...props } />
 			<TagName
 				{ ...innerBlocksProps }
+				className={
+					classnames( blockProps.className )
+				}
 				style={ { ...styleProps } }
 			/>
 		</>

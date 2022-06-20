@@ -26,42 +26,36 @@ import namespace from '../../utils/namespace';
  * @return {boolean}	Whether or not the block has a value set.
  */
 export function hasValue( props ) {
-    return props.attributes.style?.flex?.alignItems !== undefined;
+    return props.attributes.flex?.alignItems !== undefined;
 }
 
 export function reset( { attributes = {}, setAttributes } ) {
-    const { style } = attributes;
+    const { flex } = attributes;
 
     setAttributes( {
-        style: cleanEmptyObject( {
-            ...style,
-            flex: {
-                ...style?.flex,
-                alignItems: 'flex-start'
-            },
+        flex: cleanEmptyObject( {
+            ...flex,
+            alignItems: 'flex-start'
         }),
     });
 }
 
 export function AlignItemsEdit( props ) {
     const {
-        attributes: { style },
+        attributes: { flex },
         setAttributes,
     } = props
 
-    const alignItems = style?.flex?.alignItems;
+    const alignItems = flex?.alignItems;
 
     const onChange = ( modify ) => {
         const newStyle = {
-            ...style,
-            flex: {
-                ...style?.flex,
-                alignItems: modify,
-            },
+            ...flex,
+            alignItems: modify,
         };
 
         setAttributes( {
-            style: cleanEmptyObject( newStyle ),
+            flex: cleanEmptyObject( newStyle ),
         });
     };
 

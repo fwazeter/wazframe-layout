@@ -23,42 +23,36 @@ import namespace from '../../utils/namespace';
  * @return {boolean}	Whether or not the block has a value set.
  */
 export function hasValue( props ) {
-    return props.attributes.style?.flex?.justifyContent !== undefined;
+    return props.attributes.flex?.justifyContent !== undefined;
 }
 
 export function reset( { attributes = {}, setAttributes } ) {
-    const { style } = attributes;
+    const { flex } = attributes;
 
     setAttributes( {
-        style: cleanEmptyObject( {
-            ...style,
-            flex: {
-                ...style?.flex,
-                justifyContent: 'flex-start'
-            },
+        flex: cleanEmptyObject( {
+            ...flex,
+            justifyContent: 'flex-start'
         }),
     });
 }
 
 export function JustifyContentEdit( props ) {
     const {
-        attributes: { style },
+        attributes: { flex },
         setAttributes,
     } = props
 
-    const justifyContent = style?.flex?.justifyContent;
+    const justifyContent = flex?.justifyContent;
 
     const onChange = ( modify ) => {
         const newStyle = {
-            ...style,
-            flex: {
-                ...style?.flex,
-                justifyContent: modify,
-            },
+            ...flex,
+            justifyContent: modify,
         };
 
         setAttributes( {
-            style: cleanEmptyObject( newStyle ),
+            flex: cleanEmptyObject( newStyle ),
         });
     };
 

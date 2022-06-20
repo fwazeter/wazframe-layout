@@ -1,10 +1,24 @@
 .wp-block-wazframe-cluster {
-  --wf-cluster--space: var(--wp--style--block-gap, 1.5rem);
-  --wf--justify-content: flex-start;
-  --wf--align-items: flex-start;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--wf-cluster--space);
-  justify-content: var(--wf--justify-content);
-  align-items: var(--wf--align-items);
+  gap: var(--wf-cluster--space, var(--wp--style--block-gap, 1rem));
+  justify-content: var(--wf--justify-content, flex-start);
+  align-items: var(--wf--align-items, flex-start);
+
+  &.wf-space-none {
+    gap: 0;
+  }
+
+  &.wf-space-small {
+    --wf-cluster--space: var(--wf--size-scale--m1, 0.75rem);
+  }
+
+  &.wf-space-medium {
+    --wf-cluster--space: var(--wf--size-scale--2, 1.5rem);
+  }
+
+  &.wf-space-large {
+    --wf-cluster--space: var(--wf--size-scale--3, 2rem);
+  }
+
 }
