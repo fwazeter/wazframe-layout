@@ -1,4 +1,8 @@
 /**
+ * External dependencies
+ */
+import classnames from 'classnames';
+/**
  * WordPress dependencies
  */
 import { __ } from "@wordpress/i18n";
@@ -13,7 +17,7 @@ import {
 	PanelBody,
 	ToggleControl,
 	Flex,
-	__experimentalNumberControl as NumberControl
+	__experimentalNumberControl as NumberControl, PanelRow
 } from "@wordpress/components";
 
 import { useSelect } from "@wordpress/data";
@@ -21,29 +25,31 @@ import { useSelect } from "@wordpress/data";
 /**
  * Internal Dependencies
  */
-import SpacingPanel from "./editor/spacing";
 import HTMLElementsInspector from "../utils/html-element-messages";
 import namespace from './../utils/namespace';
 import {setClassName} from "./setClassName";
+import {getInlineStyle, getPresetClass} from "../editor-components/style-engine";
+import {options} from "./constants";
+import BlockOptions from "../editor-components/options";
+import {CustomMargin} from "../editor-components/options/custom-margin";
 
 
 export default function Edit(props) {
 	const { attributes, setAttributes, clientId } = props;
 	const {
-		style, // CSS margin value for margin-block-start.
+		margin,
 		recursive, // bool whether spaces apply recursively.
 		splitAfter,
 		templateLock,
 		tagName: TagName = 'section',
 	} = attributes;
 
-	const spaceValue = style?.spacing?.preset;
-	const customValue = style?.spacing?.margin?.top;
+	const newClassNames = getPresetClass( options, margin )
 
-	const marginValue = spaceValue === 'custom' ? customValue : spaceValue;
+	const inlineStyle = getInlineStyle( options, margin )
 
 	const styleProps = {
-		"--wf-stack--space": marginValue
+		"--wf-stack--space": inlineStyle
 	}
 
 	const isRecursive = recursive ? 'recursive' : '';
@@ -52,9 +58,11 @@ export default function Edit(props) {
 
 	const splitClassStyle = setClassName( splitAfterValue );
 
-	const newClassNames = splitAfterValue ? `split-${splitAfterValue} ${isRecursive}` : isRecursive;
+	const splitClassNames = splitAfterValue ? `split-${splitAfterValue} ${isRecursive}` : isRecursive;
 
-	const blockProps = useBlockProps({ className: newClassNames });
+	const blockProps = useBlockProps(
+		{ className: newClassNames }
+	);
 
 	const { hasInnerBlocks } = useSelect(
 		(select) => {
@@ -77,9 +85,14 @@ export default function Edit(props) {
 	return (
 		<>
 			<InspectorControls>
-				<SpacingPanel { ...props } />
-				<PanelBody title={ __('Spacing', namespace ) } initialOpen={false}>
-					<Flex justify='space-between' align='flex-start'>
+				<PanelBody title='Spacing'>
+					<BlockOptions props={ props } options={ options } attributeName='margin' />
+					<PanelRow>
+						<CustomMargin { ...props } />
+					</PanelRow>
+				</PanelBody>
+				<PanelBody title={ __('Stack Options', namespace ) } initialOpen={false}>
+					<Flex justify='space-between' align='flex-start' direction='column'>
 						<ToggleControl
 							label={__('Make recursive?', namespace)}
 							help={ recursive ? "Makes spacing even regardless of nesting depth" : "Is not recursive"}
@@ -102,7 +115,15 @@ export default function Edit(props) {
 			{ splitAfterValue &&
 				<style>{ splitClassStyle }</style>
 			}
-			<TagName { ...innerBlocksProps } style={ { ...styleProps } } />
+			<TagName
+				{ ...innerBlocksProps }
+				className={
+					classnames(
+						blockProps.className,
+						splitClassNames
+					)
+				}
+					 style={ { ...styleProps } } />
 		</>
 	);
 }

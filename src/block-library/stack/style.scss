@@ -25,26 +25,32 @@
     margin-block-start: var(--wf-stack--space, 1.5rem);
   }
 
-  &.is-style-space-none {
-    --wf-stack--space: 0;
-  }
-
-  &.is-style-space-small {
-    --wf-stack--space: 0.75rem;
-  }
-
-  /*
-   * Medium duplicates the 'default' value for the Stack, but if a stack
-   * is nested inside another stack, and we want to go back to 'default'
-   * for one of the children, it doesn't work without overriding the CSS
-   * Instead, we'll just make a 'medium' style to override the parent.
+  /* When we have a zero value, setting padding: 0; directly means
+   * that setting a default or custom value inherits to children,
+   * while the 0 does not.
    */
-  &.is-style-space-medium {
-    --wf-stack--space: 1.5rem;
+  &.wf-space-none > * + * {
+    margin-block-start: 0;
   }
 
-  &.is-style-space-large {
-    --wf-stack--space: 3rem;
+  &.recursive.wf-space-none * + * {
+    margin-block-start: 0;
+  }
+
+  /* We will see if we want to change these values to be hard
+   * padding values as well, for now experiment with med / lg
+   * inheriting down the tree.
+   */
+  &.wf-space-small {
+    --wf-stack--space: var(--wf--size-scale--m1, 1rem);
+  }
+
+  &.wf-space-medium {
+    --wf-stack--space: var(--wf--size-scale--2, 2rem);
+  }
+
+  &.wf-space-large {
+    --wf-stack--space: var(--wf--size-scale--3, 3rem);
   }
 }
 

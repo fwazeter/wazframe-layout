@@ -9,8 +9,6 @@ import classnames from 'classnames';
 import {
     Button,
     __experimentalText as Text,
-    __experimentalUnitControl as UnitControl,
-    PanelRow,
 } from '@wordpress/components';
 
 /**

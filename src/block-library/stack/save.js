@@ -1,31 +1,48 @@
 /**
+ * External dependencies
+ */
+import classnames from 'classnames';
+
+/**
  * WordPress dependencies
  */
 import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
+
+/**
+ * Internal dependencies
+ */
 import {setClassName} from "./setClassName";
+import {getInlineStyle, getPresetClass} from "../editor-components/style-engine";
+import {options} from "./constants";
 
 
-export default function save(
-	{ attributes: {
-		tagName: Tag,
-		recursive,
-		splitAfter,
-		style
-	} }
+export default function save( { attributes, className }
 ) {
+	const {
+		tagName: Tag,
+		margin,
+		recursive,
+		splitAfter
+	} = attributes
+
+	const newClassNames = getPresetClass( options, margin )
+
+	const inlineStyle = getInlineStyle( options, margin )
+
 	const isRecursive = recursive ? 'recursive' : '';
 
-	const spaceValue = style?.spacing?.preset;
-	const customValue = style?.spacing?.margin?.top;
-
-	const marginValue = spaceValue === 'custom' ? customValue : spaceValue;
-
 	const styleProps = {
-		"--wf-stack--space": marginValue
+		"--wf-stack--space": inlineStyle
 	}
 
 	const splitAfterValue = splitAfter;
-	const newClassNames = splitAfterValue ? `split-${splitAfterValue} ${isRecursive}` : isRecursive;
+	const splitClassNames = splitAfterValue ? `split-${splitAfterValue} ${isRecursive}` : isRecursive;
+
+	const stackClasses = classnames(
+		className,
+		newClassNames,
+		splitClassNames
+	)
 
 	const splitClassStyle = setClassName( splitAfterValue );
 
@@ -36,7 +53,7 @@ export default function save(
 			}
 			<Tag
 				{...useInnerBlocksProps.save(
-					useBlockProps.save({ className: newClassNames })
+					useBlockProps.save({ className: stackClasses })
 				)} style={ { ...styleProps } }
 			/>
 		</>

@@ -66,6 +66,4 @@ function wf_layout_block_init() {
 }
 add_action( 'init', 'wf_layout_block_init' );
 
-require_once( __DIR__ . '/block-styles/box.php');
-require_once( __DIR__ . '/block-styles/stack.php');
 require_once( __DIR__ . '/block-styles/center.php');

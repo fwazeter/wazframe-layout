@@ -16,7 +16,7 @@ import {
 import {
 	getInlineStyle,
 	getPresetClass
-} from "../editor-components/classnames/addClassNames";
+} from "../editor-components/style-engine";
 import { options } from "./constants";
 
 

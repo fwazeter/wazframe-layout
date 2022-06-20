@@ -25,11 +25,10 @@ import { useSelect } from "@wordpress/data";
 /**
  * Internal Dependencies
  */
-import SpacingPanel from "./editor/spacing";
 import HTMLElementsInspector from "../utils/html-element-messages";
 import BlockOptions from "../editor-components/options";
 import { CustomPadding } from "../editor-components/options/custom-padding";
-import { getPresetClass, getInlineStyle } from "../editor-components/classnames/addClassNames";
+import { getPresetClass, getInlineStyle } from "../editor-components/style-engine";
 import { options } from './constants';
 
 
@@ -52,6 +51,7 @@ export default function Edit(props) {
 
 	const inlineStyle = getInlineStyle( options, padding )
 
+	// we need to refactor border & color props.
 	const borderProps = useBorderProps( attributes );
 	const colorProps = useColorProps( attributes );
 
