@@ -65,5 +65,3 @@ function wf_layout_block_init() {
 	register_block_type( __DIR__ . "/build/block-library" );
 }
 add_action( 'init', 'wf_layout_block_init' );
-
-require_once( __DIR__ . '/block-styles/center.php');

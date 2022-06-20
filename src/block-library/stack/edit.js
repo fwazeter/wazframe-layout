@@ -15,9 +15,10 @@ import {
 
 import {
 	PanelBody,
+	PanelRow,
 	ToggleControl,
 	Flex,
-	__experimentalNumberControl as NumberControl, PanelRow
+	__experimentalNumberControl as NumberControl,
 } from "@wordpress/components";
 
 import { useSelect } from "@wordpress/data";

@@ -3,7 +3,7 @@
 	"apiVersion": 2,
 	"name": "wazframe/stack",
 	"version": "0.1.0",
-	"title": "Stack Block",
+	"title": "Flow Stack",
 	"category": "layout-primitives",
 	"description": "Ensures consistent spacing between vertical elements in a stack.",
 	"textdomain": "wf-layout",
@@ -25,9 +25,6 @@
 		"tagName": {
 			"type": "string",
 			"default": "section"
-		},
-		"style": {
-			"type": "object"
 		}
 	},
 	"editorScript": "file:./index.js",

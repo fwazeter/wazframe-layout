@@ -22,42 +22,35 @@ import namespace from '../utils/namespace';
  * @return {boolean}	Whether or not the block has a value set.
  */
 export function hasValue( props ) {
-    return props.attributes.style?.size?.contentWidth !== undefined;
+    return props.attributes.width !== undefined;
 }
 
 export function reset( { attributes = {}, setAttributes } ) {
-    const { style } = attributes;
 
     setAttributes( {
-        style: cleanEmptyObject( {
-            ...style,
-            size: {
-                ...style?.size,
-                contentWidth: '65ch'
-            },
+        attributes: cleanEmptyObject( {
+            ...attributes,
+            width: '65ch'
         }),
     });
 }
 
 export function ContentWidthEdit( props ) {
     const {
-        attributes: { style },
+        attributes,
         setAttributes,
     } = props
 
-    const contentWidth = style?.size?.contentWidth;
+    const contentWidth = attributes.width;
 
     const onChange = ( modify ) => {
         const newStyle = {
-            ...style,
-            size: {
-                ...style?.size,
-                contentWidth: modify,
-            },
+            ...attributes,
+            width: modify
         };
 
         setAttributes( {
-            style: cleanEmptyObject( newStyle ),
+            width: cleanEmptyObject( newStyle ),
         });
     };
 
@@ -73,7 +66,7 @@ export function ContentWidthEdit( props ) {
             label: __( 'Wide Content Width', namespace ),
         },
         {
-            value: '75rem',
+            value: 'none',
             icon: stretchFullWidth,
             label: __( 'Extra Wide Width', namespace ),
         },

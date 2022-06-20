@@ -11,6 +11,12 @@ import { useInnerBlocksProps,
 } from '@wordpress/block-editor';
 
 /**
+ * Internal dependencies
+ */
+import {getInlineStyle, getPresetClass} from "../editor-components/style-engine";
+import {paddingOptions, widthOptions} from "./constants";
+
+/**
  * The save function defines the way in which the different attributes should
  * be combined into the final markup, which is then serialized by the block
  * editor into `post_content`.
@@ -22,25 +28,21 @@ import { useInnerBlocksProps,
 export default function save( { attributes, className }
 ) {
     const {
-        style,
+        width,
+        padding,
         intrinsic,
         textAlignCenter,
     } = attributes
 
+    const widthClassNames = getPresetClass( widthOptions, width )
+    const widthInlineStyle = getInlineStyle( widthOptions, width )
+    const paddingClassNames = getPresetClass( paddingOptions, padding )
+    const paddingInlineStyle = getInlineStyle( paddingOptions, padding )
 
-    const spaceValue = style?.spacing?.preset;
-    const customValue = style?.spacing?.padding?.left;
-
-    const contentWidth = style?.size?.contentWidth;
-    const customWidth = style?.size?.width;
-
-    const widthValue = contentWidth === 'custom' ? customWidth : contentWidth;
-
-    const paddingValue = spaceValue === 'custom' ? customValue : spaceValue;
 
     const styleProps = {
-        "--wf-center--space": paddingValue,
-        "--wf--content-width": widthValue,
+        "--wf--content-width": widthInlineStyle,
+        "--wf-center--space": paddingInlineStyle,
     }
 
     const isIntrinsic = intrinsic ? 'intrinsic' : '';
@@ -48,6 +50,8 @@ export default function save( { attributes, className }
 
     const optionalClassNames = classnames(
         className,
+        widthClassNames,
+        paddingClassNames,
         isIntrinsic,
         isTextAlignCenter
     )

@@ -12,8 +12,11 @@
       "type": ["string", "boolean"],
       "enum": ["all", "insert", false]
     },
-    "style": {
-      "type": "object"
+    "width": {
+      "type": "string"
+    },
+    "padding": {
+      "type": "string"
     },
     "intrinsic": {
       "type": "boolean",

@@ -15,11 +15,36 @@
     align-items: center;
   }
 
-  &.is-style-size-wide {
+  &.wf-content-wide {
     --wf--content-width: 85rem;
   }
 
-  &.is-style-size-full {
-    --wf--content-width: none;
+  &.wf-content-full {
+    max-inline-size: none;
+  }
+
+  /* When we have a zero value, setting padding: 0; directly means
+   * that setting a default or custom value inherits to children,
+   * while the 0 does not.
+   */
+  &.wf-space-none {
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+  }
+
+  /* We will see if we want to change these values to be hard
+   * padding values as well, for now experiment with med / lg
+   * inheriting down the tree.
+   */
+  &.wf-space-small {
+    --wf-center--space: var(--wf--size-scale--m1, 0.75rem);
+  }
+
+  &.wf-space-medium {
+    --wf-center--space: var(--wf--size-scale--2, 1.5rem);
+  }
+
+  &.wf-space-large {
+    --wf-center--space: var(--wf--size-scale--3, 2rem);
   }
 }

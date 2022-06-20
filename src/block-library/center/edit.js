@@ -16,6 +16,8 @@ import {
 } from "@wordpress/block-editor";
 
 import {
+    PanelBody,
+    PanelRow,
     ToolbarGroup,
     ToolbarButton
 } from "@wordpress/components";
@@ -27,33 +29,34 @@ import { useSelect } from "@wordpress/data";
 /**
  * Internal Dependencies
  */
-import SpacingPanel from "./editor/spacing";
-import MeasurePanel from "../editor-components/measure-panel";
 import namespace from "../utils/namespace";
+import { getInlineStyle, getPresetClass } from "../editor-components/style-engine";
+import { paddingOptions, widthOptions } from "./constants";
+import BlockOptions from "../editor-components/options"
+import { CustomPadding } from "../editor-components/options/custom-padding";
+import {CustomWidth} from "../editor-components/options/width";
+
 
 
 export default function Edit(props) {
     const { attributes, setAttributes, clientId } = props;
     const {
-        style, // CSS margin value for margin-block-start.
-        templateLock,
+        width,
+        padding,
         intrinsic,
         textAlignCenter,
+        templateLock,
     } = attributes;
 
-    const spaceValue = style?.spacing?.preset;
-    const customValue = style?.spacing?.padding?.left;
+    const widthClassNames = getPresetClass( widthOptions, width )
+    const widthInlineStyle = getInlineStyle( widthOptions, width )
+    const paddingClassNames = getPresetClass( paddingOptions, padding )
+    const paddingInlineStyle = getInlineStyle( paddingOptions, padding )
 
-    const contentWidth = style?.size?.contentWidth;
-    const customWidth = style?.size?.width;
-
-    const widthValue = contentWidth === 'custom' ? customWidth : contentWidth;
-
-    const paddingValue = spaceValue === 'custom' ? customValue : spaceValue;
 
     const styleProps = {
-        "--wf-center--space": paddingValue,
-        "--wf--content-width": widthValue,
+        "--wf--content-width": widthInlineStyle,
+        "--wf-center--space": paddingInlineStyle,
     }
 
     const isIntrinsic = intrinsic ? 'intrinsic' : '';
@@ -61,6 +64,8 @@ export default function Edit(props) {
 
     const blockProps = useBlockProps();
     const optionalClassNames = classnames(
+        widthClassNames,
+        paddingClassNames,
         isIntrinsic,
         isTextAlignCenter
     )
@@ -102,8 +107,18 @@ export default function Edit(props) {
                 </ToolbarGroup>
             </BlockControls>
             <InspectorControls>
-                <MeasurePanel { ...props } />
-                <SpacingPanel { ...props } />
+                <PanelBody title='Content Width'>
+                    <BlockOptions props={ props } options={ widthOptions } attributeName='width' />
+                    <PanelRow>
+                        <CustomWidth { ...props } />
+                    </PanelRow>
+                </PanelBody>
+                <PanelBody title='Horizontal Spacing'>
+                    <BlockOptions props={ props } options={ paddingOptions } attributeName='padding' />
+                    <PanelRow>
+                        <CustomPadding { ...props } />
+                    </PanelRow>
+                </PanelBody>
             </InspectorControls>
             <div
                 { ...innerBlocksProps }
