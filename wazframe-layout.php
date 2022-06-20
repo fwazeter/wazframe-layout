@@ -4,7 +4,7 @@
  * Description:       Block that enables side scrolling of content rather than wrapping.
  * Requires at least: 5.8
  * Requires PHP:      7.0
- * Version:           0.1.0
+ * Version:           0.2.3
  * Author:            Frank Wazeter
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
