@@ -6,14 +6,19 @@ import classnames from 'classnames';
 /**
  * WordPress dependencies
  */
-import { useInnerBlocksProps,
+import {
+	useInnerBlocksProps,
 	useBlockProps,
 	__experimentalGetBorderClassesAndStyles as getBorderClassesAndStyles,
 	__experimentalGetColorClassesAndStyles as getColorClassesAndStyles,
 
 } from '@wordpress/block-editor';
+import {
+	getInlineStyle,
+	getPresetClass
+} from "../editor-components/classnames/addClassNames";
+import { options } from "./constants";
 
-import { Flex, FlexItem } from "@wordpress/components";
 
 /**
  * The save function defines the way in which the different attributes should
@@ -29,13 +34,16 @@ export default function save( { attributes, className }
 	const {
 		tagName: Tag,
 		style,
+		padding,
 	} = attributes
+
+	const newClassNames = getPresetClass( options, padding )
+
+	const inlineStyle = getInlineStyle( options, padding )
 
 	const borderProps = getBorderClassesAndStyles( attributes );
 	const colorProps = getColorClassesAndStyles( attributes );
 
-	const spaceValue = style?.spacing?.preset;
-	const customValue = style?.spacing?.padding?.top;
 	const borderStyle = style?.border?.style;
 
 	const borderRadius = style?.border?.radius;
@@ -56,10 +64,8 @@ export default function save( { attributes, className }
 			? `${topLeftValue} ${topRightValue} ${bottomRightValue} ${bottomLeftValue}`
 			: borderRadius
 
-	const paddingValue = spaceValue === 'custom' ? customValue : spaceValue;
-
 	const styleProps = {
-		"--wf-box--space": paddingValue,
+		"--wf-box--space": inlineStyle,
 		"--wf--color": style?.color?.text,
 		"--wf--background": style?.color?.background || style?.color?.gradient,
 		"--wf--border-width": style?.border?.width,
@@ -72,6 +78,7 @@ export default function save( { attributes, className }
 
 	const boxClasses = classnames(
 			className,
+			newClassNames,
 			colorProps.className,
 			borderProps.className,
 		)

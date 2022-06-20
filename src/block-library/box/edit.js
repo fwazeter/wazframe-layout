@@ -16,7 +16,8 @@ import {
 } from "@wordpress/block-editor";
 
 import {
-	PanelBody
+	PanelBody,
+	PanelRow,
 } from "@wordpress/components";
 
 import { useSelect } from "@wordpress/data";
@@ -27,26 +28,32 @@ import { useSelect } from "@wordpress/data";
 import SpacingPanel from "./editor/spacing";
 import HTMLElementsInspector from "../utils/html-element-messages";
 import BlockOptions from "../editor-components/options";
+import { CustomPadding } from "../editor-components/options/custom-padding";
+import { getPresetClass, getInlineStyle } from "../editor-components/classnames/addClassNames";
 import { options } from './constants';
+
+
 
 
 export default function Edit(props) {
 	const { attributes, setAttributes, clientId } = props;
 	const {
 		style, // CSS margin value for margin-block-start.
+		padding,
 		templateLock,
 		tagName: TagName = 'div',
 	} = attributes;
 
-	const blockProps = useBlockProps();
+	const newClassNames = getPresetClass( options, padding )
+
+	const blockProps = useBlockProps(
+		{ className: newClassNames }
+	);
+
+	const inlineStyle = getInlineStyle( options, padding )
 
 	const borderProps = useBorderProps( attributes );
 	const colorProps = useColorProps( attributes );
-
-	const spaceValue = style?.spacing?.preset;
-	const customValue = style?.spacing?.padding?.top;
-
-	const paddingValue = spaceValue === 'custom' ? customValue : spaceValue;
 
 	const borderStyle = style?.border?.style;
 
@@ -70,10 +77,12 @@ export default function Edit(props) {
 			? `${topLeftValue} ${topRightValue} ${bottomRightValue} ${bottomLeftValue}`
 			: borderRadius
 
+
+
 	// We have to split up the border-width / color properties rather than shorthand
 	// because of the way WordPress generates border properties using the border supports API.
 	const styleProps = {
-		"--wf-box--space": paddingValue,
+		"--wf-box--space": inlineStyle,
 		"--wf--color": style?.color?.text,
 		"--wf--background": style?.color?.background || style?.color?.gradient,
 		"--wf--border-width": style?.border?.width,
@@ -83,6 +92,8 @@ export default function Edit(props) {
 	if ( borderStyle !== 'solid' ) {
 		Object.assign( styleProps, { '--wf--border-style': borderStyle } );
 	}
+
+
 
 	const { hasInnerBlocks } = useSelect(
 		(select) => {
@@ -107,8 +118,10 @@ export default function Edit(props) {
 			<InspectorControls>
 				<PanelBody title='Spacing'>
 					<BlockOptions props={ props } options={ options } attributeName='padding' />
+					<PanelRow>
+						<CustomPadding { ...props } />
+					</PanelRow>
 				</PanelBody>
-				<SpacingPanel { ...props } />
 			</InspectorControls>
 			<HTMLElementsInspector { ...props } />
 			<TagName
@@ -117,7 +130,7 @@ export default function Edit(props) {
 					classnames(
 						blockProps.className,
 						colorProps.className,
-						borderProps.className,
+						borderProps.className
 					)
 				}
 				style={ { ...styleProps } }

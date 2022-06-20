@@ -1,7 +1,7 @@
 /**
  * Default settings
  */
-export const options = [
+export let options = [
     {
         label: 'Default',
         name: 'space-default',

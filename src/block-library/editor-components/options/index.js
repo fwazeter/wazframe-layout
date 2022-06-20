@@ -9,6 +9,8 @@ import classnames from 'classnames';
 import {
     Button,
     __experimentalText as Text,
+    __experimentalUnitControl as UnitControl,
+    PanelRow,
 } from '@wordpress/components';
 
 /**
@@ -39,6 +41,7 @@ export default function BlockOptions( {
                 { options.map( ( { label, name, isDefault } ) => {
 
                     return (
+
                         <Button
                             className={ classnames( 'block-editor-block-styles__item', {
                                     'is-active': typeof isActive === 'undefined' ? isDefault : isActive === name
