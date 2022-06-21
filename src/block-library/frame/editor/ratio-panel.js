@@ -64,8 +64,8 @@ function RatioPanel( props ) {
             const clientIds = [ panelId ];
 
             clientIds.forEach( ( clientId ) => {
-                const { style } = getBlockAttributes( clientId );
-                let newBlockAttributes = { style };
+                const { attributes } = getBlockAttributes( clientId );
+                let newBlockAttributes = { attributes };
 
                 resetFilters.forEach( ( resetFilter ) => {
                     newBlockAttributes = {
@@ -76,7 +76,7 @@ function RatioPanel( props ) {
 
                 newBlockAttributes = {
                     ...newBlockAttributes,
-                    style: cleanEmptyObject( newBlockAttributes.style ),
+                    attributes: cleanEmptyObject( newBlockAttributes.attributes ),
                 };
 
                 newAttributes[ clientId ] = newBlockAttributes;
@@ -94,12 +94,9 @@ function RatioPanel( props ) {
 
     const createResetAllFilter = ( attribute ) => ( newAttributes ) => ( {
         ...newAttributes,
-        style: {
-            ...newAttributes.style,
-            size: {
-                ...newAttributes.style?.size,
-                [ attribute ]: '16 / 9'
-            }
+        attributes: {
+            ...newAttributes,
+            [ attribute ]: '16 / 9'
         }
     } );
 

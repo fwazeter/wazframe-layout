@@ -2,13 +2,21 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
   "name": "wazframe/frame",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "title": "Frame",
   "category": "layout-primitives",
   "description": "Keeps consistent aspect ratio for images and video",
   "textdomain": "wf-layout",
   "icon": "cover-image",
   "attributes": {
+    "aspectRatio": {
+      "type": "string",
+      "default": "16 / 9"
+    },
+    "portraitRatio": {
+      "type": "string",
+      "default": "16 / 9"
+    },
     "mediaID": {
       "type": "number"
     },
@@ -59,20 +67,6 @@
       "source": "attribute",
       "selector": "figure > a",
       "attribute": "class"
-    },
-    "style": {
-      "type": "object",
-      "size": {
-        "type": "object",
-        "aspectRatio": {
-          "type": "string",
-          "default": "16 / 9"
-        },
-        "portraitRatio": {
-          "type": "string",
-          "default": "16 / 9"
-        }
-      }
     }
   },
   "editorScript": "file:./index.js",

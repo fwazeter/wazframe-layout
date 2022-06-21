@@ -25,42 +25,28 @@ import namespace from '../../utils/namespace';
  * @return {boolean}	Whether or not the block has a value set.
  */
 export function hasValue( props ) {
-    return props.attributes.style?.size?.aspectRatio !== undefined;
+    return props.attributes.aspectRatio !== undefined;
 }
 
 export function reset( { attributes = {}, setAttributes } ) {
-    const { style } = attributes;
 
     setAttributes( {
-        style: cleanEmptyObject( {
-            ...style,
-            size: {
-                ...style?.size,
-                aspectRatio: undefined
-            },
-        }),
+        aspectRatio: undefined
     });
 }
 
 export function AspectRatioEdit( props ) {
     const {
-        attributes: { style },
+        attributes,
         setAttributes,
     } = props
 
-    const aspectRatio = style?.size?.aspectRatio;
+    const aspectRatio = attributes.aspectRatio;
 
     const onChange = ( modify ) => {
-        const newStyle = {
-            ...style,
-            size: {
-                ...style?.size,
-                aspectRatio: modify,
-            },
-        };
 
         setAttributes( {
-            style: cleanEmptyObject( newStyle ),
+            aspectRatio: modify,
         });
     };
 

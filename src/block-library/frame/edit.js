@@ -1,4 +1,9 @@
 /**
+ * External dependencies
+ */
+import classnames from 'classnames';
+
+/**
  * WordPress dependencies
  */
 import { __ } from "@wordpress/i18n";
@@ -10,7 +15,11 @@ import {
     useBlockProps,
 } from '@wordpress/block-editor';
 import { image as icon } from '@wordpress/icons';
-import { ToolbarGroup } from "@wordpress/components";
+import {
+    ToolbarGroup,
+    PanelBody,
+    PanelRow,
+} from "@wordpress/components";
 import { useCallback, useState, useRef } from "@wordpress/element";
 
 /**
@@ -19,18 +28,22 @@ import { useCallback, useState, useRef } from "@wordpress/element";
 import namespace from '../utils/namespace';
 import ImagePanel from './editor/image-panel';
 import URLPicker from "../utils/url-picker";
+import {
+    getPresetClass
+} from "../editor-components";
 
 const NEW_TAB_REL = 'noreferrer noopener';
 
 export default function Edit( props ) {
     const {
         attributes: {
+            aspectRatio,
+            portraitRatio,
             mediaID,
             mediaURL,
             mediaAlt,
             mediaLink,
             title,
-            style,
             url,
             rel,
             linkTarget,
@@ -40,8 +53,8 @@ export default function Edit( props ) {
         isSelected,
     } = props;
 
-    const ratioValue = style?.size.aspectRatio;
-    const portraitValue = style?.size.portraitRatio;
+    const ratioValue = aspectRatio;
+    const portraitValue = portraitRatio;
 
     const styleProps = {}
 

@@ -12,7 +12,7 @@ import {
     squareRatio,
     landscapeRatio,
     verticalRatio,
-    portraitRatio,
+    portraitRatio as mobileRatio,
 } from '../../utils/icons';
 import {cleanEmptyObject} from '../../utils';
 import namespace from '../../utils/namespace';
@@ -25,42 +25,26 @@ import namespace from '../../utils/namespace';
  * @return {boolean}	Whether or not the block has a value set.
  */
 export function hasValue( props ) {
-    return props.attributes.style?.size?.portraitRatio !== undefined;
+    return props.attributes.portraitRatio !== undefined;
 }
 
 export function reset( { attributes = {}, setAttributes } ) {
-    const { style } = attributes;
-
     setAttributes( {
-        style: cleanEmptyObject( {
-            ...style,
-            size: {
-                ...style?.size,
-                portraitRatio: undefined
-            },
-        }),
+        portraitRatio: undefined
     });
 }
 
 export function PortraitRatioEdit( props ) {
     const {
-        attributes: { style },
+        attributes,
         setAttributes,
     } = props
 
-    const aspectRatio = style?.size?.portraitRatio;
+    const portraitRatio = attributes.portraitRatio;
 
     const onChange = ( modify ) => {
-        const newStyle = {
-            ...style,
-            size: {
-                ...style?.size,
-                portraitRatio: modify,
-            },
-        };
-
         setAttributes( {
-            style: cleanEmptyObject( newStyle ),
+            portraitRatio: modify,
         });
     };
 
@@ -87,7 +71,7 @@ export function PortraitRatioEdit( props ) {
         },
         {
             value: '4 / 5',
-            icon: portraitRatio,
+            icon: mobileRatio,
             label: __( '4:5 Portrait', namespace ),
         }
     ];
@@ -103,7 +87,7 @@ export function PortraitRatioEdit( props ) {
                                 key={ value }
                                 label={ label }
                                 icon={ icon }
-                                isPressed={ aspectRatio === value }
+                                isPressed={ portraitRatio === value }
                                 onClick={ () => onChange( value ) }
                             />
                         );

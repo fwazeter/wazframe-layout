@@ -19,7 +19,8 @@ import { RichText, useBlockProps } from '@wordpress/block-editor';
  */
 export default function save( { attributes } ) {
     const {
-        style,
+        aspectRatio,
+        portraitRatio,
         mediaURL,
         mediaAlt,
         mediaCaption,
@@ -30,8 +31,8 @@ export default function save( { attributes } ) {
         title,
     } = attributes;
 
-    const ratioValue = style?.size.aspectRatio;
-    const portraitValue = style?.size.portraitRatio;
+    const ratioValue = aspectRatio;
+    const portraitValue = portraitRatio;
 
     const styleProps = {}
 
