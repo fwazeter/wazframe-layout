@@ -15,8 +15,7 @@ import {
 } from '@wordpress/block-editor';
 
 import {
-	PanelBody,
-	PanelRow
+	PanelBody
 } from '@wordpress/components';
 
 import { useSelect } from '@wordpress/data';
