@@ -1,41 +1,58 @@
 /**
+ * External dependencies
+ */
+import classnames from 'classnames';
+
+/**
  * WordPress dependencies
  */
 import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
 
 /**
- * The save function defines the way in which the different attributes should
- * be combined into the final markup, which is then serialized by the block
- * editor into `post_content`.
- *
- * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
- *
- * @return {WPElement} Element to render.
+ * Internal dependencies
  */
-export default function save( { attributes } ) {
+import {
+    paddingOptions,
+    getPresetClass,
+    getInlineStyle,
+} from "../editor-components";
+
+import { options } from "./constants";
+
+export default function save( { attributes, className } ) {
     const {
+        padding,
+        height,
+        noParentPadding,
+        centerElement, // placeholder for later.
         tagName: Tag,
-        style,
     } = attributes
 
-    const spaceValue = style?.spacing?.preset;
-    const spaceCustomValue = style?.spacing?.padding?.top;
+    const removeParentPadding = noParentPadding ? 'wf-parent-space-none' : '';
 
-    const parentSpaceValue = style?.spacing?.parentPreset;
-    const parentSpaceCustomValue = style?.spacing?.parentPadding?.top;
+    const heightClassNames = getPresetClass( options, height );
+    const heightInlineStyle = getInlineStyle( options, height );
 
-    const spacePaddingValue = spaceValue === 'custom' ? spaceCustomValue : spaceValue;
-    const parentSpacePaddingValue = parentSpaceValue === 'custom' ? parentSpaceCustomValue : parentSpaceValue;
+    const paddingClassNames = getPresetClass( paddingOptions, padding );
+    const paddingInlineStyle = getInlineStyle( paddingOptions, padding );
 
     const styleProps = {
-        "--wf-cover--space": spacePaddingValue,
-        "--wf-cover--parent-space": parentSpacePaddingValue,
-        "--wf--height": style?.size?.height,
+        "--wf-cover--space": paddingInlineStyle,
+        "--wf--height": heightInlineStyle,
     }
+
+    const optionalClassNames = classnames(
+        className,
+        removeParentPadding,
+        heightClassNames,
+        paddingClassNames
+    )
 
     return <Tag
         { ...useInnerBlocksProps.save(
-            useBlockProps.save()
+            useBlockProps.save( {
+                className: optionalClassNames
+            })
         ) } style={ { ...styleProps } }
     />;
 }

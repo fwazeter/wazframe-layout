@@ -1,4 +1,9 @@
 /**
+ * External dependencies
+ */
+import classnames from 'classnames';
+
+/**
  * WordPress dependencies
  */
 import { __ } from "@wordpress/i18n";
@@ -12,6 +17,7 @@ import {
 
 import {
     PanelBody,
+    ToggleControl
 } from "@wordpress/components";
 
 import { useSelect } from "@wordpress/data";
@@ -19,9 +25,16 @@ import { useSelect } from "@wordpress/data";
 /**
  * Internal dependencies
  */
-import SpacingPanel from './editor/spacing';
-import { HeightEdit } from '../editor-components/height';
 import HTMLElementsInspector from "../utils/html-element-messages";
+import {
+    PaddingPanel,
+    paddingOptions,
+    getPresetClass,
+    getInlineStyle,
+} from "../editor-components";
+
+import HeightPanel from "./editor/height";
+import { options } from "./constants";
 
 import namespace from '../utils/namespace';
 
@@ -29,27 +42,34 @@ import namespace from '../utils/namespace';
 export default function Edit(props) {
     const { attributes, setAttributes, clientId } = props;
     const {
-        style, // CSS margin value for margin-block-start.
+        padding,
+        height,
+        noParentPadding,
+        centerElement, // placeholder for later.
         templateLock,
         tagName: TagName = 'section',
     } = attributes;
 
-    const spaceValue = style?.spacing?.preset;
-    const spaceCustomValue = style?.spacing?.padding?.top;
+    const removeParentPadding = noParentPadding ? 'wf-parent-space-none' : '';
 
-    const parentSpaceValue = style?.spacing?.parentPreset;
-    const parentSpaceCustomValue = style?.spacing?.parentPadding?.top;
+    const heightClassNames = getPresetClass( options, height );
+    const heightInlineStyle = getInlineStyle( options, height );
 
-    const spacePaddingValue = spaceValue === 'custom' ? spaceCustomValue : spaceValue;
-    const parentSpacePaddingValue = parentSpaceValue === 'custom' ? parentSpaceCustomValue : parentSpaceValue;
+    const paddingClassNames = getPresetClass( paddingOptions, padding );
+    const paddingInlineStyle = getInlineStyle( paddingOptions, padding );
 
     const styleProps = {
-        "--wf-cover--space": spacePaddingValue,
-        "--wf-cover--parent-space": parentSpacePaddingValue,
-        "--wf--height": style?.size?.height,
+        "--wf-cover--space": paddingInlineStyle,
+        "--wf--height": heightInlineStyle,
     }
 
     const blockProps = useBlockProps();
+
+    const optionalClassNames = classnames(
+        removeParentPadding,
+        heightClassNames,
+        paddingClassNames
+    )
 
     const { hasInnerBlocks } = useSelect(
         (select) => {
@@ -72,13 +92,24 @@ export default function Edit(props) {
     return (
         <>
             <InspectorControls>
-                <SpacingPanel { ...props } />
-                <PanelBody title={ __('Cover Height', namespace ) } initialOpen={true}>
-                    <HeightEdit { ...props } />
+                <PanelBody title={ __('Cover Settings', namespace ) } initialOpen={true}>
+                    <HeightPanel { ...props } />
+                    <PaddingPanel { ...props } />
+                    <ToggleControl
+                        label={__('Remove Parent Spacing?', namespace)}
+                        help={ noParentPadding ? "Padding is removed from the cover" : "Cover has padding"}
+                        checked={ noParentPadding }
+                        onChange={ () => setAttributes({ noParentPadding: ! noParentPadding }) }
+                    />
                 </PanelBody>
             </InspectorControls>
             <HTMLElementsInspector { ...props } />
-            <TagName { ...innerBlocksProps } style={ { ...styleProps } } />
+            <TagName { ...innerBlocksProps }
+                     className={ classnames(
+                         blockProps.className,
+                         optionalClassNames
+                     ) }
+                     style={ { ...styleProps } } />
         </>
     );
 }

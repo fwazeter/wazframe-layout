@@ -1,19 +1,21 @@
 .wp-block-wazframe-cover {
-  --wf-cover--space: 1rem;
-  --wf--height: 100vh;
-  --wf-cover--parent-space: 1rem;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding: var(--wf-cover--parent-space);
-  min-block-size: var(--wf--height);
+  padding: var(--wf-cover--space, 1rem);
+  min-block-size: var(--wf--height, 100vh);
 
+  /*
+   *  Need to think through the centered element
+   *  Ideally we could have a button appear on a
+   *  child block to be ".centered" or the like.
+   */
   > :is(h1, h2, h3) {
     margin-block: auto;
   }
 
   > * {
-    margin-block: var(--wf-cover--space);
+    margin-block: var(--wf-cover--space, 1rem);
   }
 
   > :first-child:not(h1, h2, h3) {
@@ -23,5 +25,42 @@
   > :last-child:not(h1, h2, h3) {
     margin-block-end: 0;
   }
+  /* Remove padding from parent only */
+  &.wf-parent-space-none {
+    padding: 0;
+  }
+  /* Remove all space from parent to child elements */
+  &.wf-space-none {
+    padding: 0;
+    margin-block: 0;
+  }
 
+  &.wf-space-small {
+    --wf-cover--space: var(--wf--size-scale--m1, 0.75rem);
+  }
+
+  &.wf-space-medium {
+    --wf-cover--space: var(--wf--size-scale--2, 1.5rem);
+  }
+
+  &.wf-space-large {
+    --wf-cover--space: var(--wf--size-scale--3, 2rem);
+  }
+
+  &.wf-height-0 {
+    min-block-size: 0;
+  }
+
+  &.wf-height-25 {
+    --wf--height: 25vh
+  }
+
+  &.wf-height-50 {
+    --wf--height: 50vh
+  }
+
+  &.wf-height-75 {
+    --wf--height: 75vh
+  }
+  /* We Might need a 100 option */
 }

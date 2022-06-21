@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
 	"name": "wazframe/box",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"title": "Box Block",
 	"category": "layout-primitives",
 	"description": "The incredibly versatile box model. Creates a box with even padding on all sides.",
