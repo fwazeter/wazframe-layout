@@ -58,8 +58,8 @@ function AlignmentPanel( props ) {
             const clientIds = [ panelId ];
 
             clientIds.forEach( ( clientId ) => {
-                const { style } = getBlockAttributes( clientId );
-                let newBlockAttributes = { style };
+                const { flex } = getBlockAttributes( clientId );
+                let newBlockAttributes = { flex };
 
                 resetFilters.forEach( ( resetFilter ) => {
                     newBlockAttributes = {
@@ -70,7 +70,7 @@ function AlignmentPanel( props ) {
 
                 newBlockAttributes = {
                     ...newBlockAttributes,
-                    style: cleanEmptyObject( newBlockAttributes.style ),
+                    flex: cleanEmptyObject( newBlockAttributes.flex ),
                 };
 
                 newAttributes[ clientId ] = newBlockAttributes;
@@ -88,12 +88,9 @@ function AlignmentPanel( props ) {
 
     const createResetAllFilter = ( attribute ) => ( newAttributes ) => ( {
         ...newAttributes,
-        style: {
-            ...newAttributes.style,
-            flex: {
-                ...newAttributes.style?.flex,
-                [ attribute ]: 'stretch',
-            }
+        flex: {
+            ...newAttributes.flex,
+            [ attribute ]: 'stretch',
         }
     } );
 

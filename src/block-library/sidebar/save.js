@@ -2,6 +2,9 @@
  * WordPress dependencies
  */
 import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
+import {blockGapOptions, getInlineStyle, getPresetClass} from "../editor-components";
+import {sidebarOptions} from "./constants";
+import classnames from "classnames";
 
 /**
  * The save function defines the way in which the different attributes should
@@ -12,22 +15,38 @@ import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
  *
  * @return {WPElement} Element to render.
  */
-export default function save( { attributes } ) {
+export default function save( { attributes, className } ) {
     const {
-        tagName: Tag,
-        style,
+        flex,
+        blockGap,
+        width,
+        contentWidth,
         sidebarRight,
+        tagName: Tag,
     } = attributes
 
     const hasSidebarRight = sidebarRight ? 'sidebar-right' : 'sidebar-left';
 
+    const sidebarWidthClassNames = getPresetClass( sidebarOptions, width );
+    const sidebarInlineStyle = getInlineStyle( sidebarOptions, width );
+
+    const blockGapClassNames = getPresetClass( blockGapOptions, blockGap );
+    const blockGapInlineStyle = getInlineStyle( blockGapOptions, blockGap );
+
+    const optionalClassNames = classnames(
+        className,
+        hasSidebarRight,
+        sidebarWidthClassNames,
+        blockGapClassNames
+    )
+
     const styleProps = {
-        '--wf-sidebar--space': style?.spacing?.blockGap,
-        '--wf--flex-basis': style?.size?.flexBasis,
-        '--wf--content-width': style?.size?.minWidth
+        '--wf-sidebar--space': blockGapInlineStyle,
+        '--wf--width': sidebarInlineStyle,
+        '--wf--content-width': contentWidth
     }
 
-    const alignItemsStyle = style?.flex?.alignItems;
+    const alignItemsStyle = flex?.alignItems;
 
     if ( alignItemsStyle !== 'stretch' ) {
         Object.assign( styleProps, { '--wf--align-items': alignItemsStyle } );
@@ -35,7 +54,7 @@ export default function save( { attributes } ) {
 
     return <Tag
         { ...useInnerBlocksProps.save(
-            useBlockProps.save( { className: hasSidebarRight, style: styleProps } )
+            useBlockProps.save( { className: optionalClassNames, style: styleProps } )
         )}
     />;
 }

@@ -16,7 +16,7 @@
  */
 function findStyleValue( array, name ) {
     return array.find((element) => {
-        return element.name === name;
+        return element.slug === name;
     } )
 }
 

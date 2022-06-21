@@ -27,8 +27,8 @@ import { useSelect } from "@wordpress/data";
  */
 import HTMLElementsInspector from "../utils/html-element-messages";
 import BlockOptions from "../editor-components/options";
-import { CustomPadding } from "../editor-components/options/custom-padding";
-import { getPresetClass, getInlineStyle } from "../editor-components/style-engine";
+import { Padding } from "../editor-components/options/padding";
+import { getPresetClass, getInlineStyle } from "../editor-components";
 import { options } from './constants';
 
 
@@ -119,7 +119,7 @@ export default function Edit(props) {
 				<PanelBody title='Spacing'>
 					<BlockOptions props={ props } options={ options } attributeName='padding' />
 					<PanelRow>
-						<CustomPadding { ...props } />
+						<Padding { ...props } />
 					</PanelRow>
 				</PanelBody>
 			</InspectorControls>

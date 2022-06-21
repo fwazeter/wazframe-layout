@@ -22,7 +22,7 @@ import { spaceUnits } from "../../utils";
  *
  * @param {Object} props            Block Props
  */
-export function CustomMargin( props ) {
+export function Margin(props ) {
     const {
         attributes: { margin },
         setAttributes

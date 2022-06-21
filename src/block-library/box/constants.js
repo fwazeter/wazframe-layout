@@ -5,22 +5,27 @@ export const options = [
     {
         label: 'Default',
         name: 'space-default',
+        slug: 'space-default',
         isDefault: true
     },
     {
         label: 'Small',
-        name: 'space-small'
+        name: 'space-small',
+        slug: 'space-small'
     },
     {
         label: 'Medium',
-        name: 'space-medium'
+        name: 'space-medium',
+        slug: 'space-medium'
     },
     {
         label: 'Large',
-        name: 'space-large'
+        name: 'space-large',
+        slug: 'space-large'
     },
     {
         label: 'None',
-        name: 'space-none'
+        name: 'space-none',
+        slug: 'space-none'
     }
 ]

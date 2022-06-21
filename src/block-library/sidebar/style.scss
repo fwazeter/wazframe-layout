@@ -1,33 +1,53 @@
 .wp-block-wazframe-sidebar {
-  --wf-sidebar--space: var(--wp--style--block-gap, 1.5rem);
-  --wf--flex-basis: 'notacceptablevalue';
-  --wf--content-width: 50%;
-  --wf--align-items: stretch;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--wf-sidebar--space);
-  align-items: var(--wf--align-items);
+  gap: var(--wf-sidebar--space, var(--wp--style--block-gap, 1rem));
+  align-items: var(--wf--align-items, stretch);
 
   &.sidebar-left > :first-child {
-    flex-basis: var(--wf--flex-basis);
+    flex-basis: var(--wf--width);
     flex-grow: 1;
   }
 
   &.sidebar-left > :last-child {
     flex-basis: 0;
     flex-grow: 999;
-    min-inline-size: var(--wf--content-width);
+    min-inline-size: var(--wf--content-width, 50%);
   }
 
   &.sidebar-right > :last-child {
-    flex-basis: var(--wf--flex-basis);
+    flex-basis: var(--wf--width);
     flex-grow: 1;
   }
 
   &.sidebar-right > :first-child {
     flex-basis: 0;
     flex-grow: 999;
-    min-inline-size: var(--wf--content-width);
+    min-inline-size: var(--wf--content-width, 50%);
   }
+
+  /* it is very likely the size settings need adjustment */
+  &.wf-size-small {
+    --wf--width: 10rem;
+  }
+  &.wf-size-medium {
+    --wf--width: 15rem;
+  }
+  &.wf-size-large {
+    --wf--width: 20rem;
+  }
+  &.wf-space-none {
+    gap: 0;
+  }
+  &.wf-space-small {
+    --wf-sidebar--space: var(--wf--size-scale--m1, 0.75rem);
+  }
+  &.wf-space-medium {
+    --wf-sidebar--space: var(--wf--size-scale--2, 1.5rem);
+  }
+  &.wf-space-large {
+    --wf-sidebar--space: var(--wf--size-scale--3, 2rem);
+  }
+
 }
 

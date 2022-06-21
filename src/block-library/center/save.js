@@ -13,7 +13,7 @@ import { useInnerBlocksProps,
 /**
  * Internal dependencies
  */
-import {getInlineStyle, getPresetClass} from "../editor-components/style-engine";
+import {getInlineStyle, getPresetClass} from "../editor-components";
 import {paddingOptions, widthOptions} from "./constants";
 
 /**

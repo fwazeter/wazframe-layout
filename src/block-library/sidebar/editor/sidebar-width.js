@@ -2,30 +2,23 @@
  * Internal dependencies
  */
 import { widthUnits} from "../../utils";
-import {getSize, getSizeObjectByValue} from "./utils";
-import BlockOptionsPicker from "./block-options-picker";
-import { options } from "../../sidebar/constants";
+import {getSize, getSizeObjectByValue} from "../../editor-components";
+import { BlockOptionsPicker } from "../../editor-components";
+import { sidebarOptions } from "../constants";
 
-/**
- * Custom setting for default options provided
- * to blocks.
- */
-/**
- *
- * @param {Object} props            Block Props
- */
-function WidthPanel( props) {
+
+function SidebarWidthPanel( props) {
     const {
         attributes,
         setAttributes
     } = props
 
     const onChange = ( value ) => {
-        const sizeSlug = getSizeObjectByValue( options, value ).slug;
+        const sizeSlug = getSizeObjectByValue( sidebarOptions, value ).slug;
 
         if ( ! sizeSlug ) {
             setAttributes( {
-              width: sizeSlug ? undefined : value
+                width: sizeSlug ? undefined : value
             } )
         }
         setAttributes( {
@@ -35,7 +28,7 @@ function WidthPanel( props) {
     };
 
     const sizeObject = getSize(
-        options,
+        sidebarOptions,
         attributes.width,
         attributes?.width
     );
@@ -44,8 +37,8 @@ function WidthPanel( props) {
 
     return (
         <BlockOptionsPicker
-            sizeOptions={ options }
-            panelName='Set Width'
+            sizeOptions={ sidebarOptions }
+            panelName='Sidebar Width'
             units={ widthUnits }
             onChange={ onChange }
             value={ sizeValue }
@@ -53,4 +46,4 @@ function WidthPanel( props) {
     );
 }
 
-export default WidthPanel;
+export default SidebarWidthPanel;

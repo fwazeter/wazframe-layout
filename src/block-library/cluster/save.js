@@ -11,8 +11,11 @@ import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
 /**
  * Internal dependencies
  */
-import {getInlineStyle, getPresetClass} from "../editor-components/style-engine";
-import {options} from "./constants";
+import {
+    getInlineStyle,
+    getPresetClass,
+    blockGapOptions,
+} from "../editor-components";
 
 /**
  * The save function defines the way in which the different attributes should
@@ -30,8 +33,8 @@ export default function save( { attributes, className } ) {
         blockGap,
     } = attributes
 
-    const newClassNames = getPresetClass( options, blockGap );
-    const inlineStyle = getInlineStyle( options, blockGap );
+    const newClassNames = getPresetClass( blockGapOptions, blockGap );
+    const inlineStyle = getInlineStyle( blockGapOptions, blockGap );
 
     const addClassNames = classnames(
         className,

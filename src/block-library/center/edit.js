@@ -30,11 +30,11 @@ import { useSelect } from "@wordpress/data";
  * Internal Dependencies
  */
 import namespace from "../utils/namespace";
-import { getInlineStyle, getPresetClass } from "../editor-components/style-engine";
+import { getInlineStyle, getPresetClass } from "../editor-components";
 import { paddingOptions, widthOptions } from "./constants";
 import BlockOptions from "../editor-components/options"
-import { CustomPadding } from "../editor-components/options/custom-padding";
-import {CustomWidth} from "../editor-components/options/width";
+import { Padding } from "../editor-components/options/padding";
+import { CustomWidth } from "../editor-components/options/custom-width";
 
 
 
@@ -116,7 +116,7 @@ export default function Edit(props) {
                 <PanelBody title='Horizontal Spacing'>
                     <BlockOptions props={ props } options={ paddingOptions } attributeName='padding' />
                     <PanelRow>
-                        <CustomPadding { ...props } />
+                        <Padding { ...props } />
                     </PanelRow>
                 </PanelBody>
             </InspectorControls>

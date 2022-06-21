@@ -22,7 +22,7 @@ import { spaceUnits } from "../../utils";
  *
  * @param {Object} props            Block Props
  */
-export function CustomPadding( props ) {
+export function Padding(props ) {
     const {
         attributes: { padding },
         setAttributes

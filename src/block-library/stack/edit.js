@@ -29,10 +29,10 @@ import { useSelect } from "@wordpress/data";
 import HTMLElementsInspector from "../utils/html-element-messages";
 import namespace from './../utils/namespace';
 import {setClassName} from "./setClassName";
-import {getInlineStyle, getPresetClass} from "../editor-components/style-engine";
+import {getInlineStyle, getPresetClass} from "../editor-components";
 import {options} from "./constants";
 import BlockOptions from "../editor-components/options";
-import {CustomMargin} from "../editor-components/options/custom-margin";
+import {Margin} from "../editor-components/options/margin";
 
 
 export default function Edit(props) {
@@ -89,7 +89,7 @@ export default function Edit(props) {
 				<PanelBody title='Spacing'>
 					<BlockOptions props={ props } options={ options } attributeName='margin' />
 					<PanelRow>
-						<CustomMargin { ...props } />
+						<Margin { ...props } />
 					</PanelRow>
 				</PanelBody>
 				<PanelBody title={ __('Stack Options', namespace ) } initialOpen={false}>

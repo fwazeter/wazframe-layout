@@ -1,4 +1,8 @@
 /**
+ * We should be able to deprecate this file soon. Currently center
+ * block is using it.
+ */
+/**
  * Wordpress dependencies
  */
 import { __ } from "@wordpress/i18n";
@@ -12,7 +16,7 @@ import {
  * Internal dependencies
  */
 import namespace from '../../utils/namespace';
-import { spaceUnits } from "../../utils";
+import { widthUnits } from "../../utils";
 
 /**
  * Custom setting for default options provided
@@ -22,9 +26,9 @@ import { spaceUnits } from "../../utils";
  *
  * @param {Object} props            Block Props
  */
-export function CustomBlockGap( props ) {
+export function CustomWidth( props ) {
     const {
-        attributes: { blockGap },
+        attributes: { width },
         setAttributes
     } = props
 
@@ -33,21 +37,21 @@ export function CustomBlockGap( props ) {
             <Flex direction="column">
                 <Flex justify="space-between" align="baseline">
                     <p className="component-box-control__label">
-                        <strong>{ __( "Set Custom Block Gap", namespace ) }</strong>
+                        <strong>{ __( "Custom Content Width", namespace ) }</strong>
                     </p>
                     <Button
                         className="component-box-control__reset-button"
                         isSecondary
                         isSmall
-                        onClick={ () => setAttributes( { blockGap: undefined} ) }
+                        onClick={ () => setAttributes( { width: undefined} ) }
                     >
                         { __('Reset', namespace) }
                     </Button>
                 </Flex>
                 <UnitControl
-                    value={ blockGap }
-                    onChange={ ( value ) => setAttributes({ blockGap: value}) }
-                    units={ spaceUnits }
+                    value={ width }
+                    onChange={ ( value ) => setAttributes({ width: value}) }
+                    units={ widthUnits }
                     __unstableInputWidth="50%"
                 />
             </Flex>

@@ -12,7 +12,7 @@ import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
  * Internal dependencies
  */
 import {setClassName} from "./setClassName";
-import {getInlineStyle, getPresetClass} from "../editor-components/style-engine";
+import {getInlineStyle, getPresetClass} from "../editor-components";
 import {options} from "./constants";
 
 

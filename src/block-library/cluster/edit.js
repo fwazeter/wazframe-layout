@@ -24,14 +24,15 @@ import { useSelect } from '@wordpress/data';
 /**
  * Internal Dependencies
  */
-
 import ClusterPanel from './editor/alignment';
-import BlockOptions from "../editor-components/options";
-import {CustomBlockGap} from "../editor-components/options/gap";
-import { options } from "./constants";
 
 import HTMLElementsInspector from '../utils/html-element-messages';
-import {getInlineStyle, getPresetClass} from "../editor-components/style-engine";
+import {
+	getInlineStyle,
+	getPresetClass,
+	BlockGapPanel,
+	blockGapOptions,
+} from "../editor-components";
 
 export default function Edit(props) {
 	const { attributes, clientId } = props;
@@ -42,8 +43,8 @@ export default function Edit(props) {
 		templateLock,
 	} = attributes;
 
-	const newClassNames = getPresetClass( options, blockGap );
-	const inlineStyle = getInlineStyle( options, blockGap );
+	const newClassNames = getPresetClass( blockGapOptions, blockGap );
+	const inlineStyle = getInlineStyle( blockGapOptions, blockGap );
 
 	const blockProps = useBlockProps(
 		{ className: newClassNames }
@@ -88,10 +89,7 @@ export default function Edit(props) {
 			<InspectorControls>
 				<ClusterPanel { ...props } />
 				<PanelBody title="Spacing">
-					<BlockOptions props={ props } options={ options } attributeName='blockGap' />
-					<PanelRow>
-						<CustomBlockGap { ...props } />
-					</PanelRow>
+					<BlockGapPanel { ...props } />
 				</PanelBody>
 			</InspectorControls>
 			<HTMLElementsInspector { ...props } />

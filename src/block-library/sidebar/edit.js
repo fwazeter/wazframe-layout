@@ -1,4 +1,8 @@
 /**
+ * External dependencies
+ */
+import classnames from 'classnames';
+/**
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
@@ -12,6 +16,7 @@ import {
 } from '@wordpress/block-editor';
 
 import {
+	PanelBody,
 	ToolbarGroup,
 	ToolbarButton
 } from '@wordpress/components';
@@ -25,16 +30,26 @@ import { useSelect } from '@wordpress/data';
 /**
  * Internal Dependencies
  */
-import SizePanel from './editor/size';
 import AlignmentPanel from "./editor/alignment";
-import SpacingPanel from '../editor-components/spacing';
 import HTMLElementsInspector from '../utils/html-element-messages';
 import namespace from '../utils/namespace';
+import SidebarWidthPanel from "./editor/sidebar-width";
+import MainWidthPanel from "./editor/main-width";
+import {
+	BlockGapPanel,
+	getInlineStyle,
+	getPresetClass,
+	blockGapOptions,
+} from "../editor-components";
+import { sidebarOptions } from "./constants";
 
 export default function Edit(props) {
 	const { attributes, setAttributes, clientId } = props;
 	const {
-		style,
+		flex,
+		blockGap,
+		width,
+		contentWidth,
 		sidebarRight,
 		tagName: TagName = 'div',
 		templateLock,
@@ -42,17 +57,27 @@ export default function Edit(props) {
 
 	const hasSidebarRight = sidebarRight ? 'sidebar-right' : 'sidebar-left';
 
-	const blockProps = useBlockProps(
-		{ className: hasSidebarRight }
-	);
+	const sidebarWidthClassNames = getPresetClass( sidebarOptions, width );
+	const sidebarInlineStyle = getInlineStyle( sidebarOptions, width );
+
+	const blockGapClassNames = getPresetClass( blockGapOptions, blockGap );
+	const blockGapInlineStyle = getInlineStyle( blockGapOptions, blockGap );
+
+	const blockProps = useBlockProps();
+
+	const optionalClassNames = classnames(
+		hasSidebarRight,
+		sidebarWidthClassNames,
+		blockGapClassNames
+	)
 
 	const styleProps = {
-		'--wf-sidebar--space': style?.spacing?.blockGap,
-		'--wf--flex-basis': style?.size?.flexBasis,
-		'--wf--content-width': style?.size?.minWidth
+		'--wf-sidebar--space': blockGapInlineStyle,
+		'--wf--width': sidebarInlineStyle,
+		'--wf--content-width': contentWidth
 	}
 
-	const alignItemsStyle = style?.flex?.alignItems;
+	const alignItemsStyle = flex?.alignItems;
 
 	if ( alignItemsStyle !== 'stretch' ) {
 		Object.assign( styleProps, { '--wf--align-items': alignItemsStyle } );
@@ -80,8 +105,11 @@ export default function Edit(props) {
 		<>
 			<InspectorControls>
 				<AlignmentPanel { ...props } />
-				<SizePanel { ...props } />
-				<SpacingPanel { ...props } />
+				<PanelBody label={ __( 'Spacing Settings' ) }>
+					<SidebarWidthPanel { ...props } />
+					<MainWidthPanel { ...props } />
+					<BlockGapPanel { ...props } />
+				</PanelBody>
 			</InspectorControls>
 			<BlockControls>
 				<ToolbarGroup>
@@ -96,6 +124,12 @@ export default function Edit(props) {
 			<HTMLElementsInspector { ...props } />
 			<TagName
 				{ ...innerBlocksProps }
+				className={
+					classnames(
+						blockProps.className,
+						optionalClassNames
+					)
+				}
 				style={ { ...styleProps } }
 			/>
 		</>
