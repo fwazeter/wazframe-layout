@@ -28,9 +28,6 @@
         "type": "string"
       }
     },
-    "style": {
-      "type": "object"
-    },
     "tagName": {
       "type": "string",
       "default": "div"

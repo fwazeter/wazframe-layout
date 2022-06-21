@@ -1,4 +1,9 @@
 /**
+ * External dependencies
+ */
+import classnames from 'classnames';
+
+/**
  * WordPress dependencies
  */
 import { __ } from "@wordpress/i18n";
@@ -21,32 +26,45 @@ import { useSelect } from "@wordpress/data";
 /**
  * Internal dependencies
  */
-import SpacingPanel from '../editor-components/spacing';
-import { WidthEdit } from '../editor-components/width';
 import { FlexGrowEdit } from "../editor-components/flexGrow";
 import LimitEdit from "./editor/limit";
 import HTMLElementsInspector from "../utils/html-element-messages";
 
 import { setLimitClassName, setCustomFlexGrow } from './setClassName'
 import namespace from '../utils/namespace';
+import {
+    BlockGapPanel,
+    blockGapOptions,
+    getPresetClass,
+    getInlineStyle,
+} from "../editor-components";
+import WidthPanel from "./editor/content-width";
+import { options } from "./constants";
 
 
 export default function Edit(props) {
     const { attributes, setAttributes, clientId } = props;
     const {
-        style,
+        width,
+        flex,
+        blockGap,
         limit,
         customChild,
         templateLock,
         tagName: TagName = 'div',
     } = attributes;
 
+    const blockGapPresetClass = getPresetClass( blockGapOptions, blockGap )
+    const blockGapInlineStyle = getInlineStyle( blockGapOptions, blockGap )
+    const widthPresetClass = getPresetClass( options, width )
+    const widthInlineStyle = getInlineStyle( options, width )
+
     const styleProps = {
-        "--wf-switcher--space": style?.spacing?.blockGap,
-        "--wf--content-width": style?.size?.width
+        "--wf-switcher--space": blockGapInlineStyle,
+        "--wf--content-width": widthInlineStyle
     }
 
-    const newFlexGrow = style?.flex?.flexGrow;
+    const newFlexGrow = flex?.flexGrow;
 
     const switchAfter = Number(limit) + 1;
 
@@ -61,8 +79,14 @@ export default function Edit(props) {
         `grow-${customChild} switch-${switchAfter}` :
         `switch-${switchAfter}`;
 
+    const optionalClassNames = classnames(
+        widthPresetClass,
+        blockGapPresetClass,
+        newClassNames
+    )
+
     const blockProps = useBlockProps({
-        className: newClassNames,
+        className: optionalClassNames,
     });
 
     const { hasInnerBlocks } = useSelect(
@@ -89,10 +113,10 @@ export default function Edit(props) {
                 <PanelBody title={ __('Horizontal Item Limit', namespace ) } initialOpen={true}>
                     <LimitEdit { ...props } />
                 </PanelBody>
-                <PanelBody title={ __('Container Breakpoint', namespace ) } initialOpen={true}>
-                    <WidthEdit { ...props } />
+                <PanelBody title={ __('Space Settings', namespace ) } initialOpen={true}>
+                    <WidthPanel { ...props } />
+                    <BlockGapPanel { ...props } />
                 </PanelBody>
-                <SpacingPanel { ...props } />
                 <PanelBody title={ __('Custom Child Length', namespace) } initialOpen={false}>
                     <Flex justify='space-between' align='baseline'>
                         <NumberControl

@@ -1,8 +1,15 @@
 /**
+ * External dependencies
+ */
+import classnames from 'classnames';
+
+/**
  * WordPress dependencies
  */
 import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
 import {setCustomFlexGrow, setLimitClassName} from "./setClassName";
+import {blockGapOptions, getInlineStyle, getPresetClass} from "../editor-components";
+import {options} from "./constants";
 
 /**
  * The save function defines the way in which the different attributes should
@@ -15,18 +22,25 @@ import {setCustomFlexGrow, setLimitClassName} from "./setClassName";
  */
 export default function save( { attributes } ) {
     const {
-        tagName: Tag,
-        style,
+        width,
+        flex,
+        blockGap,
         limit,
         customChild,
+        tagName: Tag,
     } = attributes
 
+    const blockGapPresetClass = getPresetClass( blockGapOptions, blockGap )
+    const blockGapInlineStyle = getInlineStyle( blockGapOptions, blockGap )
+    const widthPresetClass = getPresetClass( options, width )
+    const widthInlineStyle = getInlineStyle( options, width )
+
     const styleProps = {
-        '--wf-switcher--space': style?.spacing?.blockGap,
-        '--wf--content-width': style?.size?.width
+        "--wf-switcher--space": blockGapInlineStyle,
+        "--wf--content-width": widthInlineStyle
     }
 
-    const newFlexGrow = style?.flex?.flexGrow;
+    const newFlexGrow = flex?.flexGrow;
 
     const switchAfter = Number(limit) + 1;
 
@@ -41,13 +55,18 @@ export default function save( { attributes } ) {
         `grow-${customChild} switch-${switchAfter}` :
         `switch-${switchAfter}`;
 
+    const optionalClassNames = classnames(
+        widthPresetClass,
+        blockGapPresetClass,
+        newClassNames
+    )
 
     return (
         <>
             <style>{ appendStyles }</style>
             <Tag
                 { ...useInnerBlocksProps.save(
-                    useBlockProps.save( { className: newClassNames, style: styleProps } )
+                    useBlockProps.save( { className: optionalClassNames, style: styleProps } )
                 )}
             />
         </>

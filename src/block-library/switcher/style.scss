@@ -7,4 +7,25 @@
     flex-grow: var(--wf--flex-grow, 1);
     flex-basis: calc((var(--wf--content-width, 65ch) - 100%) * 999);
   }
+  &.wf-size-small {
+    --wf--content-width: 30rem;
+  }
+  &.wf-size-medium {
+    --wf--content-width: 50rem;
+  }
+  &.wf-size-large {
+    --wf--content-width: 62.5rem;
+  }
+  &.wf-space-none {
+    gap: 0;
+  }
+  &.wf-space-small {
+    --wf-switcher--space: var(--wf--size-scale--m1, 0.75rem);
+  }
+  &.wf-space-medium {
+    --wf-switcher--space: var(--wf--size-scale--2, 1.5rem);
+  }
+  &.wf-space-large {
+    --wf-switcher--space: var(--wf--size-scale--3, 2rem);
+  }
 }

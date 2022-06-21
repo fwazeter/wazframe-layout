@@ -105,7 +105,7 @@ export default function Edit(props) {
 		<>
 			<InspectorControls>
 				<AlignmentPanel { ...props } />
-				<PanelBody label={ __( 'Spacing Settings' ) }>
+				<PanelBody title={ __( 'Space Settings' ) }>
 					<SidebarWidthPanel { ...props } />
 					<MainWidthPanel { ...props } />
 					<BlockGapPanel { ...props } />
