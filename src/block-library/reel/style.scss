@@ -1,63 +1,98 @@
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
- */
-
 .wp-block-wazframe-reel {
-  --wf-reel--space: var(--wp--style--block-gap, 1rem);
-  --wf--height: auto;
-  --wf--content-width: auto;
   display: flex;
   /* only allow horizontal scrolling */
   overflow-x: auto;
   overflow-y: hidden;
   /* override to set a manual height, inherited uses 100% to maintain aspect ratio */
-  block-size: var(--wf--height);
+  block-size: var(--wf--height, auto);
   scrollbar-color: var(--wf--background, var(--wp--preset--color--background, #fff)), var(--wf--color, var(--wp--preset--color--foreground, #000));
+
+  > * {
+    flex: 0 0 var(--wf--content-width, auto);
+  }
+
+  > img {
+    block-size: 100%;
+    flex-basis: auto;
+    width: auto;
+  }
+  /* reel works in both writing directions */
+  > * + * {
+    margin-inline-start: var(--wf-reel--space, var(--wp--style--block-gap, 1rem));
+  }
+
+  /* javascript might need to add this */
+  &.overflowing {
+    padding-block-end: var(--wf-reel--space, var(--wp--style--block-gap, 1rem));
+  }
+
+  &.no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  /* we aren't using blockGap, but using size settings */
+  &.wf-space-none > * + * {
+    margin-inline-start: 0;
+  }
+
+  &.wf-space-none.overflowing {
+    padding-block-end: 0;
+  }
+
+  &.wf-space-small {
+    --wf-reel--space: var(--wf--size-scale--m1, 0.75rem);
+  }
+
+  &.wf-space-medium {
+    --wf-reel--space: var(--wf--size-scale--2, 1.5rem);
+  }
+
+  &.wf-space-large {
+    --wf-reel--space: var(--wf--size-scale--3, 2rem);
+  }
+  /* item width */
+  &.wf-size-small {
+    --wf--content-width: 10rem;
+  }
+  &.wf-size-medium {
+    --wf--content-width: 15rem;
+  }
+  &.wf-size-large {
+    --wf--content-width: 20rem;
+  }
+
+  /* height of the reel itself */
+  &.wf-height-small {
+    --wf--height: 15vh
+  }
+
+  &.wf-height-medium {
+    --wf--height: 20vh
+  }
+
+  &.wf-height-large {
+    --wf--height: 30vh
+  }
+
+  /* show scrollbar on safari */
+  &::-webkit-scrollbar {
+    block-size: 1rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: var(--wf--color, var(--wp--preset--color--foreground, #000));
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--wf--color, var(--wp--preset--color--foreground, #000));
+    background-image: linear-gradient(
+                    var(--wf--color, var(--wp--preset--color--foreground, #000)) 0, var(--wf--color, var(--wp--preset--color--foreground, #000)) 0.25rem,
+                    var(--wf--background, var(--wp--preset--color--background, #fff)) 0.25rem, var(--wf--background, var(--wp--preset--color--background, #fff)) 0.75rem,
+                    var(--wf--color, var(--wp--preset--color--foreground, #000)) 0.75rem);
+  }
+
+  &.no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
 
-.wp-block-wazframe-reel > * {
-  flex: 0 0 var(--wf--content-width);
-}
-
-.wp-block-wazframe-reel > img {
-  block-size: 100%;
-  flex-basis: auto;
-  width: auto;
-}
-
-/* reel works in both writing directions */
-.wp-block-wazframe-reel > * + * {
-  margin-inline-start: var(--wf-reel--space);
-}
-
-.wp-block-wazframe-reel.overflowing {
-  padding-block-end: var(--wf-reel--space);
-}
-
-/* makes scrollbar show on safari */
-.wp-block-wazframe-reel::-webkit-scrollbar {
-  block-size: 1rem;
-}
-
-.wp-block-wazframe-reel::-webkit-scrollbar-track {
-  background-color: var(--wf--color, var(--wp--preset--color--foreground, #000));
-}
-
-.wp-block-wazframe-reel::-webkit-scrollbar-thumb {
-  background-color: var(--wf--color, var(--wp--preset--color--foreground, #000));
-  background-image: linear-gradient(
-                  var(--wf--color, var(--wp--preset--color--foreground, #000)) 0, var(--wf--color, var(--wp--preset--color--foreground, #000)) 0.25rem,
-                  var(--wf--background, var(--wp--preset--color--background, #fff)) 0.25rem, var(--wf--background, var(--wp--preset--color--background, #fff)) 0.75rem,
-                  var(--wf--color, var(--wp--preset--color--foreground, #000)) 0.75rem);
-}
-
-.wp-block-wazframe-reel.no-scrollbar {
-  scrollbar-width: none;
-}
-
-.wp-block-wazframe-reel.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}

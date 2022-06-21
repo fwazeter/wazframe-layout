@@ -1,30 +1,73 @@
 /**
- * WordPress dependencies
+ * External dependencies
  */
-import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
+import classnames from "classnames";
 
 /**
- * The save function defines the way in which the different attributes should
- * be combined into the final markup, which is then serialized by the block
- * editor into `post_content`.
- *
- * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
- *
- * @return {WPElement} Element to render.
+ * WordPress dependencies
  */
-export default function save({ attributes: { tagName: Tag, noBar, style } }) {
+import {
+	useInnerBlocksProps,
+	useBlockProps
+} from '@wordpress/block-editor';
+
+/**
+ * Internal dependencies
+ */
+import {
+	blockGapOptions,
+	getInlineStyle,
+	getPresetClass
+} from "../editor-components";
+
+import {
+	heightOptions,
+	itemWidthOptions
+} from "./constants";
+
+
+export default function save( { attributes, className } ) {
+	const {
+		itemWidth,
+		height,
+		blockGap,
+		noBar,
+		tagName: Tag
+	} = attributes
+
+	const heightClassNames = getPresetClass( heightOptions, height );
+	const heightInlineStyle = getInlineStyle( heightOptions, height );
+
+	const itemWidthClassNames = getPresetClass( itemWidthOptions, itemWidth );
+	const itemWidthInlineStyle = getInlineStyle( itemWidthOptions, itemWidth );
+
+	// NOTE: we aren't actually using gap prop in CSS, but the style is accomplishing the same
+	const blockGapClassNames = getPresetClass( blockGapOptions, blockGap );
+	const blockGapInlineStyle = getInlineStyle( blockGapOptions, blockGap );
+
 	const toggleScrollbar = noBar ? 'no-scrollbar' : '';
 
 	const styleProps = {
-		"--wf-reel--space": style?.spacing?.blockGap,
-		"--wf--height": style?.size?.height,
-		"--wf--content-width": style?.size?.width,
+		"--wf--height": heightInlineStyle,
+		"--wf--content-width": itemWidthInlineStyle,
+		"--wf-reel--space": blockGapInlineStyle,
 	}
+
+	const optionalClassNames = classnames(
+		className,
+		toggleScrollbar,
+		blockGapClassNames,
+		itemWidthClassNames,
+		heightClassNames
+	)
 
 	return (
 		<Tag
 			{...useInnerBlocksProps.save(
-				useBlockProps.save({ className: toggleScrollbar, style: styleProps })
+				useBlockProps.save({
+					className: optionalClassNames,
+					style: styleProps
+				})
 			)}
 		/>
 	);

@@ -1,4 +1,9 @@
 /**
+ * External dependencies
+ */
+import classnames from 'classnames';
+
+/**
  * WordPress Dependencies
  */
 import { __ } from '@wordpress/i18n';
@@ -15,6 +20,7 @@ import {
 import {
 	ToolbarGroup,
 	ToolbarButton,
+	PanelBody,
 } from '@wordpress/components';
 
 import { lineSolid } from '@wordpress/icons';
@@ -25,25 +31,58 @@ import { useSelect } from '@wordpress/data';
  * Internal dependencies
  */
 import HTMLElementsInspector from "../utils/html-element-messages";
-import SizePanel from './editor/size';
-import SpacingPanel from '../editor-components/spacing';
 import namespace from "../utils/namespace";
 
+import ItemWidthPanel from './editor/reel-item-width'
+import ReelHeight from "./editor/reel-height";
 
-function Edit(props) {
+import { itemWidthOptions, heightOptions } from "./constants";
+
+import {
+	BlockGapPanel,
+	blockGapOptions,
+	getInlineStyle,
+	getPresetClass,
+} from "../editor-components";
+
+
+function Edit( props ) {
 	const { attributes, setAttributes, clientId } = props;
-	const { tagName: TagName = 'section', templateLock, noBar, style } = attributes;
+	const {
+		itemWidth,
+		height,
+		blockGap,
+		noBar,
+		tagName: TagName = 'section',
+		templateLock
+	} = attributes;
 
-	const styleProps = {
-		"--wf-reel--space": style?.spacing?.blockGap,
-		"--wf--height": style?.size?.height,
-		"--wf--content-width": style?.size?.width,
-	}
+	const heightClassNames = getPresetClass( heightOptions, height );
+	const heightInlineStyle = getInlineStyle( heightOptions, height );
+
+	const itemWidthClassNames = getPresetClass( itemWidthOptions, itemWidth );
+	const itemWidthInlineStyle = getInlineStyle( itemWidthOptions, itemWidth );
+
+	// NOTE: we aren't actually using gap prop in CSS, but the style is accomplishing the same
+	const blockGapClassNames = getPresetClass( blockGapOptions, blockGap );
+	const blockGapInlineStyle = getInlineStyle( blockGapOptions, blockGap );
 
 	const toggleScrollbar = noBar ? 'no-scrollbar' : '';
 
-	/* adding another className here duplicates default className */
-	const blockProps = useBlockProps({ className: toggleScrollbar });
+	const styleProps = {
+		"--wf--height": heightInlineStyle,
+		"--wf--content-width": itemWidthInlineStyle,
+		"--wf-reel--space": blockGapInlineStyle,
+	}
+
+	const blockProps = useBlockProps();
+
+	const optionalClassNames = classnames(
+		toggleScrollbar,
+		blockGapClassNames,
+		itemWidthClassNames,
+		heightClassNames
+	)
 
 	const { hasInnerBlocks } = useSelect(
 		(select) => {
@@ -76,11 +115,19 @@ function Edit(props) {
 				</ToolbarGroup>
 			</BlockControls>
 			<InspectorControls>
-				<SizePanel { ...props } />
-				<SpacingPanel { ...props } />
+				<PanelBody title={ __( 'Reel Settings', namespace ) }>
+					<ItemWidthPanel { ...props } />
+					<ReelHeight { ...props } />
+					<BlockGapPanel { ...props } />
+				</PanelBody>
 			</InspectorControls>
 			<HTMLElementsInspector { ...props } />
-			<TagName {...innerBlocksProps} style={ { ...styleProps } }/>
+			<TagName {...innerBlocksProps}
+					 className={ classnames(
+						 blockProps.className,
+						 optionalClassNames
+					 ) }
+					 style={ { ...styleProps } } />
 		</>
 	);
 }
