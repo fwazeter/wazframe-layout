@@ -1,7 +1,7 @@
 .wp-block-wazframe-switcher {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--wf-switcher--space, var(--wp--style--block-gap, 1.5rem));
+  gap: var(--wf-switcher--space, var(--wp--style--block-gap, 1rem));
 
   > * {
     flex-grow: var(--wf--flex-grow, 1);

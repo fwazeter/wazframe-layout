@@ -9,13 +9,8 @@
   "textdomain": "wf-layout",
   "icon": "image-rotate-left",
   "attributes": {
-    "tagName": {
-      "type": "string",
-      "default": "div"
-    },
-    "templateLock": {
-      "type": ["string", "boolean"],
-      "enum": ["all", "insert", false]
+    "width": {
+      "type": "string"
     },
     "limit": {
       "type": "integer",
@@ -24,8 +19,25 @@
     "customChild": {
       "type": "integer"
     },
+    "blockGap": {
+      "type": "string"
+    },
+    "flex": {
+      "type": "object",
+      "flexGrow": {
+        "type": "string"
+      }
+    },
     "style": {
       "type": "object"
+    },
+    "tagName": {
+      "type": "string",
+      "default": "div"
+    },
+    "templateLock": {
+      "type": ["string", "boolean"],
+      "enum": ["all", "insert", false]
     }
   },
   "editorScript": "file:./index.js",
