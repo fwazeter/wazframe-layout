@@ -1,4 +1,9 @@
 /**
+ * External dependencies
+ */
+import classnames from 'classnames';
+
+/**
  * WordPress dependencies
  */
 import { __ } from "@wordpress/i18n";
@@ -19,9 +24,15 @@ import { useSelect } from "@wordpress/data";
 /**
  * Internal dependencies
  */
-import SpacingPanel from '../editor-components/spacing';
-import { WidthEdit } from '../editor-components/width';
 import HTMLElementsInspector from "../utils/html-element-messages";
+import {
+    MinWidthPanel,
+    BlockGapPanel,
+    minWidthOptions,
+    blockGapOptions,
+    getInlineStyle,
+    getPresetClass,
+} from "../editor-components";
 
 import namespace from '../utils/namespace';
 
@@ -29,17 +40,29 @@ import namespace from '../utils/namespace';
 export default function Edit(props) {
     const { attributes, setAttributes, clientId } = props;
     const {
-        style,
+        minWidth,
+        blockGap,
         templateLock,
         tagName: TagName = 'section',
     } = attributes;
 
+    const minWidthClassName = getPresetClass( minWidthOptions, minWidth );
+    const minWidthInlineStyle = getInlineStyle( minWidthOptions, minWidth );
+
+    const blockGapClassName = getPresetClass( blockGapOptions, blockGap );
+    const blockGapInlineStyle = getInlineStyle( blockGapOptions, blockGap );
+
     const styleProps = {
-        "--wf-grid--space": style?.spacing?.blockGap,
-        "--wf--content-width": style?.size?.width,
+        "--wf-grid--space": blockGapInlineStyle,
+        "--wf--min-width": minWidthInlineStyle,
     }
 
     const blockProps = useBlockProps();
+
+    const optionalClassNames = classnames(
+        minWidthClassName,
+        blockGapClassName,
+    )
 
     const { hasInnerBlocks } = useSelect(
         (select) => {
@@ -62,13 +85,18 @@ export default function Edit(props) {
     return (
         <>
             <InspectorControls>
-                <PanelBody title={ __('Grid Column Width', namespace ) } initialOpen={true}>
-                    <WidthEdit { ...props } />
+                <PanelBody title={ __('Grid Settings', namespace ) } initialOpen={true}>
+                    <MinWidthPanel { ...props } />
+                    <BlockGapPanel { ...props } />
                 </PanelBody>
-                <SpacingPanel { ...props } />
             </InspectorControls>
             <HTMLElementsInspector { ...props } />
-            <TagName { ...innerBlocksProps } style={ { ...styleProps } } />
+            <TagName { ...innerBlocksProps }
+                     className={ classnames(
+                         blockProps.className,
+                         optionalClassNames
+                     ) }
+                     style={ { ...styleProps } } />
         </>
     );
 }

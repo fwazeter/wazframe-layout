@@ -2,7 +2,40 @@
   display: grid;
   grid-gap: var(--wf-grid--space, var(--wp--style--block-gap, 1rem));
 
-  @supports( width: min(var(--measure), 100%)) {
-    grid-template-columns: repeat(auto-fit, minmax(min(var(--wf--content-width, 250px), 100%), 1fr));
+  @supports( width: min(var(--wf--min-width, 250px), 100%)) {
+    grid-template-columns: repeat(auto-fit, minmax(min(var(--wf--min-width, 250px), 100%), 1fr));
+  }
+
+  &.wf-space-none {
+    grid-gap: 0;
+  }
+
+  &.wf-space-small {
+    --wf-grid--space: var(--wf--size-scale--m1, 0.75rem);
+  }
+
+  &.wf-space-medium {
+    --wf-grid--space: var(--wf--size-scale--2, 1.5rem);
+  }
+
+  &.wf-space-large {
+    --wf-grid--space: var(--wf--size-scale--3, 2rem);
+  }
+
+  /*  These values can also be complex values, like calc(var(--content-size) / 3)
+   *  We probably need to find a more dynamic solution to this input later.
+   *  As always, we need to test these arbitrary values to see if we actually
+   *  Use those lengths or not in development.
+   */
+  &.wf-size-medium {
+    --wf--min-width: 22rem;
+  }
+
+  &.wf-size-large {
+    --wf--min-width: 29rem;
+  }
+
+  &.wf-size-content {
+    --wf--min-width: 65ch;
   }
 }

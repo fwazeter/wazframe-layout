@@ -1,33 +1,51 @@
 /**
+ * External dependencies
+ */
+import classnames from 'classnames';
+
+/**
  * WordPress dependencies
  */
 import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
 
 /**
- * The save function defines the way in which the different attributes should
- * be combined into the final markup, which is then serialized by the block
- * editor into `post_content`.
- *
- * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
- *
- * @return {WPElement} Element to render.
+ * Internal dependencies
  */
+import {
+    getInlineStyle,
+    getPresetClass,
+    blockGapOptions,
+    minWidthOptions
+} from "../editor-components";
+
 export default function save( { attributes } ) {
     const {
+        minWidth,
+        blockGap,
         tagName: Tag,
-        style,
     } = attributes
 
+    const minWidthClassName = getPresetClass( minWidthOptions, minWidth );
+    const minWidthInlineStyle = getInlineStyle( minWidthOptions, minWidth );
+
+    const blockGapClassName = getPresetClass( blockGapOptions, blockGap );
+    const blockGapInlineStyle = getInlineStyle( blockGapOptions, blockGap );
+
     const styleProps = {
-        "--wf-grid--space": style?.spacing?.blockGap,
-        "--wf--content-width": style?.size?.width,
+        "--wf-grid--space": blockGapInlineStyle,
+        "--wf--min-width": minWidthInlineStyle,
     }
+
+    const optionalClassNames = classnames(
+        minWidthClassName,
+        blockGapClassName,
+    )
 
     return (
         <>
             <Tag
                 { ...useInnerBlocksProps.save(
-                    useBlockProps.save( { style: styleProps } )
+                    useBlockProps.save( { className: optionalClassNames, style: styleProps } )
                 )}
             />
         </>
