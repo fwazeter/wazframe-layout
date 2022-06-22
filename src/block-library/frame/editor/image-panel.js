@@ -17,7 +17,7 @@ import {
 /**
  * Internal dependencies
  */
-import namespace from '../../utils/namespace';
+import { namespace } from '../../../block-editor';
 import RatioPanel from "./ratio-panel";
 
 function ImagePanel( props ) {

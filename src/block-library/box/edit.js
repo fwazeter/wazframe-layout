@@ -25,10 +25,14 @@ import { useSelect } from "@wordpress/data";
 /**
  * Internal Dependencies
  */
-import HTMLElementsInspector from "../utils/html-element-messages";
-import BlockOptions from "../editor-components/options";
-import { Padding } from "../editor-components/options/padding";
-import { getPresetClass, getInlineStyle } from "../editor-components";
+import {
+	HTMLElementsInspector,
+	BlockOptions,
+	Padding,
+	getPresetClass,
+	getInlineStyle
+} from "../../block-editor"
+
 import { options } from './constants';
 
 

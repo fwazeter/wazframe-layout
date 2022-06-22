@@ -44,19 +44,19 @@ function HTMLElementsInspector ( props ) {
     } = props
 
     return (
-      <>
-          <InspectorControls __experimentalGroup="advanced">
-              <SelectControl
-                  label={ __( 'HTML element' ) }
-                  options={ htmlTagName }
-                  value={ tagName }
-                  onChange={ ( value ) =>
-                      setAttributes( { tagName: value } )
-                  }
-                  help={ htmlElementMessages[ tagName ] }
-              />
-          </InspectorControls>
-      </>
+        <>
+            <InspectorControls __experimentalGroup="advanced">
+                <SelectControl
+                    label={ __( 'HTML element' ) }
+                    options={ htmlTagName }
+                    value={ tagName }
+                    onChange={ ( value ) =>
+                        setAttributes( { tagName: value } )
+                    }
+                    help={ htmlElementMessages[ tagName ] }
+                />
+            </InspectorControls>
+        </>
     );
 }
 

@@ -1,14 +1,11 @@
 .wp-block-wazframe-imposter {
-  --wf--translate-x: -50%;
-  --wf--translate-y: -50%;
-  --wf--block-start: 50%;
-  --wf--inline-start: 50%;
-  position: var(--wf--positioning, absolute);
+  --wf--translate: -50% -50%;
+  position: var(--wf--position, absolute);
   /* equivalent to setting `top` & `left` in horizontal-tb mode */
-  inset-block-start: var(--wf--block-start);
-  inset-inline-start: var(--wf--inline-start);
+  inset-block-start: var(--wf--block-start, 50%);
+  inset-inline-start: var(--wf--inline-start, 50%);
   /* transform position */
-  transform: translate(var(--wf--translate, -50%, -50%));
+  transform: translate(var(--wf--translate));
 
   &.contain {
     --wf-imposter--space: 0px;

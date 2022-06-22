@@ -10,13 +10,7 @@
   "icon": "admin-page",
   "attributes": {
     "position": {
-      "type": "object",
-      "translate": {
-        "type": "object"
-      },
-      "placement": {
-        "type": "object"
-      }
+      "type": "object"
     },
     "positionType": {
       "type": "string"

@@ -30,20 +30,19 @@ import { useSelect } from '@wordpress/data';
 /**
  * Internal dependencies
  */
-import HTMLElementsInspector from "../utils/html-element-messages";
-import namespace from "../utils/namespace";
-
-import ItemWidthPanel from './editor/reel-item-width'
-import ReelHeight from "./editor/reel-height";
-
-import { itemWidthOptions, heightOptions } from "./constants";
-
 import {
 	BlockGapPanel,
 	blockGapOptions,
 	getInlineStyle,
 	getPresetClass,
-} from "../editor-components";
+	HTMLElementsInspector,
+	namespace
+} from "../../block-editor";
+
+import ItemWidthPanel from './editor/reel-item-width'
+import ReelHeight from "./editor/reel-height";
+
+import { itemWidthOptions, heightOptions } from "./constants";
 
 
 function Edit( props ) {

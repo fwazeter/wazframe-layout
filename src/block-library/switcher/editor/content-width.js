@@ -1,10 +1,17 @@
 /**
+ * WordPress dependencies
+ */
+import { __ } from "@wordpress/i18n";
+/**
  * Internal dependencies
  */
-import {getSize, getSizeObjectByValue} from "../../editor-components";
-import { BlockOptionsPicker } from "../../editor-components";
+import {
+    getSize,
+    getSizeObjectByValue,
+    BlockOptionsPicker
+} from "../../../block-editor";
 import { options } from "../constants";
-import {__} from "@wordpress/i18n";
+
 
 
 function WidthPanel( props) {

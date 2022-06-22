@@ -25,18 +25,18 @@ import { useSelect } from "@wordpress/data";
 /**
  * Internal dependencies
  */
-import HTMLElementsInspector from "../utils/html-element-messages";
 import {
+    HTMLElementsInspector,
     PaddingPanel,
     paddingOptions,
     getPresetClass,
     getInlineStyle,
-} from "../editor-components";
+    namespace
+} from "../../block-editor";
 
 import HeightPanel from "./editor/height";
 import { options } from "./constants";
 
-import namespace from '../utils/namespace';
 
 
 export default function Edit(props) {

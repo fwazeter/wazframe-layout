@@ -10,11 +10,7 @@ import {
 /**
  * Internal dependencies
  */
-import {
-    cleanEmptyObject,
-    widthUnits
-} from "../../utils";
-import namespace from "../../utils/namespace";
+import { namespace } from "../../../block-editor";
 
 
 export function LimitEdit( props ) {

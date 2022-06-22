@@ -29,12 +29,17 @@ import { useSelect } from "@wordpress/data";
 /**
  * Internal Dependencies
  */
-import namespace from "../utils/namespace";
-import { getInlineStyle, getPresetClass } from "../editor-components";
+import {
+    namespace,
+    getInlineStyle,
+    getPresetClass,
+    BlockOptions,
+    Padding,
+    CustomWidth,
+} from "../../block-editor";
+
 import { paddingOptions, widthOptions } from "./constants";
-import BlockOptions from "../editor-components/options"
-import { Padding } from "../editor-components/options/padding";
-import { CustomWidth } from "../editor-components/options/custom-width";
+
 
 
 

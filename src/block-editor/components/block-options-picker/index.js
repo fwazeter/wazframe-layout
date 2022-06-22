@@ -20,13 +20,14 @@ import {
  * Internal dependencies
  */
 import namespace from "../../utils/namespace";
+
 import {
     getSelectedOption,
     getSizeOptions,
     isSimpleCssValue,
     splitValueAndUnitFromSize,
     CUSTOM_STYLE_VALUE
-} from "./utils";
+} from "../../utils";
 
 function BlockOptionsPicker(
     {
@@ -77,7 +78,7 @@ function BlockOptionsPicker(
         if ( shouldUseButtons ) {
             return(
                 isSimpleCssValue( selectedOption?.size ) &&
-                    `(${ selectedOption?.size })`
+                `(${ selectedOption?.size })`
             );
         }
 
@@ -133,8 +134,8 @@ function BlockOptionsPicker(
                 <FlexItem>
                     <Button
                         label={ showCustomValueControl
-                                ? __( 'Use size preset' )
-                                : __( 'Set custom size' )
+                            ? __( 'Use size preset' )
+                            : __( 'Set custom size' )
                         }
                         icon={ settings }
                         onClick={ () => {
@@ -166,7 +167,7 @@ function BlockOptionsPicker(
                                 aria-label={ option.name }
                                 showTooltip={ true }
                             />
-                            ) ) }
+                        ) ) }
                     </ToggleGroupControl>
                 ) }
                 { showCustomValueControl && (

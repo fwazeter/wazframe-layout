@@ -13,8 +13,15 @@ import { useInnerBlocksProps,
 /**
  * Internal dependencies
  */
-import {getInlineStyle, getPresetClass} from "../editor-components";
-import {paddingOptions, widthOptions} from "./constants";
+import {
+    getInlineStyle,
+    getPresetClass
+} from "../../block-editor";
+
+import {
+    paddingOptions,
+    widthOptions
+} from "./constants";
 
 /**
  * The save function defines the way in which the different attributes should

@@ -15,7 +15,7 @@ import {
     paddingOptions,
     getPresetClass,
     getInlineStyle,
-} from "../editor-components";
+} from "../../block-editor";
 
 import { options } from "./constants";
 

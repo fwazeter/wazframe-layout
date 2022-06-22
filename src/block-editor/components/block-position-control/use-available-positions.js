@@ -1,9 +1,4 @@
-
-
-
-const DEFAULT_CONTROLS = [ 'none', 'relative', 'fixed' ];
-const EXTRA_CONTROLS = [ 'absolute', 'sticky' ];
-const ELEMENT_DEFAULT = [ 'static' ];
+const DEFAULT_CONTROLS = [ 'none', 'relative', 'fixed', 'sticky' ];
 
 export default function useAvailablePositions( controls = DEFAULT_CONTROLS ) {
     // Always add a 'none' option if it doesn't exist.

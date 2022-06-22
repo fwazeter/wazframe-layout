@@ -30,9 +30,9 @@ import {
 } from './align-items';
 
 import {
-    cleanEmptyObject
-} from "../../utils";
-import namespace from '../../utils/namespace';
+    cleanEmptyObject,
+    namespace
+} from "../../../block-editor";
 
 
 function ClusterPanel( props ) {

@@ -24,17 +24,16 @@ import { useSelect } from "@wordpress/data";
 /**
  * Internal dependencies
  */
-import HTMLElementsInspector from "../utils/html-element-messages";
 import {
+    HTMLElementsInspector,
     MinWidthPanel,
     BlockGapPanel,
     minWidthOptions,
     blockGapOptions,
     getInlineStyle,
     getPresetClass,
-} from "../editor-components";
-
-import namespace from '../utils/namespace';
+    namespace
+} from '../../block-editor';
 
 
 export default function Edit(props) {

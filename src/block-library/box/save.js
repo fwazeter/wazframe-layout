@@ -13,10 +13,12 @@ import {
 	__experimentalGetColorClassesAndStyles as getColorClassesAndStyles,
 
 } from '@wordpress/block-editor';
+
 import {
 	getInlineStyle,
 	getPresetClass
-} from "../editor-components";
+} from "../../block-editor"
+
 import { options } from "./constants";
 
 

@@ -13,9 +13,8 @@ import {
     landscapeRatio,
     verticalRatio,
     portraitRatio,
-} from '../../utils/icons';
-import {cleanEmptyObject} from '../../utils';
-import namespace from '../../utils/namespace';
+    namespace
+} from '../../../block-editor';
 
 /**
  * Checks if there is a current value in align items attributes.

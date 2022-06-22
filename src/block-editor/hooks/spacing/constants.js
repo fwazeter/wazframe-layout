@@ -51,25 +51,3 @@ export const paddingOptions = [
         size: '0'
     }
 ]
-
-/**
- * Default settings for minWidth.
- * Used in Grid block.
- */
-export const minWidthOptions = [
-    {
-        name: __('Medium'),
-        slug: 'size-medium',
-        size: '22rem',
-    },
-    {
-        name: __( 'Large' ),
-        slug: 'size-large',
-        size: '29rem'
-    },
-    {
-        name: __('Content' ),
-        slug: 'size-content',
-        size: '65ch'
-    }
-]

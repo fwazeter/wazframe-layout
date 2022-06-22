@@ -30,17 +30,18 @@ import { useSelect } from '@wordpress/data';
 /**
  * Internal Dependencies
  */
-import AlignmentPanel from "./editor/alignment";
-import HTMLElementsInspector from '../utils/html-element-messages';
-import namespace from '../utils/namespace';
-import SidebarWidthPanel from "./editor/sidebar-width";
-import MainWidthPanel from "./editor/main-width";
 import {
 	BlockGapPanel,
 	getInlineStyle,
 	getPresetClass,
 	blockGapOptions,
-} from "../editor-components";
+	HTMLElementsInspector,
+	namespace
+} from "../../block-editor";
+
+import AlignmentPanel from "./editor/alignment";
+import SidebarWidthPanel from "./editor/sidebar-width";
+import MainWidthPanel from "./editor/main-width";
 import { sidebarOptions } from "./constants";
 
 export default function Edit(props) {

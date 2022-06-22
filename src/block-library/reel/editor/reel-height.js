@@ -1,9 +1,12 @@
 /**
  * Internal dependencies
  */
-import {getSize, getSizeObjectByValue} from "../../editor-components";
-import { BlockOptionsPicker } from "../../editor-components";
-import { heightUnits } from "../../utils";
+import {
+    getSize,
+    getSizeObjectByValue,
+    BlockOptionsPicker,
+    heightUnits
+} from "../../../block-editor";
 import { heightOptions } from "../constants";
 
 

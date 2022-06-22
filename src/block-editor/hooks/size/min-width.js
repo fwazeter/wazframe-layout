@@ -1,9 +1,12 @@
 /**
  * Internal dependencies
  */
-import {getSize, getSizeObjectByValue} from "./utils";
-import BlockOptionsPicker from "./block-options-picker";
-import { widthUnits } from "../../utils";
+import {
+    getSize,
+    getSizeObjectByValue,
+    widthUnits
+} from "../../utils";
+import { BlockOptionsPicker } from "../../components";
 import { minWidthOptions } from "./constants";
 
 

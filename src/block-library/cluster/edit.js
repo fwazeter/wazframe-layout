@@ -25,13 +25,13 @@ import { useSelect } from '@wordpress/data';
  */
 import ClusterPanel from './editor/alignment';
 
-import HTMLElementsInspector from '../utils/html-element-messages';
 import {
+	HTMLElementsInspector,
 	getInlineStyle,
 	getPresetClass,
 	BlockGapPanel,
-	blockGapOptions,
-} from "../editor-components";
+	blockGapOptions
+} from "../../block-editor";
 
 export default function Edit(props) {
 	const { attributes, clientId } = props;

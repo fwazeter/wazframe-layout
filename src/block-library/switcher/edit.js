@@ -26,18 +26,19 @@ import { useSelect } from "@wordpress/data";
 /**
  * Internal dependencies
  */
-import { FlexGrowEdit } from "../editor-components/flexGrow";
-import LimitEdit from "./editor/limit";
-import HTMLElementsInspector from "../utils/html-element-messages";
-
-import { setLimitClassName, setCustomFlexGrow } from './setClassName'
-import namespace from '../utils/namespace';
 import {
     BlockGapPanel,
     blockGapOptions,
     getPresetClass,
     getInlineStyle,
-} from "../editor-components";
+    HTMLElementsInspector,
+    namespace
+} from "../../block-editor";
+
+import { FlexGrowEdit } from "../editor-components/flexGrow";
+import LimitEdit from "./editor/limit";
+import { setLimitClassName, setCustomFlexGrow } from './setClassName'
+
 import WidthPanel from "./editor/content-width";
 import { options } from "./constants";
 
