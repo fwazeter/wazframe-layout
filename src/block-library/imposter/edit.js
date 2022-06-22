@@ -4,6 +4,7 @@
 import { __ } from "@wordpress/i18n";
 import {
     InspectorControls,
+    BlockControls,
     InnerBlocks,
     useBlockProps,
     useInnerBlocksProps,
@@ -22,13 +23,17 @@ import { useSelect } from "@wordpress/data";
 import SpacingPanel from '../editor-components/spacing';
 import PositionPanel from './editor/position-panel';
 import namespace from '../utils/namespace';
+import { BlockPositionControl } from "../../block-editor";
 
 
 export default function Edit(props) {
     const { attributes, setAttributes, clientId } = props;
     const {
-        style,
         position,
+        positionType,
+        contain,
+        margin,
+        style,
         templateLock,
     } = attributes;
 
@@ -68,8 +73,21 @@ export default function Edit(props) {
             : InnerBlocks.ButtonBlockAppender,
     });
 
+    const updatePositionType = ( nextPosition ) => {
+        if ( ! nextPosition ) {
+            nextPosition = undefined;
+        }
+        setAttributes( { positionType: nextPosition } );
+    }
+
     return (
         <>
+            <BlockControls>
+                <BlockPositionControl
+                    value={ positionType }
+                    onChange={ updatePositionType }
+                />
+            </BlockControls>
             <InspectorControls>
                 <PanelBody title={ __('Breakout of Parent Container', namespace ) } initialOpen={true}>
                     <ToggleControl
