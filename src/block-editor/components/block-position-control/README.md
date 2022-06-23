@@ -33,12 +33,7 @@ const NEW_CONTROLS = [ 'none', 'relative', 'fixed', 'sticky' ];
 ```
 
 **implementation**
-
-In this example we're wrapping the component in WordPress's `<BlockControls>` component.
-
 ```js
-import { BlockControls } from "@wordpress/block-editor";
-
 <BlockControls>
     <BlockPositionControl
         value={ positionType }

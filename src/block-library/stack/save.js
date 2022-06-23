@@ -11,12 +11,9 @@ import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
 /**
  * Internal dependencies
  */
-import {
-	getInlineStyle,
-	getPresetClass
-} from "../../block-editor";
-import { setClassName } from "./setClassName";
-import { options } from "./constants";
+import {setClassName} from "./setClassName";
+import {getInlineStyle, getPresetClass} from "../editor-components";
+import {options} from "./constants";
 
 
 export default function save( { attributes, className }

@@ -15,7 +15,7 @@ import {
     getInlineStyle,
     getPresetClass,
     blockGapOptions,
-} from "../../block-editor";
+} from "../editor-components";
 
 /**
  * The save function defines the way in which the different attributes should

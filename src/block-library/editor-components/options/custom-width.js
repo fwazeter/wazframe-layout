@@ -15,7 +15,7 @@ import {
 /**
  * Internal dependencies
  */
-import { namespace } from '../../utils';
+import namespace from '../../utils/namespace';
 import { widthUnits } from "../../utils";
 
 /**

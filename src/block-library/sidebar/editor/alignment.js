@@ -17,6 +17,7 @@ import { useDispatch, useSelect } from '@wordpress/data';
 /**
  * Internal Dependencies
  */
+
 import {
     hasValue as hasAlignItems,
     reset as resetAlignItems,
@@ -24,9 +25,9 @@ import {
 } from './align-items';
 
 import {
-    cleanEmptyObject,
-    namespace
-} from "../../../block-editor";
+    cleanEmptyObject
+} from "../../utils";
+import namespace from '../../utils/namespace';
 
 
 function AlignmentPanel( props ) {

@@ -1,13 +1,10 @@
 /**
  * Internal dependencies
  */
-import {
-    getSize,
-    getSizeObjectByValue,
-    widthUnits
-} from "../../utils";
-import { BlockOptionsPicker } from "../../components";
-import { sidebarOptions } from "./constants";
+import { widthUnits} from "../../utils";
+import {getSize, getSizeObjectByValue} from "./utils";
+import BlockOptionsPicker from "./block-options-picker";
+import { options } from "../../sidebar/constants";
 
 /**
  * Custom setting for default options provided
@@ -24,7 +21,7 @@ function WidthPanel( props) {
     } = props
 
     const onChange = ( value ) => {
-        const sizeSlug = getSizeObjectByValue( sidebarOptions, value ).slug;
+        const sizeSlug = getSizeObjectByValue( options, value ).slug;
 
         if ( ! sizeSlug ) {
             setAttributes( {
@@ -38,7 +35,7 @@ function WidthPanel( props) {
     };
 
     const sizeObject = getSize(
-        sidebarOptions,
+        options,
         attributes.width,
         attributes?.width
     );
@@ -47,7 +44,7 @@ function WidthPanel( props) {
 
     return (
         <BlockOptionsPicker
-            sizeOptions={ sidebarOptions }
+            sizeOptions={ options }
             panelName='Set Width'
             units={ widthUnits }
             onChange={ onChange }

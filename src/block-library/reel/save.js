@@ -18,7 +18,7 @@ import {
 	blockGapOptions,
 	getInlineStyle,
 	getPresetClass
-} from "../../block-editor";
+} from "../editor-components";
 
 import {
 	heightOptions,

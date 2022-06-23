@@ -1,4 +1,12 @@
 /**
+ * External dependencies
+ */
+
+/**
+ * WordPress dependencies
+ */
+
+/**
  * Finds whether the matching entry for 'name' in array
  * exists
  *

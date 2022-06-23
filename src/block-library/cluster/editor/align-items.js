@@ -5,17 +5,18 @@ import {
     fullscreen
 } from '@wordpress/icons';
 
+import {
+    verticalAlignTop,
+    verticalAlignCenter,
+    verticalAlignBottom,
+} from '../../utils/icons';
+
 import { Button } from '@wordpress/components';
 /**
  * Internal dependencies
  */
-import {
-    cleanEmptyObject,
-    namespace,
-    verticalAlignTop,
-    verticalAlignCenter,
-    verticalAlignBottom
-} from "../../../block-editor";
+import {cleanEmptyObject} from '../../utils';
+import namespace from '../../utils/namespace';
 
 /**
  * Checks if there is a current value in align items attributes.

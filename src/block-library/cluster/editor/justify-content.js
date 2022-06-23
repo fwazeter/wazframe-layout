@@ -12,10 +12,8 @@ import { Button } from '@wordpress/components';
 /**
  * Internal dependencies
  */
-import {
-    cleanEmptyObject,
-    namespace
-} from '../../../block-editor';
+import {cleanEmptyObject} from '../../utils';
+import namespace from '../../utils/namespace';
 
 /**
  * Checks if there is a current value in the justify content attributes.

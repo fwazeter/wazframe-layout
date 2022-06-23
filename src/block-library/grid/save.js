@@ -16,7 +16,7 @@ import {
     getPresetClass,
     blockGapOptions,
     minWidthOptions
-} from "../../block-editor";
+} from "../editor-components";
 
 export default function save( { attributes } ) {
     const {

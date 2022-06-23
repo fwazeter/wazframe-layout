@@ -31,9 +31,9 @@ import {
 
 
 import {
-    cleanEmptyObject,
-    namespace
-} from "../../../block-editor";
+    cleanEmptyObject
+} from "../../utils";
+import namespace from '../../utils/namespace';
 
 
 function RatioPanel( props ) {

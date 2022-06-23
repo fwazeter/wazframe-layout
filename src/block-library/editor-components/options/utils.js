@@ -11,7 +11,7 @@ import { __ } from "@wordpress/i18n";
 /**
  * Internal dependencies
  */
-import namespace from "./namespace";
+import namespace from "../../utils/namespace";
 
 const DEFAULT_STYLE_VALUE = 'default';
 const DEFAULT_OPTION = {

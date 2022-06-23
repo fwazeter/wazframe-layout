@@ -1,4 +1,9 @@
 /**
+ * External dependencies
+ */
+import classnames from 'classnames';
+
+/**
  * WordPress dependencies
  */
 import { __ } from "@wordpress/i18n";
@@ -20,11 +25,12 @@ import { useCallback, useState, useRef } from "@wordpress/element";
 /**
  * Internal dependencies
  */
-import {
-    namespace,
-    URLPicker
-} from "../../block-editor";
+import namespace from '../utils/namespace';
 import ImagePanel from './editor/image-panel';
+import URLPicker from "../utils/url-picker";
+import {
+    getPresetClass
+} from "../editor-components";
 
 const NEW_TAB_REL = 'noreferrer noopener';
 

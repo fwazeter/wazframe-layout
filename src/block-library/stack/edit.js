@@ -26,16 +26,13 @@ import { useSelect } from "@wordpress/data";
 /**
  * Internal Dependencies
  */
-import {
-	HTMLElementsInspector,
-	namespace,
-	getInlineStyle,
-	getPresetClass,
-	BlockOptions,
-	Margin
-} from "../../block-editor";
-import { setClassName } from "./setClassName";
-import { options } from "./constants";
+import HTMLElementsInspector from "../utils/html-element-messages";
+import namespace from './../utils/namespace';
+import {setClassName} from "./setClassName";
+import {getInlineStyle, getPresetClass} from "../editor-components";
+import {options} from "./constants";
+import BlockOptions from "../editor-components/options";
+import {Margin} from "../editor-components/options/margin";
 
 
 export default function Edit(props) {
