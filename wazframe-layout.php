@@ -16,6 +16,31 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+/**
+ * Register package js files to the block editor.
+ */
+function wf_layout_block_editor_assets() {
+	// JS file
+	$script_path        = "build/packages/wazframe-block-editor.js";
+	// WordPress dependencies
+	$script_asset_path  = __DIR__ . "/build/packages/wazframe-block-editor.asset.php";
+	
+	$script_asset  = file_exists( $script_asset_path )
+		? require( $script_asset_path )
+		: array( 'dependencies' => array(), 'version' => filemtime( $script_path ) );
+	
+	$script_url         = plugins_url( $script_path, __FILE__ );
+	
+	wp_enqueue_script(
+		'wazframe-block-editor',
+		$script_url,
+		$script_asset['dependencies'],
+		$script_asset['version']
+	);
+}
+add_action( 'enqueue_block_editor_assets', 'wf_layout_block_editor_assets' );
+
 /**
  * Adds custom categories for blocks.
  *
@@ -60,8 +85,8 @@ function wf_layout_block_init() {
 		'imposter',
 	);
 	foreach ( $blocks as $block ) {
-		register_block_type( __DIR__ . "/build/block-library/{$block}" );
+		register_block_type( __DIR__ . "/build/{$block}" );
 	}
-	register_block_type( __DIR__ . "/build/block-library" );
+	register_block_type( __DIR__ . "/build" );
 }
 add_action( 'init', 'wf_layout_block_init' );
