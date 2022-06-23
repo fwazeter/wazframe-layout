@@ -15,6 +15,7 @@ build/Release
 node_modules/
 src/block-editor/node_modules/
 src/block-library/node_modules/
+src/style-engine/node_modules/
 
 # Optional npm cache directory
 .npm
@@ -36,7 +37,5 @@ src/block-library/node_modules/
 
 # The build compile folder
 build
-packages/block-editor/build
-packages/block-library/build
 
 package-lock.json
