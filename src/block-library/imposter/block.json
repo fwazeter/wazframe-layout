@@ -2,35 +2,20 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
   "name": "wazframe/imposter",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "title": "Imposter",
   "category": "layout-primitives",
   "description": "Imposter takes an element out of the layout flow, such as to obscure content or hover dialog.",
   "textdomain": "wf-layout",
   "icon": "admin-page",
   "attributes": {
-    "position": {
-      "type": "object",
-      "translate": {
-        "type": "object"
-      },
-      "placement": {
-        "type": "object"
-      }
-    },
-    "positionType": {
-      "type": "string"
-    },
-    "contain": {
-      "type": "boolean",
-      "default": false
-    },
-    "margin": {
-      "type": "string"
-    },
     "templateLock": {
       "type": ["string", "boolean"],
       "enum": ["all", "insert", false]
+    },
+    "position": {
+      "type": "boolean",
+      "default": false
     },
     "style": {
       "type": "object"
