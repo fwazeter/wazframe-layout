@@ -1,0 +1,8 @@
+/* resets the editor style that overrides max-inline properties, probably a better way to handle this */
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > :where( .wp-block-wazframe-center.wf-content-full ) {
+  max-width: none !important;
+}
+
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > :where( .wp-block-wazframe-center.wf-content-wide ) {
+  max-width: 65rem !important;
+}

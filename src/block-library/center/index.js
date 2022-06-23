@@ -2,7 +2,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import { positionCenter as icon } from '@wordpress/icons';
 
 import './style.scss';
-
+import './editor.scss';
 /**
  * Internal dependencies
  */

@@ -16,11 +16,12 @@
   }
 
   &.wf-content-wide {
-    --wf--content-width: 85rem;
+    --wf--content-width: 65rem;
   }
 
   &.wf-content-full {
-    max-inline-size: none;
+    max-inline-size: 100vw;
+    margin-inline-start: calc(50% - 50vw);
   }
 
   /* When we have a zero value, setting padding: 0; directly means
